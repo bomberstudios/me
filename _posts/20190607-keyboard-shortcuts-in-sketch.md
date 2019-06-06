@@ -1,4 +1,8 @@
 ---
+layout: post
+title: "Keyboard Shortcuts in Sketch"
+date: 2019-06-07 12:00:00 +0200
+categories: sketch plugins hack
 ---
 
 # Keyboard Shortcuts in Sketch

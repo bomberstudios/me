@@ -1,4 +1,6 @@
 ---
+layout: post
+date: 2019-06-08
 title: I got married (finally!)
 ---
 

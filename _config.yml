@@ -13,20 +13,45 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Ale, Today
+title: Untilted*
 email: hello@ale.today
 description: >- # this means to ignore newlines until "baseurl:"
   The personal web site of Ale Muñoz.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: bomberstudios
 github_username:  bomberstudios
+permalink: /:title/
 
 # Build settings
 markdown: kramdown
-theme: minima
+
+# theme: minima
+# show_excerpts: true
+# header_pages:
+#   - about.md
+#   - uses.md
+
+theme: jekyll-theme-so-simple
+locale: es
+date_format: "%-d %B %Y"
+read_time: true
+words_per_minute: 200
+twitter:
+  username: bomberstudios
+google_fonts:
+  - name: "Domine"
+    weights: "400,400i,700,700i"
+
+author:
+  name: Ale Muñoz
+  twitter: bomberstudios
+  picture: /images/avatar.png
+
+copyright: "Made with 🍊 by Ale Muñoz"
+
 plugins:
   - jekyll-feed
+  - jekyll-redirect-from
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

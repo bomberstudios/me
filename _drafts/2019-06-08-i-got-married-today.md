@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2019-06-08
-title: I got married (finally!)
+title: Today, I got married
 ---
 
 Today, June 8th 2019, I finally got married with my girlfriend.

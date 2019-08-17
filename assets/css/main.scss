@@ -1,0 +1,34 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+sitemap: false
+---
+
+@charset "utf-8";
+
+$serif-font-family: "Domine", serif;
+$sans-serif-font-family: "system-ui", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+// $monospace-font-family: Menlo, Consolas, Monaco, "Courier New", Courier,
+//   monospace;
+//
+// $base-font-family: $sans-serif-font-family;
+// $headline-font-family: $sans-serif-font-family;
+// $title-font-family: $serif-font-family;
+// $description-font-family: $serif-font-family;
+// $meta-font-family: $serif-font-family;
+
+@import "so-simple";
+
+a {
+  color: #f60;
+  text-decoration: none;
+}
+a:hover {
+  color: #f60;
+  text-decoration: underline;
+}
+
+.entry-title {
+  a, a:hover {
+    color: #f60;
+  }
+}

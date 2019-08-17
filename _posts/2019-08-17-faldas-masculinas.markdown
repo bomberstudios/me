@@ -57,14 +57,13 @@ Si conoces alguna tienda (online o física!) que no esté en el hilo, ya tardas 
 
 Aquí algunos links a cosas prometedoras en Amazon, que me han gustado por diseño, que no tienen reviews terribles, y que tienen información de talla:
 
-- Esta tiene un color muy guay https://amzn.to/2NaUcEh
-- Una opción elegante, para reuniones de negocios y fiestas de etiqueta. Bonus points: la hacen en talla XXXL (aunque hay que ser cabrón para llamar XXXL a una talla 48) https://amzn.to/31JqsT0
-- Esta no es para todo el mundo, ni para todas las ocasiones, pero si encuentras el momento adecuado (una gala de entrega de premios, por ejemplo) lo puedes PETAR https://amzn.to/2Mguw9r
-- Simple, larga, y en múltiples colores https://amzn.to/2KPlfBX
-- Una asimétrica sencilla, porque las lineas rectas son de cobardes
-https://amzn.to/2Z2Emlj
-- Plisada media pierna https://amzn.to/31Ib21g
-- Otra básica en muchos colores https://amzn.to/2Mk9Ayd
-- Esta negra con bolsillos tampoco es para todos los públicos, pero tiene algo que me encanta https://amzn.to/2Z4GBEN
+- Esta tiene un color muy guay <https://amzn.to/2NaUcEh>
+- Una opción elegante, para reuniones de negocios y fiestas de etiqueta. Bonus points: la hacen en talla XXXL (aunque hay que ser cabrón para llamar XXXL a una talla 48) <https://amzn.to/31JqsT0>
+- Esta no es para todo el mundo, ni para todas las ocasiones, pero si encuentras el momento adecuado (una gala de entrega de premios, por ejemplo) lo puedes PETAR <https://amzn.to/2Mguw9r>
+- Simple, larga, y en múltiples colores <https://amzn.to/2KPlfBX>
+- Una asimétrica sencilla, porque las lineas rectas son de cobardes <https://amzn.to/2Z2Emlj>
+- Plisada media pierna <https://amzn.to/31Ib21g>
+- Otra básica en muchos colores <https://amzn.to/2Mk9Ayd>
+- Esta negra con bolsillos tampoco es para todos los públicos, pero tiene algo que me encanta <https://amzn.to/2Z4GBEN>
 
-Tengo algunas más en esta wishlist de Amazon, y seguro que iré añadiendo más cuando las encuentre https://amzn.to/2KJ5kVW
+Tengo algunas más en esta wishlist de Amazon, y seguro que iré añadiendo más cuando las encuentre <https://amzn.to/2KJ5kVW>

@@ -10,6 +10,7 @@ permalink: /:title/
 # Build settings
 markdown: kramdown
 
+theme: minima
 date_format: "%-d %B %Y"
 read_time: true
 words_per_minute: 200

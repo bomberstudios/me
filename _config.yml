@@ -10,8 +10,6 @@ permalink: /:title/
 # Build settings
 markdown: kramdown
 
-theme: jekyll-theme-slate
-show_downloads: false
 date_format: "%-d %B %Y"
 read_time: true
 words_per_minute: 200

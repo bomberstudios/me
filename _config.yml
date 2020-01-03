@@ -31,7 +31,8 @@ markdown: kramdown
 #   - about.md
 #   - uses.md
 
-theme: jekyll-theme-so-simple
+theme: jekyll-theme-slate
+show_downloads: false
 locale: es
 date_format: "%-d %B %Y"
 read_time: true

@@ -18,6 +18,8 @@ $sans-serif-font-family: "system-ui", -apple-system, BlinkMacSystemFont, "Segoe 
 
 // @import "so-simple";
 
+@import "{{ site.theme }}";
+
 a {
   color: #f60;
   text-decoration: none;

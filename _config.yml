@@ -1,19 +1,14 @@
 title: ale.today
-email: hello@ale.today
-description: >- # this means to ignore newlines until "baseurl:"
-  a small life log
+# email: hello@ale.today
+description: "a small life log"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  bomberstudios
 permalink: /:title/
 
 # Build settings
 markdown: kramdown
 
 theme: minima
-date_format: "%-d %B %Y"
-read_time: true
-words_per_minute: 200
 show_excerpts: true
 author: Ale Muñoz
 copyright: "Made with 🍊 by Ale Muñoz"
@@ -23,6 +18,7 @@ minima:
   social_links:
     twitter: bomberstudios
     github: bomberstudios
+
 plugins:
   - jekyll-feed
   - jekyll-redirect-from

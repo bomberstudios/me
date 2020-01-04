@@ -3,7 +3,7 @@ layout: page
 title: About Me
 ---
 
-Hi! I'm Ale Muñoz, a digital toolsmith who loves writing code to help people do more with less work (i.e: I'm a Good Lazy™).
+Hi! I'm Ale Muñoz, a digital toolsmith who loves building things that help people do more with less work (i.e: I'm a Good Lazy™).
 
 I work for [Sketch](https://sketch.com), but you may have used some of the stuff I've created over the years (especially if you've written ActionScript or used Adobe Fireworks).
 

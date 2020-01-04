@@ -8,8 +8,8 @@ permalink: /:title/
 # Build settings
 markdown: kramdown
 
-theme: noir-for-jekyll
-#theme: minima
+#theme: noir-for-jekyll
+theme: minima
 show_excerpts: true
 author: Ale Muñoz
 copyright: "Made with 🍊 by Ale Muñoz"

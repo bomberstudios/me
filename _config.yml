@@ -15,13 +15,7 @@ date_format: "%-d %B %Y"
 read_time: true
 words_per_minute: 200
 show_excerpts: true
-twitter:
-  username: bomberstudios
-author:
-  name: Ale Muñoz
-  twitter: bomberstudios
-  picture: /images/avatar.png
-
+author: Ale Muñoz
 copyright: "Made with 🍊 by Ale Muñoz"
 
 minima:
@@ -29,7 +23,6 @@ minima:
   social_links:
     twitter: bomberstudios
     github: bomberstudios
-
 plugins:
   - jekyll-feed
   - jekyll-redirect-from

@@ -2,14 +2,16 @@
 
 $brand-color:           #ff6600 !default;
 $brand-color-light:     lighten($brand-color, 40%) !default;
-$brand-color-dark:      darken($brand-color, 25%) !default;
+//$brand-color-dark:      darken($brand-color, 25%) !default;
+$brand-color-dark:      $brand-color !default;
 
 $text-color:            #111 !default;
 $background-color:      #fdfdfd !default;
 $code-background-color: #eef !default;
 
 $link-base-color:       #ff6600 !default;
-$link-visited-color:    darken($link-base-color, 15%) !default;
+//$link-visited-color:    darken($link-base-color, 15%) !default;
+$link-visited-color:    $link-base-color !default;
 
 $table-text-color:      lighten($text-color, 18%) !default;
 $table-zebra-color:     lighten($brand-color, 46%) !default;
@@ -91,5 +93,6 @@ $table-border-color:    $brand-color-light !default;
 
 hr {
   margin: 2em 0;
-  border: 1px solid $text-color;
+  border: none;
+  border-top: 1px solid $text-color;
 }

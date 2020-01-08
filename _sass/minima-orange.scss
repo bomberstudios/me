@@ -24,7 +24,7 @@ $table-border-color:    $brand-color-light !default;
   --brand: #f60;
   --text-color: #222;
   --bg-color: #fff;
-  --subtle: #ccc;
+  --subtle: #aaa;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,7 +32,7 @@ $table-border-color:    $brand-color-light !default;
     --brand: #840;
     --text-color: #aaa;
     --bg-color: #222;
-    --subtle: #666;
+    --subtle: #777;
   }
 }
 
@@ -113,16 +113,13 @@ body {
   a {
     color: var(--brand);
   }
-  a:hover {
-    color: var(--text-color);
-  }
 }
 main a:hover {
   color: var(--bg-color);
   background-color: var(--brand);
   text-decoration: none;
-  padding: 0.2em 100em;
-  margin: -0.2em -100em;
+  padding: 0.2em;
+  margin: -0.2em;
 }
 
 hr {
@@ -138,8 +135,13 @@ h1.post-title,
   font-size: 3rem;
   line-height: 1.1em;
 }
-h1.post-title {
+h1.post-title,
+.post-list h3 .post-link {
   color: var(--brand);
+}
+.post-list h3 .post-link:hover {
+  color: var(--bg-color);
+  background-color: var(--brand);
 }
 .post-meta {
   color: #999;
@@ -149,6 +151,6 @@ blockquote {
   font-family: Baskerville, Georgia, serif;
   font-weight: 200;
   font-size: 2em;
-  color: lighten($text-color, 50%);
+  color: var(--subtle);
   margin: 1em 0;
 }

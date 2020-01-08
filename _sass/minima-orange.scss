@@ -19,6 +19,22 @@ $table-header-bg-color: lighten($brand-color, 43%) !default;
 $table-header-border:   lighten($brand-color, 36%) !default;
 $table-border-color:    $brand-color-light !default;
 
+// CSS Variables & Dark Theme
+:root {
+  --brand: #f60;
+  --text-color: #222;
+  --bg-color: #fff;
+  --subtle: #ccc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand: #840;
+    --text-color: #aaa;
+    --bg-color: #222;
+    --subtle: #666;
+  }
+}
 
 // Syntax highlighting styles should be adjusted appropriately for every "skin"
 // ----------------------------------------------------------------------------
@@ -91,10 +107,28 @@ $table-border-color:    $brand-color-light !default;
   "minima/custom-styles"
 ;
 
+body {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  a {
+    color: var(--brand);
+  }
+  a:hover {
+    color: var(--text-color);
+  }
+}
+main a:hover {
+  color: var(--bg-color);
+  background-color: var(--brand);
+  text-decoration: none;
+  padding: 0.2em 100em;
+  margin: -0.2em -100em;
+}
+
 hr {
   margin: 2em 0;
   border: none;
-  border-top: 1px solid lighten($text-color,70%);
+  border-top: 1px solid var(--subtle);
 }
 
 h1.post-title,
@@ -104,7 +138,9 @@ h1.post-title,
   font-size: 3rem;
   line-height: 1.1em;
 }
-
+h1.post-title {
+  color: var(--brand);
+}
 .post-meta {
   color: #999;
 }

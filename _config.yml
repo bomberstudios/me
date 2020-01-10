@@ -22,6 +22,9 @@ show_excerpts: false
 author:
   name: Ale Muñoz
   email: hello@ale.today
+  twitter: bomberstudios
+twitter: bomberstudios
+google_analytics: UA-155269665-2
 copyright: "Made with 🍊 by Ale Muñoz"
 
 minima:

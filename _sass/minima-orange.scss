@@ -23,16 +23,18 @@ $table-border-color:    $brand-color-light !default;
 :root {
   --brand: #f60;
   --text-color: #222;
+  --quote-color: #999;
   --bg-color: #fff;
-  --subtle: #aaa;
+  --subtle: #ddd;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --brand: #840;
     --text-color: #aaa;
+    --quote-color: #777;
     --bg-color: #222;
-    --subtle: #777;
+    --subtle: #555;
   }
 }
 
@@ -151,10 +153,18 @@ blockquote {
   font-family: Baskerville, Georgia, serif;
   font-weight: 200;
   font-size: 2em;
-  color: var(--subtle);
+  line-height: 1.3em;
+  color: var(--quote-color);
   margin: 1em 0;
 }
 
 img.logo {
   margin: 0.5em 0.3em 0.5em 0;
+}
+
+.footnotes {
+  font-size: 0.9em;
+  margin-top: 3em;
+  border-top: 1px solid var(--subtle);
+  padding-top: 1em;
 }

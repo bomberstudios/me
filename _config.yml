@@ -18,8 +18,10 @@ defaults:
 
 #theme: noir-for-jekyll
 theme: minima
-show_excerpts: true
-author: Ale Muñoz
+show_excerpts: false
+author:
+  name: Ale Muñoz
+  email: hello@ale.today
 copyright: "Made with 🍊 by Ale Muñoz"
 
 minima:

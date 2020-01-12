@@ -4,21 +4,19 @@
     {%- assign page_paths = site.header_pages | default: default_paths -%}
     {%- assign titles_size = site.pages | map: 'title' | join: '' | size -%}
     {%- if titles_size > 0 -%}
-      <nav>
+    <nav>
+      <div>
       {%- for path in page_paths -%}
-        {%- assign my_page = site.pages | where: "path", path | first -%}
-        {%- if my_page.title -%}
+      {%- assign my_page = site.pages | where: "path", path | first -%}
+      {%- if my_page.title -%}
         <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
-        {%- endif -%}
+      {%- endif -%}
       {%- endfor -%}
-      </nav>
+      </div>
+    </nav>
     {%- endif -%}
 
-    <a class="logo" href="/">
-      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 128 128">
-        <circle cx="64" cy="64" r="64" fill="#F60" fill-rule="evenodd"/>
-      </svg>
-    </a>
+    <a class="logo" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 128 128"><circle cx="64" cy="64" r="64" fill="#F60" fill-rule="evenodd"/></svg></a>
 
   </div>
 </header>

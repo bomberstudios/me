@@ -18,7 +18,7 @@
     --quote-color: #777;
     --quote-bg: #111;
     --bg-color: #222;
-    --subtle: #555;
+    --subtle: #363636;
   }
 }
 
@@ -88,6 +88,8 @@
 }
 
 body {
+  margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe UI Symbol", "Segoe UI Emoji", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   color: var(--text-color);
@@ -95,16 +97,19 @@ body {
   a {
     color: var(--brand);
   }
-}
-
-body {
-  margin: 0 auto;
-  padding: 2em;
-  max-width: 35em;
   img {
     width: 100%;
     border-radius: 0.4em;
+    box-shadow: 0 10px 20px var(--subtle);
   }
+}
+main {
+  padding: 0 2em;
+}
+main,
+header nav div {
+  margin: 0 auto;
+  max-width: 40em;
 }
 ul,
 ol {
@@ -115,8 +120,13 @@ ol {
 a {
   text-decoration: none;
 }
-header {
-  margin-bottom: 2em;
+nav {
+  text-align: right;
+  background-color: var(--brand);
+  padding: 0.5em 0;
+  a {
+    color: var(--bg-color);
+  }
 }
 main a:hover {
   color: var(--bg-color);
@@ -187,13 +197,17 @@ blockquote {
 .logo {
   display: block;
   text-align: center;
-  margin: 1em 0;
-}
-.logo circle {
-  fill: var(--brand);
-}
-.menu-icon path {
-  border: red;
+  margin: 0;
+  padding: 2em 0;
+  circle {
+    fill: var(--brand);
+  }
+  &:hover {
+    background-color: var(--brand);
+    circle {
+      fill: var(--bg-color);
+    }
+  }
 }
 
 .footnotes {
@@ -206,6 +220,8 @@ blockquote {
 footer {
   margin-top: 4em;
   font-size: 0.8em;
-  text-align: center;
+  padding: 1em;
   color: var(--quote-color);
+  background-color: var(--quote-bg);
+  text-align: center;
 }

@@ -180,6 +180,17 @@ article li {
   color: var(--quote-color);
 }
 
+.post-nav {
+  display: flex;
+  margin: 3em 0;
+}
+.post-nav div {
+  flex: 1 1 0;
+}
+.post-nav-next {
+  text-align: right;
+}
+
 blockquote {
   font-family: Baskerville, Georgia, serif;
   font-weight: 200;

@@ -1,31 +1,14 @@
+---
+---
 @charset "utf-8";
 
-$brand-color:           #ff6600 !default;
-$brand-color-light:     lighten($brand-color, 40%) !default;
-//$brand-color-dark:      darken($brand-color, 25%) !default;
-$brand-color-dark:      $brand-color !default;
-
-$text-color:            #222 !default;
-$background-color:      #fff !default;
-$code-background-color: #eef !default;
-
-$link-base-color:       #ff6600 !default;
-//$link-visited-color:    darken($link-base-color, 15%) !default;
-$link-visited-color:    $link-base-color !default;
-
-$table-text-color:      lighten($text-color, 18%) !default;
-$table-zebra-color:     lighten($brand-color, 46%) !default;
-$table-header-bg-color: lighten($brand-color, 43%) !default;
-$table-header-border:   lighten($brand-color, 36%) !default;
-$table-border-color:    $brand-color-light !default;
-
-// CSS Variables & Dark Theme
 :root {
   --brand: #f60;
   --text-color: #222;
   --quote-color: #999;
+  --quote-bg: #f4f4f4;
   --bg-color: #fff;
-  --subtle: #ddd;
+  --subtle: #eee;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,6 +16,7 @@ $table-border-color:    $brand-color-light !default;
     --brand: #840;
     --text-color: #aaa;
     --quote-color: #777;
+    --quote-bg: #111;
     --bg-color: #222;
     --subtle: #555;
   }
@@ -103,18 +87,36 @@ $table-border-color:    $brand-color-light !default;
   .il    { color: #099 } // Literal.Number.Integer.Long
 }
 
-// import skin-agnostic styles and override
-@import
-  "minima/initialize",
-  "minima/custom-styles"
-;
-
 body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe UI Symbol", "Segoe UI Emoji", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
   color: var(--text-color);
   background-color: var(--bg-color);
   a {
     color: var(--brand);
   }
+}
+
+body {
+  margin: 0 auto;
+  padding: 2em;
+  max-width: 35em;
+  img {
+    width: 100%;
+    border-radius: 0.4em;
+  }
+}
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+header {
+  margin-bottom: 2em;
 }
 main a:hover {
   color: var(--bg-color);
@@ -141,25 +143,57 @@ h1.post-title,
 .post-list h3 .post-link {
   color: var(--brand);
 }
+h1.post-title {
+  margin: 0;
+}
+article p.post-meta {
+  margin: 0;
+}
+article li {
+  list-style: square;
+  margin: 0 0 0.3em 2em;
+}
 .post-list h3 .post-link:hover {
   color: var(--bg-color);
   background-color: var(--brand);
 }
+.post-list {
+  &> li {
+    margin-bottom: 3em;
+  }
+  h3 {
+    margin: 0;
+    display: block;
+  }
+}
 .post-meta {
-  color: #999;
+  color: var(--quote-color);
 }
 
 blockquote {
   font-family: Baskerville, Georgia, serif;
   font-weight: 200;
-  font-size: 2em;
+  font-size: 1.5em;
   line-height: 1.3em;
   color: var(--quote-color);
-  margin: 1em 0;
+  margin: 0;
+  padding: 1em;
+  background-color: var(--quote-bg);
+  p {
+    margin: 0;
+  }
 }
 
-img.logo {
-  margin: 0.5em 0.3em 0.5em 0;
+.logo {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+.logo circle {
+  fill: var(--brand);
+}
+.menu-icon path {
+  border: red;
 }
 
 .footnotes {
@@ -167,4 +201,11 @@ img.logo {
   margin-top: 3em;
   border-top: 1px solid var(--subtle);
   padding-top: 1em;
+}
+
+footer {
+  margin-top: 4em;
+  font-size: 0.8em;
+  text-align: center;
+  color: var(--quote-color);
 }

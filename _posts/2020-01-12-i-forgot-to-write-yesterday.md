@@ -9,9 +9,9 @@ When I set this blog up, one of the things I had in mind was *writing everyday*.
 
 I managed to do it for 7 days, but yesterday I broke my streak because I simply *forgot I had a blog* (weekends sometimes do that to people, don't they?.)
 
-I could've said "well, I'll only write on work days, then". But that's just a recipe for disaster, because next time I'll forget to write on a Tuesday, and then I'd break my own rules for the second time.
+I could've said "well, I'll only write on work days, then". But that's just a recipe for disaster, because next time I'll forget to write on a Tuesday, and then I'll break my own rules for the second time.
 
-I could be doing those things, and sabotaging my own happiness, but the truth of the thing is I couldn't care less about that.
+I could be doing those things, and sabotaging my own happiness, but the truth is I couldn't care less.
 
 You see, *I never promised myself (or anyone) I'd write every day*. The only promise I made myself was that I would write *more*, and the real reason I'm doing this is because I want to improve my writing.
 

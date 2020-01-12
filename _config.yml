@@ -17,7 +17,7 @@ defaults:
       layout: "post"
 
 #theme: noir-for-jekyll
-theme: minima
+# theme: minima
 show_excerpts: false
 author:
   name: Ale Muñoz
@@ -26,12 +26,6 @@ author:
 twitter: bomberstudios
 google_analytics: UA-155269665-2
 copyright: "Made with 🍊 by Ale Muñoz"
-
-minima:
-  skin: orange
-  social_links:
-    twitter: bomberstudios
-    github: bomberstudios
 
 plugins:
   - jekyll-feed

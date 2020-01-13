@@ -25,4 +25,4 @@ I know this is going to sound like a self-help book, but the only truth about mo
 
 > You haven't failed until you give up.
 
-P.S: I plan on writing about progress and determination a bit more in the future. As someone who has quit smoking, lost 20 Kg, and gone from being a couch potato to running a half marathon, I know a trick or two about that.
+P.S: I plan on writing about progress and determination a bit more in the future. As someone who has quit smoking, [lost 20 Kg](/the-1250-calories-diet/), and gone from being a couch potato to running a half marathon, I know a trick or two about that.

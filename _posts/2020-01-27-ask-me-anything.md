@@ -1,6 +1,6 @@
 ---
 title: Ask me anything
-date: 2020-01-27T11:21:00
+date: 2020-01-27T10:21:00Z
 tags: personal, github
 ---
 

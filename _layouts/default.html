@@ -18,7 +18,7 @@
     <script>
       if (window.location.hash === '#skipgc')
         localStorage.setItem('skipgc', 't');
-      if (localstorage.getItem('skipgc') === 't')
+      if (localStorage.getItem('skipgc') === 't')
         window.goatcounter = {no_onload: true};
     </script>
     <script data-goatcounter="https://aletoday.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

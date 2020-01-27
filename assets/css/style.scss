@@ -123,7 +123,7 @@ a {
 nav {
   text-align: right;
   background-color: var(--brand);
-  padding: 0.5em 0;
+  padding: 0.5em 1em;
   a {
     color: var(--bg-color);
   }
@@ -146,7 +146,7 @@ h1.post-title,
 .post-list h3,
 .post-list h3 .post-link {
   font-weight: 900;
-  font-size: 3rem;
+  font-size: 2.5rem;
   line-height: 1.1em;
 }
 h1.post-title,
@@ -169,7 +169,7 @@ article li {
 }
 .post-list {
   &> li {
-    margin-bottom: 3em;
+    margin-bottom: 1em;
   }
   h3 {
     margin: 0;

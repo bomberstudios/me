@@ -10,4 +10,8 @@ Jorge Drexler is a talented singer and songwriter, but also happens to be a char
 
 For a taste of what Mr. Drexler feels like on stage, you can watch this TED Talk. Yes, I know it’s a bit weird to recommend a TED Talk in 2020 (by a white dude, no less) but trust me on this one. It also ends with my favorite song of his, the one where he almost cried last night. What a nice coincidence.
 
-<div style=“max-width:854px”><div style=“position:relative;height:0;padding-bottom:56.25%”><iframe src=“https://embed.ted.com/talks/lang/en/jorge_drexler_poetry_music_and_identity” width=“854” height=“480” style=“position:absolute;left:0;top:0;width:100%;height:100%” frameborder=“0” scrolling=“no” allowfullscreen></iframe></div></div>
+<div style="max-width:854px">
+  <div style="position:relative;height:0;padding-bottom:56.25%">
+    <iframe src="https://embed.ted.com/talks/lang/en/jorge_drexler_poetry_music_and_identity" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe>
+  </div>
+</div>

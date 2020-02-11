@@ -5,7 +5,7 @@
 :root {
   --brand: #f60;
   --text-color: #222;
-  --quote-color: #999;
+  --quote-color: #777;
   --quote-bg: #f4f4f4;
   --bg-color: #fff;
   --subtle: #eee;
@@ -199,15 +199,19 @@ article li {
 
 blockquote {
   font-family: Baskerville, Georgia, serif;
+  font-style: italic;
   font-weight: 200;
   font-size: 1.5em;
   line-height: 1.3em;
   color: var(--quote-color);
   margin: 0;
-  padding: 1em;
-  background-color: var(--quote-bg);
+  padding: 0.4em 0;
+//  background-color: var(--quote-bg);
   p {
     margin: 0;
+  }
+  em {
+    font-style: normal;
   }
 }
 

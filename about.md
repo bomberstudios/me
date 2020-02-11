@@ -18,3 +18,5 @@ I started it for a variety of reasons, some of which are:
 ## Where are the comments?
 
 To be honest, I don't think comments in blogs are worth the trouble in 2020. If you have anything to contribute to any of the posts, general feedback about the blog, or want me to write about something in particular, feel free to [open an issue](https://github.com/bomberstudios/me/issues) on the GitHub repo for the blog, and I'll see what I can do.
+
+Alternatively, you can literally [ask me anything](https://github.com/bomberstudios/me).

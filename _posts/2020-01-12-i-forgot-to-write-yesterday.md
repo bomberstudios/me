@@ -2,7 +2,7 @@
 title: I forgot to write yesterday
 date: 2020-01-12
 tags: writing, life, therapy
-description: A reflection on short term failure & long time success
+description: A reflection on short term failure & long term success
 ---
 
 When I set this blog up, one of the things I had in mind was *writing everyday*. It sounded like an achievable challenge, and I even made a nod to that idea in the URL for it: `ale.today` is the perfect address for a daily log.

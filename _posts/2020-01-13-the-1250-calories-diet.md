@@ -26,7 +26,7 @@ But a vision without a plan is just a nice dream, so here is the diet I followed
 - Don't sabotage yourself by stepping on your bathroom scale every day. Weigh yourself **once per week**, right after waking up.
 - It's ok to have a cheat meal every week or two (though I'd recommend you not to do that during the first weeks, until your body gets used to the diet). You want to lose weight, not your mind. It will also improve your success rate because [a pizza slice won't mean you have failed](/i-forgot-to-write-yesterday/). But again, don't fool yourself: a cheat meal should be an exception, not a rule.
 - Make life easy for yourself by having your food almost ready to eat, so you can eat when you're hungry and prevent cravings:
-    - Cut your fruit and vegetables in pieces and store them on the fridge, ready to eat, cook, or toss in your salad.
+    - Cut your fruit and vegetables in pieces and store them in the fridge, ready to eat, cook, or toss in your salad.
     - Cook your beans / rice / grains and store them on the fridge.
     - If you have access to a sous vide machine, cook chicken breast in batches and keep it vacuum sealed on the fridge (pro tip: you can buy vacuum sealed food and cook it in its own container to save time). You can quickly reheat it for hot meals, or use it directly on cold meals & salads.
 

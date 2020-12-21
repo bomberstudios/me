@@ -34,7 +34,7 @@ plugins:
   - jekyll-seo-tag
 
 header_pages:
-  - about
+  - about.md
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

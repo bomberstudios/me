@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Market
+description: A collection of stuff I have for sale, trade, or give away
 ---
 
 Here's a list of the things I have for sale. My preference is for in-person delivery (in Madrid), but if you absolutely must have something, let me know and I'll see what I can do.

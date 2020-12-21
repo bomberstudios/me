@@ -47,11 +47,6 @@ Immaculate condition, only used in a smoke-free house. Screen has no dead pixels
 - Comes without switches or keycaps, but if you need them I have some options I'm happy to sell with it
 
 
-### Sony Vaio VGN-P50, €100? or trades
-
-- Japanese keyboard
-- Honestly no idea
-
 ## Free to take
 
 - Nothing at the moment

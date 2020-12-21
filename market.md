@@ -4,11 +4,13 @@ title: Market
 description: A collection of stuff I have for sale, trade, or give away
 ---
 
-Here's a list of the things I have for sale. My preference is for in-person delivery (in Madrid), but if you absolutely must have something, let me know and I'll see what I can do.
+Here's a list of the things I have for sale, trade, or give away.
+
+My preference is for in-person delivery (in Madrid), but if you absolutely must have something, let me know and I'll see what I can do.
 
 Please [contact me over Telegram](https://t.me/bomberstudios) for more details about anything.
 
-Last update: 2020-12-19
+Last update: 2020-12-21
 
 ## For sale
 
@@ -47,6 +49,12 @@ Immaculate condition, only used in a smoke-free house. Screen has no dead pixels
 - Hot-swap PCB
 - Comes without switches or keycaps, but if you need them I have some options I'm happy to sell with it
 
+
+## For Trade
+
+### Sony Vaio VGN-P50
+
+I bought this in Japan a few years ago (so, yes, it has a Japanese keyboard) but never really used. It is a beautiful machine, but it's quite underpowered to be used for anything serious. If you have any use for it, I'll be happy to trade it for anything that I might like.
 
 ## Free to take
 

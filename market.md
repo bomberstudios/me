@@ -30,7 +30,7 @@ The screen has a very thin scratch that is *really* hard to see, barely noticeab
 ### iMac Retina 5k 27", €1800
 
 - 2017 model
-- 4.2 GHz Quad Core Inter Core i7
+- 4.2 GHz Quad Core Intel Core i7
 - 32 Gb DDR4 RAM
 - Radeon Pro 580 8Gb
 - 2TB Fusion Drive

@@ -246,3 +246,10 @@ footer {
   background-color: var(--quote-bg);
   text-align: center;
 }
+
+/* Code Blocks */
+pre code {
+  width: 100%;
+  background: #eee;
+  padding: 1em;
+}

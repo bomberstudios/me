@@ -248,8 +248,9 @@ footer {
 }
 
 /* Code Blocks */
-pre {
+div.highlighter-rouge {
   width: 100%;
   background: #eee;
   padding: 1em;
+  overflow: auto;
 }

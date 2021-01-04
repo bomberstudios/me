@@ -97,6 +97,9 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  /* Code Blocks */
+  word-wrap: break-word; /* force long words to break */
+  overflow-wrap: break-word; /* newer syntax standard that replaces word-wrap */
   main {
     flex: 1;
   }
@@ -248,9 +251,14 @@ footer {
 }
 
 /* Code Blocks */
+code,
+pre,
+samp {
+  white-space: pre-wrap; /* force long lines to break */
+}
+
 div.highlighter-rouge {
-  width: 100%;
   background: #eee;
   padding: 1em;
-  overflow: auto;
+  border-radius: 0.5em;
 }

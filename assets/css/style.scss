@@ -256,7 +256,9 @@ pre,
 samp {
   white-space: pre-wrap; /* force long lines to break */
 }
-
+pre {
+  margin: 0;
+}
 div.highlighter-rouge {
   background: #eee;
   padding: 1em;

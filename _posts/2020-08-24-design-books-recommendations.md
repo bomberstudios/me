@@ -22,7 +22,7 @@ I want to publish this post quickly, otherwise I'll spend too much time on it, g
 
 Here's my random, unsorted, incomplete, and mostly outdated, list of books you should totally read if you're a designer (or want to become one):
 
-_Last update: 2020-08-24_
+_Last update: 2021-03-02_
 
 ## Design in General
 
@@ -38,7 +38,7 @@ _Last update: 2020-08-24_
 - **The Art of Looking Sideways**, by Alan Fletcher
 - **In Praise of Shadows**, by Junichiro Tanizaki
 - **Wabi-Sabi for Artists, Designers, Poets & Philosophers**, by Leonard Koren
-- **Detail in Typography**, by Jost Hochuli
+- **Detail in Typography**, by Jost Hochuli: This book is absolutely delicious. If you ever need an argument to convince people of the need to have physical books, this is it. It's a small book, but it oozes quality and attention to detail (how appropriate, right?). It also contains one of the best explanations ever of how to properly kern typography.
 - **The Elements of Typographic Style**, by Robert Bringhurst
 - **Design is a Job**, by Mike Monteiro
 

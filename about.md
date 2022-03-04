@@ -3,20 +3,20 @@ layout: page
 title: About Me
 ---
 
-Hi! I'm Ale Muñoz, a digital toolsmith who loves building things that help people do more with less work (i.e: I'm a Good Lazy™).
+Hi! I'm Ale Muñoz, a digital toolsmith who loves building tools that help people do more with less work (i.e: I'm a Good Lazy™).
 
-I work for [Sketch](https://sketch.com), but you may have used some of the stuff I've created over the years (especially if you've written ActionScript or used Adobe Fireworks).
+I work for [Sketch](https://sketch.com), but you may have used some of the projects I've created (especially if you've written ActionScript or used Adobe Fireworks).
 
-This is my personal site, where I write about life, the universe and everything (though I tend to gravitate towards design, technology and personal reflections).
+This is my personal site, where I write about life, the universe and everything. Though I tend to gravitate towards design, technology and personal reflections).
 
 I started it for a variety of reasons, some of which are:
 
 - I love writing, but the kind of writing I do these days is almost never in long-form format. I hope to change that by publishing my crap on the web.
-- Although I write *a lot* every day, almost none of that content is truly mine. Most of it is stored in 3rd party platforms like Slack, Twitter, Facebook, various forums…
-- Last, but not least, I miss the tinkering associated with maintaining a personal site (even though I'm *really* trying to [stop complicating my life](/stop-complicating-your-life/)).
+- Although I write *a lot* every day, almost none of that content is truly mine. Most of it gets stored in 3rd party platforms like Slack, Twitter, Facebook, various forums…
+- Last, but not least, I miss the tinkering associated with maintaining a personal site. Even though I'm *really* trying to [stop complicating my life](/stop-complicating-your-life/).
 
 ## Where are the comments?
 
-To be honest, I don't think comments in blogs are worth the trouble in 2020. If you have anything to contribute to any of the posts, general feedback about the blog, or want me to write about something in particular, feel free to [open an issue](https://github.com/bomberstudios/me/issues) on the GitHub repo for the blog, and I'll see what I can do.
+To be honest, I don't think comments in blogs are worth the trouble in 2020. Do you have anything to contribute to any of the posts, general feedback about the blog, or want me to write about something in particular? Feel free to [open an issue](https://github.com/bomberstudios/me/issues) on the GitHub repo for the blog, and I'll see what I can do.
 
-Alternatively, you can literally [ask me anything](https://github.com/bomberstudios/ama).
+Or you can [ask me anything](https://github.com/bomberstudios/ama).

@@ -9,7 +9,7 @@ I have been using keyboards for more than 40 years.
 
 Yet, for some reason, I did not learn to touch type properly until 2 years ago.
 
-I guess I got hit with a perfect combination of shame, desire to invest on myself, and 2020 lockdown. Also, I admit I’ve always wanted to use one of those keyboard with blank keycaps, and there was no way I was going to pull that off with my shitty typing technique.
+I guess I got hit with a perfect combination of shame, desire to invest on myself, and 2020 lockdown. Also, I admit I’ve always wanted to use one of those keyboards with blank keycaps, and there was no way I was going to pull that off with my shitty typing technique.
 
 > While I was learning to touch type, I got addicted to mechanical keyboards. I’m trying not to drag you down this rabbit hole, so I’ll skip most of the hardware details. I may still write about that topic in another post.
 

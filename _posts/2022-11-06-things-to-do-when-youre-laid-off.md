@@ -15,7 +15,7 @@ Go for a long walk or bike ride during office hours. Do stupidly long errands. L
 
 Meet friends for lunch. Or invite them over. Paint the house. Disassemble something to clean it and put it back together.
 
-Join a non-profit organization and volunteer a few hours. Bonus points if it’s something unrelated to your professional life.
+Join a non-profit organization and volunteer for a few hours. Bonus points if it’s something unrelated to your professional life.
 
 Or on the contrary: sharpen your professional skills by putting them at the service of others in need.
 
@@ -23,6 +23,6 @@ But more importantly: if you decide to treat yourself to something material, do 
 
 As my therapist once put it: you don’t treat yourself because you know you love yourself. You know you love yourself because you treat yourself.
 
-I know, it’s a fine line between treating yourself and falling into an hedonistic trap.
+I know, it’s a fine line between treating yourself and falling into a hedonistic trap.
 
 But maybe, just maybe, get that fucking Xbox that you deserve to show you some love.

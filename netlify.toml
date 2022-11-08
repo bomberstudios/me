@@ -1,5 +1,5 @@
 [[redirects]]
   from = "/kagi"
   to = "https://www.craft.do/s/J0UIxTWlcc2DtP"
-  status = 200
+  status = 302
   force = true

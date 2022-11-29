@@ -3,3 +3,9 @@
   to = "https://www.craft.do/s/J0UIxTWlcc2DtP"
   status = 302
   force = true
+
+[[redirects]]
+  from = "/craft"
+  to = "https://www.craft.do/s/2CQs8tkUlTOKHs"
+  status = 302
+  force = true

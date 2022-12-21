@@ -1,7 +1,7 @@
 title: ale, today
 email: hello@ale.today
-description: "a small life log"
-url: "https://ale.today"
+description: 'a small life log'
+url: 'https://ale.today'
 permalink: /:title/
 
 # Build settings
@@ -9,12 +9,11 @@ markdown: kramdown
 
 # Defaults
 defaults:
-  -
-    scope:
-      path: "" # an empty string here means all files in the project
-      type: "posts" # previously `post` in Jekyll 2.2.
+  - scope:
+      path: '' # an empty string here means all files in the project
+      type: 'posts' # previously `post` in Jekyll 2.2.
     values:
-      layout: "post"
+      layout: 'post'
 
 #theme: noir-for-jekyll
 # theme: minima
@@ -25,7 +24,7 @@ author:
   twitter: bomberstudios
 twitter: bomberstudios
 google_analytics: UA-155269665-2
-copyright: "Made with 🍊 by Ale Muñoz"
+copyright: 'Made with 🍊 by Ale Muñoz'
 
 plugins:
   - jekyll-feed
@@ -36,6 +35,8 @@ plugins:
 header_pages:
   - about.md
 
+include:
+  - '.well-known'
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.

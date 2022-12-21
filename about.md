@@ -7,7 +7,7 @@ Hi! I'm Ale Muñoz, a digital toolsmith who loves building tools that help peopl
 
 You may have used some of the projects I've created if you've written ActionScript or used Fireworks or Sketch.
 
-This is my personal site, where I write about life, the universe and everything. Though I tend to gravitate towards design, technology and personal reflections).
+This is my personal site, where I write about life, the universe and everything. Though I tend to gravitate towards design, technology and personal reflections.
 
 I started it for a variety of reasons, some of which are:
 

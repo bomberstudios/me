@@ -3,6 +3,7 @@ title: Happy birthday, Rafa
 date: 2020-01-09
 tags: life, friends, birthday
 ---
+> This post was initially written in Spanish, a few years ago. I rescued it from my Facebook page, something I hope to do with most of the stuff I've written there over the years. I'm not entirely happy with my translation, so the original is at the bottom.
 
 It was the summer of 2003. The heat was unbearable in Barcelona (like every summer, basically). I made my debut as a public speaker in a minuscule room at an office in Aribau street. In front of a bunch of unknown people, I spoke about a tool I had made to help with my programming.
 
@@ -15,8 +16,6 @@ That office in Aribau street belonged to [Rafa](http://eltallerdiminuto.com "El 
 Happy birthday, master.
 
 ---
-
-<small>This post was initially written in Spanish, 6 years ago. I rescued it from my Facebook page, something I hope to do with most of the stuff I've written there over the years. I'm not entirely happy with my translation, so here's the original:</small>
 
 Corría el verano de 2003, en Barcelona hacía un calor de cojones (como todos los veranos, vaya) y yo me estrenaba como ponente en una salita minúscula de una oficina de la calle Aribau, hablando frente a desconocidos sobre una herramienta que me había hecho para programar.
 

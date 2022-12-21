@@ -5,7 +5,7 @@
 :root {
   --brand: #f60;
   --text-color: #222;
-  --quote-color: #777;
+  --quote-color: #666;
   --quote-bg: #f4f4f4;
   --bg-color: #fff;
   --subtle: #eee;
@@ -141,8 +141,8 @@ main a:hover {
   color: var(--bg-color);
   background-color: var(--brand);
   text-decoration: none;
-  padding: 0.2em;
-  margin: -0.2em;
+  // padding: 0.2em;
+  // margin: -0.2em;
 }
 
 hr {
@@ -201,15 +201,14 @@ article li {
 }
 
 blockquote {
-  font-family: Baskerville, Georgia, serif;
-  font-style: italic;
   font-weight: 200;
-  font-size: 1.5em;
   line-height: 1.3em;
   color: var(--quote-color);
-  margin: 0;
-  padding: 0.4em 0;
-//  background-color: var(--quote-bg);
+  margin-left: 0;
+  margin-right: 0;
+  padding: 1em;
+  background-color: var(--quote-bg);
+  border-left: 2px solid var(--quote-color);
   p {
     margin: 0;
   }

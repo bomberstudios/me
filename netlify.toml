@@ -3,3 +3,8 @@
   to = "https://www.craft.do/s/2CQs8tkUlTOKHs"
   status = 302
   force = true
+[[redirects]]
+  from = "/.well-known/webfinger resource=:resource"
+  to = "/.well-known/webfinger/index.json"
+  status = 302
+  force = true

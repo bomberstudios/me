@@ -32,6 +32,9 @@ plugins:
 header_pages:
   - about.md
 
+paginate: 10
+paginate_path: "/page/:num/"
+
 include:
   - '.well-known'
   - '_redirects'

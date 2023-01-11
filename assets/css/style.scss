@@ -13,7 +13,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --brand: #840;
+    --brand: rgb(199, 102, 4);
     --text-color: #aaa;
     --quote-color: #777;
     --quote-bg: #111;
@@ -94,9 +94,10 @@ body {
   line-height: 1.5;
   color: var(--text-color);
   background-color: var(--bg-color);
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   min-height: 100vh;
+
   /* Code Blocks */
   word-wrap: break-word; /* force long words to break */
   overflow-wrap: break-word; /* newer syntax standard that replaces word-wrap */
@@ -112,6 +113,7 @@ body {
     box-shadow: 0 10px 20px var(--subtle);
   }
 }
+
 main {
   padding: 0 2em;
 }
@@ -141,8 +143,6 @@ main a:hover {
   color: var(--bg-color);
   background-color: var(--brand);
   text-decoration: none;
-  // padding: 0.2em;
-  // margin: -0.2em;
 }
 
 hr {
@@ -178,7 +178,7 @@ article li {
 }
 .post-list {
   &> li {
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
   }
   h3 {
     margin: 0;
@@ -245,7 +245,7 @@ footer {
   font-size: 0.8em;
   padding: 1em;
   color: var(--quote-color);
-  background-color: var(--quote-bg);
+  // background-color: var(--quote-bg);
   text-align: center;
 }
 
@@ -266,4 +266,14 @@ div.highlighter-rouge {
 
 .page-link {
   margin-left: 1em;
+}
+
+.pagination {
+  text-align: center;
+  .previous {
+    float: left;
+  }
+  .next {
+    float: right;
+  }
 }

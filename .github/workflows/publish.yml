@@ -17,7 +17,7 @@ jobs:
         if: success() 
         run: |
           DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-          POST_TITLE=$(sed -E 's/[[:space:]|[:punct:]]/_/g ; s/[A-Z]/\L&/g' <<<'${{ github.event.issue.title }}')
+          POST_TITLE=$(sed -E 's/[[:space:]|[:punct:]]/-/g ; s/[A-Z]/\L&/g' <<<'${{ github.event.issue.title }}')
           cat <<'EOF' > $POST_DIRECTORY/"${DATE:0:10}-${POST_TITLE}".md
           ---
           title: "${{ github.event.issue.title }}"

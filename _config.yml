@@ -2,7 +2,7 @@ title: ale, today
 email: hello@ale.today
 description: 'a small life log'
 url: 'https://ale.today'
-permalink: /:title/
+permalink: /:title
 
 # Build settings
 markdown: kramdown
@@ -15,15 +15,12 @@ defaults:
     values:
       layout: 'post'
 
-#theme: noir-for-jekyll
-# theme: minima
 show_excerpts: false
 author:
   name: Ale Muñoz
   email: hello@ale.today
   twitter: bomberstudios
 twitter: bomberstudios
-google_analytics: UA-155269665-2
 copyright: 'Made with 🍊 by Ale Muñoz'
 
 plugins:

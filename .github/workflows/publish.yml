@@ -1,0 +1,63 @@
+# Infinite love to @javierarce for sharing this code on his site. I stole it immediately.
+name: Create post from an issue
+on:
+  issue_comment:
+    types: [created, edited]
+jobs:
+  build:
+    name: A job to create a jekyll post from github issue
+    runs-on: ubuntu-latest
+    if: github.event.comment.body == 'publish' 
+      && contains(github.event.issue.labels.*.name, 'post') 
+      && github.event.issue.user.login == 'bomberstudios'
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@master
+      - name: Create jekyll post file
+        if: success() 
+        run: |
+          DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          POST_TITLE=$(sed -E 's/[[:space:]|[:punct:]]/_/g' <<<'${{ github.event.issue.title }}')
+          cat <<'EOF' > $POST_DIRECTORY/"${DATE:0:10}-${POST_TITLE}".md
+          ---
+          title: "${{ github.event.issue.title }}"
+          date: "${{  github.event.issue.created_at }}"
+          ---
+          ${{ github.event.issue.body }}
+          EOF
+        env:
+          POST_DIRECTORY: '_posts'
+      - name: Commit files
+        if: success()
+        run: |
+          git config --local user.name "$GIT_USER_NAME"
+          git config --local user.email "$GIT_USER_EMAIL"
+          git add --all
+          if [[ `git status --porcelain` ]]; then
+            git commit -m "$DEFAULT_COMMIT_MESSAGE" -a
+          fi
+        env:
+          GIT_USER_NAME: 'Ale Muñoz'
+          GIT_USER_EMAIL: 'bomberstudios@gmail.com'
+          DEFAULT_COMMIT_MESSAGE: 'New Jekyll post created from GitHub issue'
+      - name: Push changes
+        if: success()
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} 
+          branch: master
+  label:
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["published"]
+            })

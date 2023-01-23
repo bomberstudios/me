@@ -1,5 +1,5 @@
 ---
-title: "Desert Music Island #1"
+title: "Desert Island Music #1"
 date: "2023-01-23T11:28:54Z"
 ---
 I’ve been thinking a lot recently about timeless music, and how I keep coming back to certain records. And also, how I keep *forgetting* these records that, in some cases, have literally saved my life.

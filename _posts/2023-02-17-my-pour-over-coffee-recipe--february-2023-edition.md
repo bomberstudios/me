@@ -30,7 +30,8 @@ This brews a very nice cup of black coffee (around 200ml). You can mix it with 1
 - While the water heats, grind 16 grams of coffee at 20 clicks on the Comandante C40.
 - When the water starts boiling furiously, take the kettle off the stove, and rinse the filter with hot water.
 - Put the kettle aside and let it cool down for 60 seconds.
-- At 60 seconds, start a bloom phase: pour 40 grams of water, swirl your v60 cone vigorously to make sure all grounds are wet, and wait 45 seconds for all gases to escape. If your coffee “burps” at the end of this stage, that’s a very good sign.
+- Start a timer.
+- At 0 seconds we’ll do a bloom phase: pour 40 grams of water, swirl your v60 cone vigorously to make sure all grounds are wet, and wait 45 seconds for all gases to escape. If your coffee “burps” at the end of this stage, that’s a very good sign.
 - At 45 seconds, pour 60 grams of water and don’t touch the cone.
 - At 90 seconds, pour 150 grams of water, swirl the cone to flatten the coffee bed, and wait for drawdown.
 

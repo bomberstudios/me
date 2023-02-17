@@ -18,10 +18,10 @@ This brews a very nice cup of black coffee (around 200ml). You can mix it with 1
 
 ### Tools:
 
-- Hario v60 cone, size 2. I use the plastic version because it’s cheap, light, and good enough.
-- Hario filters, size 2. I’m using the “Made in Holland” version because that’s what I have around, but I have no idea how much that impacts the brew versus the “Made in Japan” ones.
-- A gooseneck kettle. I use a Hario Buono stovetop kettle, but there are multiple options out there.
-- A coffee grinder, or ground coffee if it’s relatively fresh and ground at the right size (i.e: not supermarket coffee). I’m using a Comandante C40 grinder.
+- [Hario v60 cone, size 02](https://global.hario.com/product/coffee/dripper/VD.html). I use the plastic version because it’s cheap, light, and good enough.
+- [Hario filters, size 02](https://global.hario.com/product/coffee/paperfilter/VCF.html). I’m using the “Made in Holland” version because that’s what I have around, but I have no idea how much that impacts the brew versus the “Made in Japan” ones.
+- A gooseneck kettle. I use a [Hario Buono stovetop kettle](https://global.hario.com/product/coffee/kettle/VKB.html), but there are multiple options out there.
+- A coffee grinder, or ground coffee if it’s relatively fresh and ground at the right size (i.e: not supermarket coffee). I’m using a [Comandante C40 grinder](https://comandantegrinder.com).
 - A scale. You can use a fancy one, but a basic kitchen scale will do.
 
 ### Recipe:

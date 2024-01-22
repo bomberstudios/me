@@ -1,15 +1,25 @@
 ---
 title: Now
-description: A list of things what I'm up to recently.
+description: A list of what I'm up to recently.
 date: 2024-01-22
 layout: page
 ---
+
+## Life, the Universe, Everything
+
+If we haven't catch up recently here's the gist of it all:
+
+- I moved to Aranjuez, Madrid, in 2021. I love it here but someone should definitely open a decent coffee place in this town.
+- I miss my friends. Moving obviously did not help, but most of them have moved far away from Madrid anyway.
+- I am now working at [Qatium](https://qatium.com) as a Product Engineer, which is a fancy way of saying I'm still a generalist doing multiple things and I will retire being unable to explain what it is exactly what I do for a living.
 
 ## What I'm building
 
 I try not to spend too much time in front of a screen when I'm not working, but I consistently fail at that. I'm currently working on:
 
 - My Telegram channel, [Naranja Naranja](https://t.me/naranjanaranja).
+- At work:
+    - Documenting our internal SDK. Writing technical documentation is one of those things that I definitely did not see myself enjoying. But it turns out to be a great combination of my skills, and a great way to drive a product direction (because *of course* I'm not only writing docs 😅).
 
 ## What I'm reading
 

@@ -7,7 +7,7 @@ layout: page
 
 ## Life, the Universe, Everything
 
-If we haven't catch up recently here's the gist of it all:
+If we haven't caught up recently here's the gist of it all:
 
 - I moved to Aranjuez, Madrid, in 2021. I love it here but someone should definitely open a decent coffee place in this town.
 - I miss my friends. Moving obviously did not help, but most of them have moved far away from Madrid anyway.

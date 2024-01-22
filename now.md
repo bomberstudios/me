@@ -10,8 +10,9 @@ layout: page
 If we haven't caught up recently here's the gist of it all:
 
 - I moved to Aranjuez, Madrid, in 2021. I love it here but someone should definitely open a decent coffee place in this town.
-- I miss my friends. Moving obviously did not help, but most of them have moved far away from Madrid anyway.
+- I miss my friends. Moving obviously did not help, but most of them have moved far away from Madrid anyway. If you ever come close please ping me and I'll make you coffee.
 - I am now working at [Qatium](https://qatium.com) as a Product Engineer, which is a fancy way of saying I'm still a generalist doing multiple things and I will retire being unable to explain what it is exactly what I do for a living.
+- Both my wife and myself have embraced the "part-time job" movement and are working 30 hours per week (Monday to Friday, 8:00 to 14:00 approximately). The impact on our economy is noticeable, but it's not even remotely comparable to the improvements we've made in mental health and happiness. 10/10 would do it again. After working remotely, this is the single most impactful thing we've experienced in our professional lives.
 
 ## What I'm building
 

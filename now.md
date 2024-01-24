@@ -1,9 +1,11 @@
 ---
 title: Now
 description: A list of what I'm up to recently.
-date: 2024-01-22
+date: 2024-01-23
 layout: page
 ---
+
+> Last update: {{ page.date }}
 
 ## Life, the Universe, Everything
 
@@ -26,6 +28,7 @@ I try not to spend too much time in front of a screen when I'm not working, but 
 
 I'm one of those monsters that reads multiple books at the same time. I'm currently reading (or trying to read):
 
+- [The Path to Senior Product Designer](https://productdesigninterview.com/the-path-to-senior-product-designer), by Artiom Dashinsky. I'm reading this for a few reasons, but mostly because of a question that keeps popping in my mind: "what if an IC career path had been an option for me back in the day?". I'm still on Part I, but it's being a very iluminating read.
 - [Zen and the Art of Motorcycle Maintenance](https://en.wikipedia.org/wiki/Zen_and_the_Art_of_Motorcycle_Maintenance), by Robert M. Pirsig. I'm reading this book for the second (third?) time, only because I recommended it to someone and was curious to see if it was as good as I remembered.
 - [Docs for Developers](https://docsfordevelopers.com). For work. Not bad, but also not amazing.
 - Meditations, by Marcus Aurelius. I don't yet have an opinion on this book, but I'm reading it because it's a classic. I'm reading the [Standard Ebooks](https://standardebooks.org/) version.
@@ -59,4 +62,3 @@ I'm a coffee nerd, so I'm always trying new beans. I'm currently drinking:
 - A brasilian coffee from [Virgen Coffee](https://virgen.coffee), which is not as fun as the ethiopeans, but is nice for lattes.
 - A decaf from Honduras, from [Randall Coffee Roasters](https://randallcoffee.com). Decaf is always terrible, but this one is less terrible.
 
-> Last update: 2024-01-22

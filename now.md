@@ -1,7 +1,7 @@
 ---
 title: Now
 description: A list of what I'm up to recently.
-date: 2024-01-23
+date: 2024-01-24
 layout: page
 ---
 

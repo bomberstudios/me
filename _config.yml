@@ -1,7 +1,7 @@
 title: ale, today
 email: hello@ale.today
-description: 'a small life log'
-url: 'https://ale.today'
+description: "a small life log"
+url: "https://ale.today"
 permalink: /:title
 
 # Build settings
@@ -10,10 +10,10 @@ markdown: kramdown
 # Defaults
 defaults:
   - scope:
-      path: '' # an empty string here means all files in the project
-      type: 'posts' # previously `post` in Jekyll 2.2.
+      path: "" # an empty string here means all files in the project
+      type: "posts" # previously `post` in Jekyll 2.2.
     values:
-      layout: 'post'
+      layout: "post"
 
 show_excerpts: false
 author:
@@ -21,7 +21,7 @@ author:
   email: hello@ale.today
   twitter: bomberstudios
 twitter: bomberstudios
-copyright: 'Made with 🍊 by Ale Muñoz'
+copyright: "Made with 🍊 by Ale Muñoz"
 
 plugins:
   - jekyll-feed
@@ -32,13 +32,14 @@ plugins:
 header_pages:
   - about.md
   - now.md
+  - orange.md
 
 paginate: 10
 paginate_path: "/page/:num/"
 
 include:
-  - '.well-known'
-  - '_redirects'
+  - ".well-known"
+  - "_redirects"
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.

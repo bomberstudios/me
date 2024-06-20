@@ -40,3 +40,9 @@ A random collection of orange objects that I come across and like. I don't own a
 ![Orbea Occam H20](/images/orange/orbea_occam.png)
 
 [More info](https://www.orbea.com/int-en/bicycles/mountain/occam-sl/)
+
+## Moccamaster Cup One (2015?)
+
+![Moccamaster Cup One](/images/orange/moccamaster_cup_one.jpg)
+
+[More info](https://www.moccamaster.eu/cup-one)

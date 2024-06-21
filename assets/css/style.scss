@@ -244,11 +244,9 @@ body {
     color: var(--brand);
   }
   img {
-    width: 110%;
-    margin-left: -5%;
+    width: 100%;
     padding: 5%;
     border: 1px solid #ddd;
-    rotate: 0.5deg;
     border-radius: 1em;
     box-shadow: 0 10px 20px var(--subtle);
     &:hover {

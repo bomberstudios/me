@@ -46,3 +46,9 @@ A random collection of orange objects that I come across and like. I don't own a
 ![Moccamaster Cup One](/images/orange/moccamaster_cup_one.jpg)
 
 [More info](https://www.moccamaster.eu/cup-one)
+
+## Teenage Engineering Computer-1 (2022)
+
+![Teenage Engineering Computer-1](/images/orange/te_computer_1.png)
+
+[More info](https://teenage.engineering/products/computer-1)

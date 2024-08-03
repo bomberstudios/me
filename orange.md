@@ -5,6 +5,12 @@ title: Orange Things
 
 A random collection of orange objects that I come across and like. I don't own all of these, but I wish I did.
 
+## May Studio's Tall Thin Cup (2024)
+
+![](/images/orange/IMG_3644.webp)
+
+[More info](https://www.maystudio.dk/collections/cups/products/may-cup-orange)
+
 ## Marc Newson's Ford 021C Concept (1999)
 
 ![Ford 021C Concept](/images/orange/ford_021c.jpg)

@@ -61,7 +61,6 @@ ul,
 ol {
   list-style: none;
   margin: 0;
-  margin-top: 1em;
   padding: 0;
 }
 a {
@@ -108,9 +107,14 @@ h3 + .post-meta {
   display: block;
   margin-top: 0.5rem;
 }
-article li {
-  list-style: square;
-  margin: 0 0 0.3em 2em;
+article {
+  li {
+    list-style: square;
+    margin: 0 0 0.3em 2em;
+  }
+  ul, ol {
+    margin-top: 1em;
+  }
 }
 .post-list h3 .post-link:hover {
   color: var(--bg-color);
@@ -140,10 +144,10 @@ article li {
 blockquote {
   font-weight: 200;
   color: var(--quote-color);
+  background-color: var(--quote-bg);
   margin-left: 0;
   margin-right: 0;
   padding: 1em;
-  background-color: var(--quote-bg);
   border-left: 2px solid var(--quote-color);
   p {
     margin: 0;
@@ -219,4 +223,8 @@ div.highlighter-rouge {
     margin-top: 1em;
     margin-bottom: -0.3em;
   }
+}
+
+.page-content {
+  margin-top: 1rem;
 }

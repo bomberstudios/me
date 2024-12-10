@@ -6,6 +6,12 @@
   --quote-bg: light-dark(#f4f4f4, #111);
   --bg-color: light-dark(#fff, #222);
   --subtle: light-dark(#eee, #363636);
+  --subtle-text: light-dark(#aaa, #555);
+}
+
+html {
+  display: flex;
+  flex-direction: column;
 }
 
 body {
@@ -18,12 +24,19 @@ body {
   color: var(--text-color);
   background-color: var(--bg-color);
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 0;
+  header {
+    flex: 0 0 auto;
+  }
 
   /* Code Blocks */
   word-wrap: break-word; /* force long words to break */
   overflow-wrap: break-word; /* newer syntax standard that replaces word-wrap */
   main {
     flex: 1;
+    padding: 0 2em;
   }
   a {
     color: var(--brand);
@@ -39,13 +52,10 @@ body {
   }
 }
 
-main {
-  padding: 0 2em;
-}
 main,
 header nav div {
   margin: 0 auto;
-  max-width: 40em;
+  max-width: 60ch;
 }
 ul,
 ol {
@@ -91,8 +101,12 @@ h1.post-title,
 h1.post-title {
   margin: 0;
 }
-article p.post-meta {
-  margin: 0;
+.post-meta {
+  color: var(--subtle-text);
+}
+h3 + .post-meta {
+  display: block;
+  margin-top: 0.5rem;
 }
 article li {
   list-style: square;
@@ -110,9 +124,6 @@ article li {
     margin: 0;
     display: block;
   }
-}
-.post-meta {
-  color: var(--quote-color);
 }
 
 .post-nav {

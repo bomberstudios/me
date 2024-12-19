@@ -1,13 +1,25 @@
 :root {
   color-scheme: light dark;
   --brand: light-dark(#f60, #f60);
+  accent-color: var(--brand);
   --text-color: light-dark(#333, #aaa);
   --quote-color: light-dark(#666,#777);
   --quote-bg: light-dark(#f4f4f4, #111);
   --bg-color: light-dark(#fff, #222);
   --subtle: light-dark(#eee, #363636);
   --subtle-text: light-dark(#aaa, #555);
+
+  /* Selection */
+  ::-moz-selection { /* Code for Firefox */
+    color: var(--bg-color);
+    background: var(--brand);
+  }
+  ::selection {
+    color: var(--bg-color);
+    background: var(--brand);
+  }
 }
+
 
 html {
   display: flex;
@@ -30,6 +42,8 @@ body {
   header {
     flex: 0 0 auto;
   }
+
+  text-wrap: pretty;
 
   /* Code Blocks */
   word-wrap: break-word; /* force long words to break */

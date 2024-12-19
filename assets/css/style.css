@@ -43,8 +43,6 @@ body {
     flex: 0 0 auto;
   }
 
-  text-wrap: pretty;
-
   /* Code Blocks */
   word-wrap: break-word; /* force long words to break */
   overflow-wrap: break-word; /* newer syntax standard that replaces word-wrap */
@@ -63,6 +61,9 @@ body {
     &:hover {
       border-color: var(--brand);
     }
+  }
+  p {
+    margin-block: 1lh;
   }
 }
 
@@ -116,6 +117,7 @@ h1.post-title {
 }
 .post-meta {
   color: var(--subtle-text);
+  margin-block: 0.5lh;
 }
 h3 + .post-meta {
   display: block;

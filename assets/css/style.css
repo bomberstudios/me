@@ -9,17 +9,17 @@
   --subtle: light-dark(#eee, #363636);
   --subtle-text: light-dark(#aaa, #555);
 
-  /* Selection */
-  ::-moz-selection { /* Code for Firefox */
-    color: var(--bg-color);
-    background: var(--brand);
-  }
-  ::selection {
-    color: var(--bg-color);
-    background: var(--brand);
-  }
 }
 
+/* Selection */
+::-moz-selection { /* Code for Firefox */
+  color: var(--bg-color);
+  background: var(--brand);
+}
+::selection {
+  color: var(--bg-color);
+  background: var(--brand);
+}
 
 html {
   display: flex;

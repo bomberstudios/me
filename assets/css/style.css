@@ -64,6 +64,7 @@ body {
   }
   p {
     margin-block: 1lh;
+    margin-trim: both;
   }
 }
 
@@ -118,10 +119,6 @@ h1.post-title {
 .post-meta {
   color: var(--subtle-text);
   margin-block: 0.5lh;
-}
-h3 + .post-meta {
-  display: block;
-  margin-top: 0.5rem;
 }
 article {
   li {

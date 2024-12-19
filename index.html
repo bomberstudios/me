@@ -16,22 +16,22 @@ layout: default
           {{ post.title | escape }}
         </a>
       </h3>
-      <span class="post-meta">{{ post.date | date: date_format }}</span>
+      <p class="post-meta">{{ post.date | date: date_format }}</p>
       {%- if site.show_excerpts -%}
-        {{ post.excerpt }}
+      {{ post.excerpt }}
       {%- endif -%}
     </li>
     {%- endfor -%}
   </ul>
   {%- if paginator.total_pages > 1 -%}
   <div class="pagination">
-  {%- if paginator.previous_page -%}
+    {%- if paginator.previous_page -%}
     <a href="{{ paginator.previous_page_path }}" class="previous">‹ Previous</a>
-  {%- endif -%}
+    {%- endif -%}
     <span class="page_number">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
-  {%- if paginator.next_page -%}
+    {%- if paginator.next_page -%}
     <a href="{{ paginator.next_page_path }}" class="next">Next ›</a>
-  {%- endif -%}
+    {%- endif -%}
   </div>
   {%- endif -%}
   <p><a href="{{ 'feed.xml' | relative_url }}">Feed</a></p>

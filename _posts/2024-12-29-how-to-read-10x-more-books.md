@@ -42,7 +42,7 @@ When I share this with friends, they usually ask "how do you find the time?".
 
 The answer is simple: small things compound over time. 15 minutes a day is _nothing_, specially if you combine it with another activity (I'm a big fan of reading while riding my indoor bike trainer: getting stronger _and_ wiser feels like cheating at life).
 
-15 minutes a day, every day, for a year, is 91 hours. That's almost 3 days of reading. And that's just the _minimum_.
+15 minutes a day, every day, for a year, is 91 hours. That's almost 4 days of reading. And that's just the _minimum_.
 
 ## Conclusions
 

@@ -29,14 +29,11 @@
   <meta property="og:description" content="{{ site.description }}">
   {% endif %}
   {% if page.ogimage %}
-  <meta name="twitter:card" content="summary_large_image" />
   <meta property="og:image" content="{{ site.url }}/assets/og/{{ page.ogimage }}">
   {% else %}
-  <meta name="twitter:card" content="summary" />
   <meta property="og:image" content="{{ site.url }}/assets/avatar.png">
   {% endif %}
-  <meta name="twitter:site" content="@{{ site.twitter }}" />
-  <meta name="twitter:creator" content="@{{ site.twitter }}" />
+  <link rel="stylesheet" href="https://unpkg.com/bluesky-comments@latest/dist/bluesky-comments.css">
 
   <link href="https://micro.blog/bomberstudios" rel="me">
   <link rel="stylesheet" href="/assets/css/style.css">

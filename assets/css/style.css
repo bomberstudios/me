@@ -81,7 +81,11 @@ ol {
   padding: 0;
 }
 a {
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: #00000000;
+  text-decoration-style: dotted;
+  text-underline-offset: 0.3em;
+  transition: text-decoration 300ms;
 }
 nav {
   text-align: right;
@@ -92,8 +96,9 @@ nav {
   }
 }
 main a:hover {
-  color: var(--bg-color);
-  background-color: var(--brand);
+  text-decoration-color: var(--brand);
+}
+.home a:hover {
   text-decoration: none;
 }
 
@@ -241,4 +246,21 @@ div.highlighter-rouge {
 
 .page-content {
   margin-top: 1rem;
+}
+
+#bluesky-comments {
+  margin-top: 2em;
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none !important;
+    color: var(--brand);
+  }
+  p {
+    margin: 0;
+  }
+  hr {
+    margin: 1em 0;
+  }
 }

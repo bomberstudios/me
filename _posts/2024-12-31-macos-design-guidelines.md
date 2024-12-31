@@ -1,6 +1,6 @@
 ---
 title: macOS Design Guidelines by Mario Guzman
-date: 2024-12-31T13:40:00Z
+date: 2024-12-31T13:40:00GMT+2
 tags: telegram
 ---
 

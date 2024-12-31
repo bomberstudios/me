@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Stop complicating your life
 date: 2020-01-04
 tags: personal, writing, blogging, quote

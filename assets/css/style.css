@@ -264,3 +264,8 @@ div.highlighter-rouge {
     margin: 1em 0;
   }
 }
+
+video {
+  width: 100%;
+  height: auto;
+}

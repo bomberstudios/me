@@ -4,7 +4,7 @@ date: "2025-01-11T22:44:54Z"
 ---
 I’m reasonably happy with the results of today’s experimentation session with CSS:
 
-<video src="https://github.com/user-attachments/assets/cb24f49d-4df2-4305-8825-38113180f093" autoplay loop muted controls></video>
+<video src="https://github.com/user-attachments/assets/cb24f49d-4df2-4305-8825-38113180f093" autoplay loop muted></video>
 
 The code only works on Chrome with the `#enable-experimental-web-platform-features` flag turned on, so it’s not super useful yet, but here it is.
 
@@ -57,7 +57,6 @@ select#nice {
   &:open,
   &:hover {
     cursor: pointer;
-    /* outline: none; */
     border-color: #f606;
 
     &::picker-icon {
@@ -110,3 +109,5 @@ select#nice::picker-icon {
   content: "↓";
 }
 ```
+
+Hopefully this will be supported in more browsers soon!

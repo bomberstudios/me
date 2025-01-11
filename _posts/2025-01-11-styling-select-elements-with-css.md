@@ -1,0 +1,112 @@
+---
+title: "Styling select elements with CSS"
+date: "2025-01-11T22:44:54Z"
+---
+I’m reasonably happy with the results of today’s experimentation session with CSS:
+
+<video src="https://github.com/user-attachments/assets/cb24f49d-4df2-4305-8825-38113180f093" autoplay></video>
+
+The code only works on Chrome with the `#enable-experimental-web-platform-features` flag turned on, so it’s not super useful yet, but here it is.
+
+The HTML is nothing special:
+
+```html
+<select name="nice" id="nice">
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+  <option value="4">Four</option>
+  <option value="5">Five</option>
+</select>
+```
+
+The CSS is a bit more funky, though:
+
+```css
+/* you need this to opt-in to custom styling: */
+select#nice,
+::picker(select) {
+  appearance: base-select;
+}
+
+/* now we're ready to start styling */
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+
+  100% {
+    transform: translateY(3px);
+  }
+}
+
+select#nice {
+  min-width: 20ch;
+  background: linear-gradient(180deg, #eee, #ddd);
+  border: 1px solid #ccc;
+  outline: 1px solid white;
+  outline-offset: -2px;
+  padding: 1rem;
+  text-shadow: 0 1px 0 #ffffff66;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
+
+  &:open,
+  &:hover {
+    cursor: pointer;
+    /* outline: none; */
+    border-color: #f606;
+
+    &::picker-icon {
+      color: #f60;
+      animation: moveUpDown 1s ease-in-out 0s infinite alternate none;
+    }
+  }
+
+  &:open {
+    background: linear-gradient(180deg, #ddd, #eee);
+  }
+
+  &:focus {
+    border-color: #f606;
+  }
+
+  option {
+    text-shadow: none;
+    padding: 1rem;
+    transition: padding 0.2s ease-out, background 0.1s linear, color 0.1s linear;
+
+    &:hover {
+      background-color: #ff6600;
+      color: white;
+      padding-inline-start: 1.5rem;
+    }
+
+    &:checked {
+      background-color: #f60;
+      color: white;
+    }
+  }
+
+  option::checkmark {
+    content: "✓";
+  }
+}
+
+::picker(select) {
+  backdrop-filter: blur(16px);
+  top: 0.2rem;
+  border-color: #f606;
+  background-color: #eee8;
+  border-radius: 0.5rem;
+  min-width: 20ch;
+  box-shadow: 0 0 2rem 1px rgba(0, 0, 0, 0.2);
+}
+
+select#nice::picker-icon {
+  content: "↓";
+}
+```

@@ -1,6 +1,7 @@
 ---
 title: "Polish, polish, polish"
 date: "2025-01-12T12:11:25Z"
+description: "A small reflection on how things get better with time and care"
 ---
 One of the most rewarding things about almost any craft is the realisation that (within reason) the more time and love you pour into anything, the better it gets.
 

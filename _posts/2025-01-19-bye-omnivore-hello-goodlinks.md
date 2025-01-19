@@ -1,5 +1,5 @@
 ---
-title: "Bye, Omnivor. Hello, GoodLinks"
+title: "Bye, Omnivore. Hello, GoodLinks"
 date: "2025-01-19T17:29:06Z"
 ---
 When [Omnivore](https://omnivore.app) shut down last year, I started looking for alternatives.

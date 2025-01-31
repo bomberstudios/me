@@ -33,6 +33,7 @@ body {
     "Segoe UI Emoji", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif;
   font-size: 1.1em;
   line-height: 1.5;
+  hyphens: auto;
   color: var(--text-color);
   background-color: var(--bg-color);
   min-height: 100vh;

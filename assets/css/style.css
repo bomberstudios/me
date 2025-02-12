@@ -129,7 +129,7 @@ h1.post-title {
 article {
   li {
     list-style: square;
-    margin: 0 0 0.3em 2em;
+    margin: 0 0 1em 2em;
   }
   ul, ol {
     margin-top: 1em;

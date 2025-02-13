@@ -8,13 +8,13 @@ Starting on iOS 14 / macOS 13, you can use a feature called “Background Sounds
 
 Check System Settings › Accessibility › Audio on macOS, or Settings › Accessibility › Audio & Visual on iOS to set it up.
 
-<img width="827" alt="SCR-20250115-lwkq" src="https://github.com/user-attachments/assets/d0c40d9a-72e1-452c-a15d-32209a83cd79" />
+<img width="827" alt="SCR-20250115-lwkq" src="/assets/posts/2025-01-15-generating-brown-noise--take-2/d0c40d9a-72e1-452c-a15d-32209a83cd79" />
 
 You can even add a menubar option on macOS to have them one click away:
 
-<img width="827" alt="SCR-20250115-lwhz" src="https://github.com/user-attachments/assets/097e746a-535c-4cef-9b8b-fc031b3acf4f" />
+<img width="827" alt="SCR-20250115-lwhz" src="/assets/posts/2025-01-15-generating-brown-noise--take-2/097e746a-535c-4cef-9b8b-fc031b3acf4f" />
 
-<img width="433" alt="SCR-20250115-mhsy" src="https://github.com/user-attachments/assets/955f4ab7-e16e-42ba-8a07-b9fc69a50424" />
+<img width="433" alt="SCR-20250115-mhsy" src="/assets/posts/2025-01-15-generating-brown-noise--take-2/955f4ab7-e16e-42ba-8a07-b9fc69a50424" />
 
 On iOS, you can add it to your control center too.
 

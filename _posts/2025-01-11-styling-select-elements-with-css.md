@@ -4,7 +4,7 @@ date: "2025-01-11T22:44:54Z"
 ---
 I’m reasonably happy with the results of today’s experimentation session with CSS:
 
-<video src="https://github.com/user-attachments/assets/cb24f49d-4df2-4305-8825-38113180f093" autoplay loop muted playsinline></video>
+<video src="/assets/posts/2025-01-11-styling-select-elements-with-css/cb24f49d-4df2-4305-8825-38113180f093" autoplay loop muted playsinline></video>
 
 The code only works on Chrome with the `#enable-experimental-web-platform-features` flag turned on, so it’s not super useful yet, but here it is.
 

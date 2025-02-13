@@ -20,13 +20,31 @@ jobs:
         if: success() 
         run: |
           DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-          POST_TITLE=$(sed -E 's/[[:space:]|[:punct:]]/-/g ; s/[A-Z]/\L&/g ; s/#//g' <<<'${{ github.event.issue.title }}')
-          cat <<'EOF' > $POST_DIRECTORY/"${DATE:0:10}-${POST_TITLE}".md
+          POST_TITLE=$(sed -E 's/[:space:]/-/g ; s/[:punct:]//g ; s/[A-Z]/\L&/g ; s/#//g' <<<'${{ github.event.issue.title }}')
+
+          # Create assets directory if it doesn't exist
+          mkdir -p assets/posts/"${DATE:0:10}-${POST_TITLE}"
+
+          # Process the body to download assets and update URLs
+          BODY='${{ github.event.issue.body }}'
+
+          # Download images and videos from GitHub user content
+          while IFS= read -r url; do
+            if [[ $url =~ ^https://github\.com/user-attachments/assets/ ]]; then
+              FILENAME=$(basename "$url")
+              curl -L "$url" -o "assets/posts/${DATE:0:10}-${POST_TITLE}/$FILENAME"
+              # Update URL in body to point to local asset
+              BODY=${BODY//$url/\/assets\/posts\/${DATE:0:10}-${POST_TITLE}\/$FILENAME}
+            fi
+          done < <(echo "$BODY" | grep -o 'https://github.com/user-attachments/assets/[^ )}"]*')
+
+          # Create post file with updated body
+          cat <<EOF > $POST_DIRECTORY/"${DATE:0:10}-${POST_TITLE}".md
           ---
           title: "${{ github.event.issue.title }}"
           date: "${{ github.event.issue.created_at }}"
           ---
-          ${{ github.event.issue.body }}
+          $BODY
           EOF
         env:
           POST_DIRECTORY: '_posts'

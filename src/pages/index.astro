@@ -1,0 +1,9 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { SITE_DESCRIPTION } from "../consts";
+import PostList from "../components/PostList.astro";
+---
+
+<BaseLayout description={SITE_DESCRIPTION}>
+  <PostList />
+</BaseLayout>

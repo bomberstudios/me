@@ -1,6 +1,7 @@
-# me
+# ale, today
 
-https://ale.today
+## TODO
 
-a small life log
-
+- [ ] Finish styling
+- [x] Navigation between posts
+- [ ] Pagination on index page

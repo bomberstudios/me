@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import FormattedDate from "@components/FormattedDate.astro";
+
+import { getCollection } from "astro:content";
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const currentPost = posts.findIndex((post) => {
+  return post.id === Astro.url.pathname.replace(/\//g, "");
+});
+
+const nextPost = posts[currentPost - 1];
+const previousPost = posts[currentPost + 1];
+
+type Props = CollectionEntry<"blog">["data"];
+
+const { title, description, date, updatedDate } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="blogpost">
+    <div class="title">
+      <h1>{title}</h1>
+      <div class="date">
+        <FormattedDate date={date} />
+        {
+          updatedDate && (
+            <div class="last-updated-on">
+              Last updated on <FormattedDate date={updatedDate} />
+            </div>
+          )
+        }
+      </div>
+    </div>
+    <slot />
+    <div class="post-navigation">
+      {previousPost ? <a href={`/${previousPost.id}/`} class="prev">‹ {previousPost.data.title}</a> : null}
+      {nextPost ? <a href={`/${nextPost.id}/`} class="next">{nextPost.data.title} ›</a> : null}
+    </div>
+  </div>
+</BaseLayout>

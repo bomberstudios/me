@@ -16,14 +16,14 @@ jobs:
     steps:
       - name: Checkout main branch
         uses: actions/checkout@master
-      - name: Create jekyll post file
+      - name: Create astro post file
         if: success() 
         run: |
           DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-          POST_TITLE=$(sed -E 's/[:space:]/-/g ; s/[:punct:]//g ; s/[A-Z]/\L&/g ; s/#//g' <<<'${{ github.event.issue.title }}')
+          POST_TITLE=$(sed -E 's/[[:punct:]]//g ; s/[[:space:]]/-/g ; s/-+/-/g' <<<'${{ github.event.issue.title }}' | tr '[:upper:]' '[:lower:]')
 
           # Create assets directory if it doesn't exist
-          mkdir -p assets/posts/"${DATE:0:10}-${POST_TITLE}"
+          mkdir -p public/assets/posts/"${DATE:0:10}-${POST_TITLE}"
 
           # Process the body to download assets and update URLs
           BODY='${{ github.event.issue.body }}'
@@ -32,14 +32,14 @@ jobs:
           while IFS= read -r url; do
             if [[ $url =~ ^https://github\.com/user-attachments/assets/ ]]; then
               FILENAME=$(basename "$url")
-              curl -L "$url" -o "assets/posts/${DATE:0:10}-${POST_TITLE}/$FILENAME"
+              curl -L "$url" -o "public/assets/posts/${DATE:0:10}-${POST_TITLE}/$FILENAME"
               # Update URL in body to point to local asset
               BODY=${BODY//$url/\/assets\/posts\/${DATE:0:10}-${POST_TITLE}\/$FILENAME}
             fi
           done < <(echo "$BODY" | grep -o 'https://github.com/user-attachments/assets/[^ )}"]*')
 
           # Create post file with updated body
-          cat <<EOF > $POST_DIRECTORY/"${DATE:0:10}-${POST_TITLE}".md
+          cat <<EOF > $POST_DIRECTORY/"${POST_TITLE}".md
           ---
           title: "${{ github.event.issue.title }}"
           date: "${{ github.event.issue.created_at }}"
@@ -47,7 +47,7 @@ jobs:
           $BODY
           EOF
         env:
-          POST_DIRECTORY: '_posts'
+          POST_DIRECTORY: 'src/content/blog'
       - name: Commit files
         if: success()
         run: |
@@ -60,7 +60,7 @@ jobs:
         env:
           GIT_USER_NAME: 'Ale Muñoz'
           GIT_USER_EMAIL: 'bomberstudios@gmail.com'
-          DEFAULT_COMMIT_MESSAGE: 'New Jekyll post created from GitHub issue'
+          DEFAULT_COMMIT_MESSAGE: 'New post created from GitHub issue'
       - name: Push changes
         if: success()
         uses: ad-m/github-push-action@master

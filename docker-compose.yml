@@ -1,9 +1,0 @@
-services:
-  jekyll:
-    image: bretfisher/jekyll-serve:latest
-    ports:
-      - '4000:4000'
-    volumes:
-      - .:/site
-    environment:
-      - TZ=Europe/Madrid

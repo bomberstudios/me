@@ -1,0 +1,44 @@
+---
+interface Props {
+  src: string
+  alt: string
+}
+
+const { src, alt = 'Image' } = Astro.props
+---
+
+<script>
+  const handleClick = (event: Event) => {
+    event.preventDefault()
+    const target = event.target as HTMLElement
+    const zoomableImages = document.querySelectorAll('img.zoom')
+    zoomableImages.forEach((img) => {
+      if (img !== target) {
+        img.classList.remove('zoomed')
+      }
+    })
+    target.classList.toggle('zoomed')
+  }
+
+  const zoomableImages = document.querySelectorAll('img.zoom')
+  zoomableImages.forEach((img) => {
+    img.addEventListener('click', handleClick)
+  })
+</script>
+
+<img src={src} alt={alt} class="zoom" />
+
+<style>
+  img {
+    &.zoom {
+      transition: all 0.2s ease-in;
+      cursor: zoom-in;
+      background-color: white;
+    }
+    &.zoomed {
+      transform: scale(2);
+      box-shadow: 0 0 400px rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+    }
+  }
+</style>

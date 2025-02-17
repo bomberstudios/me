@@ -3,7 +3,7 @@ title: Homage to the Square
 date: 2025-02-17
 ---
 
-I was looking for something completely unrelated to this (documentation for using themes in [HighCharts](https://www.highcharts.com/docs/chart-design-and-style/themes)), when I came across this beauty by Josef Albers:
+I was looking for something completely unrelated to this (documentation for using themes in [HighCharts](https://www.highcharts.com/docs/chart-design-and-style/themes) 🙃), when I came across this beauty by Josef Albers.
 
 There is something about the simplicity of the squares and the colors that makes me feel at peace. I can't explain it, but I love it. I hope you do too.
 

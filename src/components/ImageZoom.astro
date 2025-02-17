@@ -32,11 +32,17 @@ const { src, alt = 'Image' } = Astro.props
   img {
     &.zoom {
       transition: all 0.2s ease-in;
-      cursor: zoom-in;
+      cursor:
+        url(/images/cursors/zoom-in.svg) 50 50,
+        zoom-in;
+      cursor-position: center;
       background-color: white;
     }
     &.zoomed {
       transform: scale(2);
+      cursor:
+        url(/images/cursors/zoom-out.svg) 50 50,
+        zoom-out;
       box-shadow: 0 0 400px rgba(0, 0, 0, 0.8);
       z-index: 1000;
     }

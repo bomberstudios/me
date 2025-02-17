@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content'
+import FormattedDate from '@components/FormattedDate.astro'
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 10)
+---
+
+<ol>
+  {
+    posts.map((post) => (
+      <li>
+        <a href={`/${post.id}/`}>
+          <h2 class="title">{post.data.title}</h2>
+        </a>
+        <p class="date">
+          <FormattedDate date={post.data.date} />
+        </p>
+      </li>
+    ))
+  }
+</ol>
+<style>
+  ol {
+    margin: 0;
+    padding: 0;
+    .title {
+      margin: 0;
+    }
+    p.date {
+      margin: 0;
+    }
+  }
+</style>

@@ -150,7 +150,7 @@ main {
   margin: 0 auto;
   padding: 0;
   width: calc(100% - 4rem);
-  max-width: 60ch;
+  max-width: 56ch;
 
   article {
     width: 100%;

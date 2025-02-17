@@ -1,0 +1,12 @@
+---
+title: Homage to the Square
+date: 2025-02-17
+---
+
+I was looking for something completely unrelated to this (documentation for using themes in [HighCharts](https://www.highcharts.com/docs/chart-design-and-style/themes)), when I came across this beauty by Josef Albers:
+
+There is something about the simplicity of the squares and the colors that makes me feel at peace. I can't explain it, but I love it. I hope you do too.
+
+![Josef Albers: Study for Homage to the Square](/images/orange/josef-albers-study-for-homage-to-the-square.jpg)
+
+You can enjoy more of his work at [Guggenheim New York's page about the artist](https://www.guggenheim.org/artwork/artist/josef-albers).

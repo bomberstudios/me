@@ -127,7 +127,8 @@ header {
     color: white;
   }
 
-  background-color: #22223066;
+  border: 1px solid #ff660011;
+  background-color: #22222266;
   backdrop-filter: blur(20px);
   z-index: 1000;
 

@@ -210,15 +210,26 @@ main {
 
     .post-navigation {
       display: flex;
-      justify-content: space-between;
+      flex: 1 1;
+      gap: 1rem;
       margin-top: 2rem;
+      align-items: center;
 
       a {
+        width: 100%;
         color: var(--brand);
         text-decoration: none;
+        vertical-align: middle;
 
         &:hover {
           text-decoration: underline;
+        }
+
+        &.prev {
+          text-align: left;
+        }
+        &.next {
+          text-align: right;
         }
       }
     }

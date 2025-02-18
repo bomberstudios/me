@@ -235,6 +235,14 @@ footer {
   color: var(--subtle-text);
 }
 
+/* Components */
+.astro-code {
+  padding: 1rem;
+  border-radius: var(--radius);
+  margin: 1rem 0;
+  overflow-x: overlay;
+}
+
 /* animation */
 @keyframes pulse {
   0% {

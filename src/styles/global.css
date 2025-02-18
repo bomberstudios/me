@@ -113,12 +113,26 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  overflow: auto;
 }
 
 header {
-  padding: 1rem;
+  width: fit-content;
+  margin: 0 auto;
+  border-radius: 999px;
+  padding: 1rem 4rem;
   text-align: center;
-  color: var(--brand);
+
+  a {
+    color: white;
+  }
+
+  background-color: #22223066;
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+
+  position: sticky;
+  top: 20px;
 
   nav {
     display: flex;
@@ -133,14 +147,15 @@ header {
     justify-content: center;
     gap: 1rem;
   }
+}
 
-  .logo {
-    padding: 2rem 0;
+.logo {
+  margin: 0 auto;
+  padding: 4rem 0;
 
-    a {
-      &:hover {
-        animation: pulse 1.5s ease-in-out alternate infinite;
-      }
+  a {
+    &:hover {
+      animation: pulse 1.5s ease-in-out alternate infinite;
     }
   }
 }

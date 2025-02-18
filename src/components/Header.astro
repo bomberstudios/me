@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import HeaderLink from '@components/HeaderLink.astro'
-import logo from '@public/favicon.svg'
+import logo from '@images/favicon.svg'
 ---
 
 <header>
@@ -13,7 +13,7 @@ import logo from '@public/favicon.svg'
     </div>
     <div class="logo">
       <HeaderLink href="/">
-        <Image src={logo} alt="Logo" width={64} height={64} />
+        <Image src={logo} alt="Logo" width={64} height={64} loading="eager" />
       </HeaderLink>
     </div>
   </nav>

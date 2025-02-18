@@ -1,22 +1,22 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import BaseLayout from "@layouts/BaseLayout.astro";
-import FormattedDate from "@components/FormattedDate.astro";
+import type { CollectionEntry } from 'astro:content'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import FormattedDate from '@components/FormattedDate.astro'
 
-import { getCollection } from "astro:content";
-const posts = (await getCollection("blog")).sort(
+import { getCollection } from 'astro:content'
+const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
+)
 const currentPost = posts.findIndex((post) => {
-  return post.id === Astro.url.pathname.replace(/\//g, "");
-});
+  return post.id === Astro.url.pathname.replace(/\//g, '')
+})
 
-const nextPost = posts[currentPost - 1];
-const previousPost = posts[currentPost + 1];
+const nextPost = posts[currentPost - 1]
+const previousPost = posts[currentPost + 1]
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = CollectionEntry<'blog'>['data']
 
-const { title, description, date, updatedDate } = Astro.props;
+const { title, description, date, updatedDate } = Astro.props
 ---
 
 <BaseLayout title={title} description={description}>
@@ -36,8 +36,20 @@ const { title, description, date, updatedDate } = Astro.props;
     </div>
     <slot />
     <div class="post-navigation">
-      {previousPost ? <a href={`/${previousPost.id}/`} class="prev">‹ {previousPost.data.title}</a> : null}
-      {nextPost ? <a href={`/${nextPost.id}/`} class="next">{nextPost.data.title} ›</a> : null}
+      {
+        previousPost ? (
+          <a href={`/${previousPost.id}/`} class="prev">
+            ‹ {previousPost.data.title}
+          </a>
+        ) : null
+      }
+      {
+        nextPost ? (
+          <a href={`/${nextPost.id}/`} class="next">
+            {nextPost.data.title} ›
+          </a>
+        ) : null
+      }
     </div>
   </div>
 </BaseLayout>

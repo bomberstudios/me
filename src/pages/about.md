@@ -1,9 +1,8 @@
 ---
-title: about me
-layout: "@layouts/BaseLayout.astro"
+title: About Me
+description: A brief introduction to who I am and what I do.
+layout: "@layouts/Page.astro"
 ---
-
-# About me
 
 Hi! I'm Ale Muñoz, a digital toolsmith who loves building tools that help
 people do more with less work (i.e: I'm a Good Lazy™). You may have used

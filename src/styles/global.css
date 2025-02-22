@@ -32,6 +32,8 @@ html {
   --subtle: light-dark(#eee, #363636);
   --subtle-text: light-dark(#aaa, #888);
   --radius: 0.5rem;
+  --header-text: light-dark(#333, #ddd);
+  --header-bg: light-dark(#ffffff55, #22222288);
 }
 
 /* Selection */
@@ -120,33 +122,33 @@ header {
   width: fit-content;
   margin: 0 auto;
   border-radius: 999px;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1.5rem 0.5rem 0.55rem;
   text-align: center;
 
   a {
-    color: white;
+    color: var(--header-text);
   }
 
   border: 1px solid #ff660011;
-  background-color: #22222266;
+  background-color: var(--header-bg);
   backdrop-filter: blur(20px);
   z-index: 1000;
 
   position: sticky;
   top: 20px;
 
-  nav {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
-  }
-
   .internal-links {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     gap: 1rem;
+    img {
+      vertical-align: middle;
+      &:hover {
+        animation: pulse 1.5s ease-in-out alternate infinite;
+      }
+    }
   }
 }
 

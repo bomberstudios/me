@@ -1,5 +1,12 @@
 ---
-const { src } = Astro.props
+const { src, controls = null } = Astro.props
 ---
 
-<video src={src} autoplay loop muted playsinline></video>
+<video src={src} autoplay loop muted playsinline {controls}></video>
+
+<style>
+  video {
+    width: 100%;
+    height: auto;
+  }
+</style>

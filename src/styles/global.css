@@ -12,7 +12,6 @@ html {
     'Open Sans',
     'Helvetica Neue',
     sans-serif;
-  font-size: 1.1em;
   line-height: 1.5;
   color: var(--text-color);
   background-color: var(--bg-color);
@@ -92,6 +91,7 @@ h4,
 h5,
 h6 {
   color: var(--brand);
+  line-height: 1.3;
 }
 
 hr {
@@ -120,7 +120,7 @@ header {
   width: fit-content;
   margin: 0 auto;
   border-radius: 999px;
-  padding: 1rem 4rem;
+  padding: 0.5rem 1.5rem;
   text-align: center;
 
   a {

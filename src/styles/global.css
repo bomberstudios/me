@@ -232,16 +232,6 @@ main {
   }
 }
 
-footer {
-  font-size: 0.9rem;
-  padding: 1rem;
-  padding-bottom: 2rem;
-  margin-block-start: 4rem;
-  flex: 0;
-  text-align: center;
-  color: var(--subtle-text);
-}
-
 /* Components */
 .astro-code {
   padding: 1rem;

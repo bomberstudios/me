@@ -10,14 +10,30 @@ const { src, alt = 'Image' } = Astro.props
 <script>
   const handleClick = (event: Event) => {
     event.preventDefault()
-    const target = event.target as HTMLElement
-    const zoomableImages = document.querySelectorAll('img.zoom')
-    zoomableImages.forEach((img) => {
-      if (img !== target) {
-        img.classList.remove('zoomed')
-      }
+    const target = event.target as HTMLImageElement
+    
+    // Remove any existing zoomed images
+    const existingZoomed = document.querySelector('.zoom-overlay')
+    if (existingZoomed) {
+      existingZoomed.remove()
+    }
+
+    // Create new overlay and image elements
+    const overlay = document.createElement('div')
+    overlay.className = 'zoom-overlay'
+    
+    const zoomedImg = document.createElement('img')
+    zoomedImg.src = target.src
+    zoomedImg.alt = target.alt
+    zoomedImg.className = 'zoomed'
+    
+    overlay.appendChild(zoomedImg)
+    document.body.appendChild(overlay)
+
+    // Click handler to remove the zoomed image
+    overlay.addEventListener('click', () => {
+      overlay.remove()
     })
-    target.classList.toggle('zoomed')
   }
 
   const zoomableImages = document.querySelectorAll('img.zoom')
@@ -31,20 +47,35 @@ const { src, alt = 'Image' } = Astro.props
 <style>
   img {
     &.zoom {
-      transition: all 0.2s ease-in;
       cursor:
         url(/images/cursors/zoom-in.svg) 50 50,
         zoom-in;
-      cursor-position: center;
       background-color: white;
     }
-    &.zoomed {
-      transform: scale(2);
-      cursor:
-        url(/images/cursors/zoom-out.svg) 50 50,
-        zoom-out;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-      z-index: 1000;
-    }
+  }
+
+  :global(.zoom-overlay) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    cursor: url(/images/cursors/zoom-out.svg) 50 50, zoom-out;
+  }
+
+  :global(.zoomed) {
+    max-height: 90vh;
+    max-width: 90vw;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    background-color: white;
   }
 </style>

@@ -62,12 +62,6 @@ a {
   }
 }
 
-main img {
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius);
-}
-
 blockquote {
   font-weight: 200;
   color: var(--quote-color);
@@ -165,7 +159,6 @@ main {
   max-width: 56ch;
 
   article {
-    width: 100%;
     border: 1px solid red;
   }
 
@@ -190,6 +183,11 @@ main {
     margin-top: 0;
   }
 
+  img {
+    width: 100%;
+    border-radius: var(--radius);
+  }
+
   .blogpost {
     .title {
       margin-bottom: 2rem;
@@ -212,7 +210,7 @@ main {
       align-items: center;
 
       a {
-        width: 100%;
+        flex: auto;
         color: var(--brand);
         text-decoration: none;
         vertical-align: middle;

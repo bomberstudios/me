@@ -1,10 +1,19 @@
 ---
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+
 interface Props {
   src: string
   alt: string
 }
 
 const { src, alt = 'Image' } = Astro.props
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '../images/**/*.{jpg,jpeg,png,gif,webp,svg}'
+)
+if (!images[src]) {
+  throw new Error(`Image not found: ${src}`)
+}
 ---
 
 <script>
@@ -42,15 +51,16 @@ const { src, alt = 'Image' } = Astro.props
   })
 </script>
 
-<img src={src} alt={alt} class="zoom" width="auto" height="auto" />
+<Image src={images[src]()} alt={alt} class="zoom" />
 
 <style>
   img {
+    max-width: 100%;
+    height: auto;
     &.zoom {
       cursor:
-        url(/images/cursors/zoom-in.svg) 50 50,
+        url(../images/cursors/zoom-in.svg) 50 50,
         zoom-in;
-      background-color: white;
     }
   }
 
@@ -67,7 +77,7 @@ const { src, alt = 'Image' } = Astro.props
     justify-content: center;
     z-index: 1000;
     cursor:
-      url(/images/cursors/zoom-out.svg) 50 50,
+      url(../images/cursors/zoom-out.svg) 50 50,
       zoom-out;
   }
 
@@ -78,6 +88,5 @@ const { src, alt = 'Image' } = Astro.props
     height: auto;
     object-fit: contain;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-    background-color: white;
   }
 </style>

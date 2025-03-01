@@ -11,7 +11,8 @@ const { src, alt = 'Image' } = Astro.props
 const images = import.meta.glob<{ default: ImageMetadata }>(
   '../images/**/*.{jpg,jpeg,png,gif,webp,svg}'
 )
-if (!images[src]) {
+const realSrc = `../images/${src}`
+if (!images[realSrc]) {
   throw new Error(`Image not found: ${src}`)
 }
 ---
@@ -51,7 +52,7 @@ if (!images[src]) {
   })
 </script>
 
-<Image src={images[src]()} alt={alt} class="zoom" />
+<Image src={images[realSrc]()} alt={alt} class="zoom" />
 
 <style>
   img {

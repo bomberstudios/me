@@ -13,6 +13,7 @@ html {
     'Helvetica Neue',
     sans-serif;
   line-height: 1.5;
+  font-size: 1.1em;
   color: var(--text-color);
   background-color: var(--bg-color);
 }
@@ -36,6 +37,7 @@ html {
   --radius: 0.5rem;
   --header-text: light-dark(#333, #ddd);
   --header-bg: light-dark(#ffffff55, #22222288);
+  --measure: 56ch;
 }
 
 /* Selection */
@@ -158,11 +160,7 @@ main {
   margin: 0 auto;
   padding: 0;
   width: calc(100% - 4rem);
-  max-width: 56ch;
-
-  article {
-    border: 1px solid red;
-  }
+  max-width: var(--measure);
 
   .date {
     font-size: small;
@@ -202,6 +200,10 @@ main {
       margin: 0;
       margin-bottom: 0.5rem;
       padding: 0;
+    }
+
+    h2 {
+      margin: 2rem 0 1rem 0;
     }
 
     .post-navigation {
@@ -271,7 +273,7 @@ main {
 
 @keyframes slidein {
   from {
-    transform: translateX(-200%);
+    transform: translateX(200%);
   }
 
   to {
@@ -285,7 +287,7 @@ main {
   }
 
   to {
-    transform: translateX(200%);
+    transform: translateX(-400%);
   }
 }
 

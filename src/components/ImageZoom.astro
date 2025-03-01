@@ -11,7 +11,7 @@ const { src, alt = 'Image' } = Astro.props
   const handleClick = (event: Event) => {
     event.preventDefault()
     const target = event.target as HTMLImageElement
-    
+
     // Remove any existing zoomed images
     const existingZoomed = document.querySelector('.zoom-overlay')
     if (existingZoomed) {
@@ -21,12 +21,12 @@ const { src, alt = 'Image' } = Astro.props
     // Create new overlay and image elements
     const overlay = document.createElement('div')
     overlay.className = 'zoom-overlay'
-    
+
     const zoomedImg = document.createElement('img')
     zoomedImg.src = target.src
     zoomedImg.alt = target.alt
     zoomedImg.className = 'zoomed'
-    
+
     overlay.appendChild(zoomedImg)
     document.body.appendChild(overlay)
 
@@ -42,7 +42,7 @@ const { src, alt = 'Image' } = Astro.props
   })
 </script>
 
-<img src={src} alt={alt} class="zoom" />
+<img src={src} alt={alt} class="zoom" width="auto" height="auto" />
 
 <style>
   img {
@@ -58,15 +58,17 @@ const { src, alt = 'Image' } = Astro.props
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    cursor: url(/images/cursors/zoom-out.svg) 50 50, zoom-out;
+    cursor:
+      url(/images/cursors/zoom-out.svg) 50 50,
+      zoom-out;
   }
 
   :global(.zoomed) {

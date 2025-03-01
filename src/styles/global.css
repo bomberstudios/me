@@ -24,12 +24,14 @@ html {
 :root {
   color-scheme: light dark;
   --brand: light-dark(#f60, #f60);
+  --brand-reverse: light-dark(#fff, #ddd);
   accent-color: var(--brand);
   --text-color: light-dark(#333, #aaa);
   --quote-color: light-dark(#666, #777);
   --quote-bg: light-dark(#f4f4f4, #111);
   --bg-color: light-dark(#fff, #222);
-  --subtle: light-dark(#eee, #363636);
+  --subtle: light-dark(#ddd, #363636);
+  --subtler: light-dark(#f0f0f0, #555);
   --subtle-text: light-dark(#aaa, #888);
   --radius: 0.5rem;
   --header-text: light-dark(#333, #ddd);
@@ -236,6 +238,23 @@ main {
   border-radius: var(--radius);
   margin: 1rem 0;
   overflow-x: overlay;
+}
+
+.component-showcase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  background: linear-gradient(var(--subtler), var(--subtle));
+  box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius);
+
+  .component {
+    border: 1px solid var(--subtle);
+    border-radius: var(--radius);
+    padding: 1rem;
+  }
 }
 
 /* animation */

@@ -242,23 +242,6 @@ main {
   overflow-x: overlay;
 }
 
-.component-showcase {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem;
-  background: linear-gradient(var(--subtler), var(--subtle));
-  box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  border-radius: var(--radius);
-
-  .component {
-    border: 1px solid var(--subtle);
-    border-radius: var(--radius);
-    padding: 1rem;
-  }
-}
-
 /* animation */
 @keyframes pulse {
   0% {

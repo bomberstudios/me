@@ -1,0 +1,16 @@
+<div class="component-showcase">
+  <slot />
+</div>
+
+<style>
+  .component-showcase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: linear-gradient(var(--subtler), var(--subtle));
+    box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius);
+  }
+</style>

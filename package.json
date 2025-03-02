@@ -12,15 +12,16 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/mdx": "^4.1.0",
+    "@astrojs/react": "^4.2.1",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.2.1",
-    "@astrojs/react": "^4.2.1",
     "astro": "^5.4.0",
     "motion": "^12.4.7",
     "prettier": "^3.5.1",
     "prettier-plugin-astro": "^0.14",
     "react": "^19.0.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "use-sound": "^5.0.0"
   },
   "devDependencies": {
     "@types/react": "^19",

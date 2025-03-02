@@ -1,13 +1,19 @@
 import { motion } from 'motion/react';
 import { useState } from 'react';
-
+import useSound from 'use-sound';
+import toggleOnSound from '../sounds/whistle_up.mp3';
+import toggleOffSound from '../sounds/whistle_down.mp3';
 type RoundToggleProps = {
   enabled?: boolean;
   size?: number;
+  playSound?: boolean;
 }
 
-export const RoundToggle = ({ enabled = true, size = 20 }: RoundToggleProps) => {
+export const RoundToggle = ({ enabled = true, size = 20, playSound = false }: RoundToggleProps) => {
   const [isOn, setIsOn] = useState(enabled);
+  const [playOn] = useSound(toggleOnSound, { playbackRate: 1.2 });
+  const [playOff] = useSound(toggleOffSound);
+
   const togglePadding = size / 5;
   const toggleWidth = size * 2.5;
   const toggleHeight = size + togglePadding * 2;
@@ -31,7 +37,10 @@ export const RoundToggle = ({ enabled = true, size = 20 }: RoundToggleProps) => 
 
   return (
     <motion.div
-      onClick={() => setIsOn(!isOn)}
+      onClick={() => {
+        playSound ? (isOn ? playOff() : playOn()) : null;
+        setIsOn(!isOn)
+      }}
       style={{
         border: "none",
         position: "relative",

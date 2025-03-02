@@ -5,9 +5,11 @@ import { Image } from 'astro:assets'
 interface Props {
   src: string
   alt: string
+  loading?: 'lazy' | 'eager'
 }
 
-const { src, alt = 'Image' } = Astro.props
+const { src, alt = 'Image', loading } = Astro.props
+
 const images = import.meta.glob<{ default: ImageMetadata }>(
   '../images/**/*.{jpg,jpeg,png,gif,webp,svg}'
 )
@@ -52,16 +54,21 @@ if (!images[realSrc]) {
   })
 </script>
 
-<Image src={images[realSrc]()} alt={alt} class="zoom" />
+<Image src={images[realSrc]()} alt={alt} class="zoom" loading={loading} />
 
 <style>
   img {
     max-width: 100%;
     height: auto;
+    transition: all 0.2s ease;
     &.zoom {
       cursor:
         url(../images/cursors/zoom-in.svg) 50 50,
         zoom-in;
+    }
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
     }
   }
 

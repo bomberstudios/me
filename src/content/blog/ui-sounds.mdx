@@ -1,0 +1,22 @@
+---
+title: UI Sounds
+date: 2025-03-02
+description: Playing with sounds in user interfaces.
+---
+
+import { RoundToggle } from '@components/RoundToggle.tsx'
+import ComponentDemo from '@components/ComponentDemo.astro'
+
+Yesterday, I was browsing [Josh Comeau's website](https://www.joshwcomeau.com) and came across something I did not know I needed: ["A React Hook for Sound Effects"](https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/).
+
+When Josh says "I wish the web was louder", my inner DJ, music maker, and ex-multimedia designer all scream in unison saying "hell yeah".
+
+*Of course*, I had to take his library for a spin. And I have to say, I'm enjoying this throwback to the days when I got started with Flash. The web does indeed need a bit more sound.
+
+Just the excuse I needed to grab a mic and record some silly sounds:
+
+<ComponentDemo>
+  <RoundToggle client:only="react" enabled={false} size={64} playSound />
+</ComponentDemo>
+
+No hard promises, but expect more of this from me.

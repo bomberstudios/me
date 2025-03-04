@@ -34,7 +34,7 @@ I had the idea while working on an icon for a client project. I looked at it and
 That afternoon, I decided to build the component to refresh my [motion.dev](https://motion.dev) skills. I opened my code editor and got to work, until I ended up with this:
 
 <ComponentDemo>
-  <RoundToggle client:only="react" size={100} />
+  <RoundToggle client:load size={100} />
 </ComponentDemo>
 
 There's a lot going on in this component, so let's break it down a bit.
@@ -97,9 +97,9 @@ As a nice side effect of that approach, I can expose the `size` variable as a pr
 ```
 
 <ComponentDemo>
-  <RoundToggle client:only="react" size={20} />
-  <RoundToggle client:only="react" size={50} />
-  <RoundToggle client:only="react" size={100} />
+  <RoundToggle client:load size={20} />
+  <RoundToggle client:load size={50} />
+  <RoundToggle client:load size={100} />
 </ComponentDemo>
 
 ## Ok, shut up already

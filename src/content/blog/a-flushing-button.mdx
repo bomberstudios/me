@@ -1,0 +1,37 @@
+---
+title: A Flushing Button
+date: 2025-03-13
+description: A fun way to represent the state of a flushing process in a hydraulic system.
+---
+
+import { ActionButton } from '@components/ActionButton/ActionButton.tsx'
+import ComponentDemo from '@components/ComponentDemo.astro'
+import Video from '@components/Video.astro'
+
+In the context of hydraulics, "flushing" is the act of forcing a fluid through a system to clean it. It's a common practice in the industry, and the app I'm working on implements this feature.
+
+<Video src="/videos/flushing.mp4" />
+
+## The challenge
+
+We're working on some improvements to our flushing system, and one of the challenges we're trying to solve is representing the status of the process in the UI.
+
+I'm prototyping some ideas, and one of them is showing the state in the same component that's used to trigger the flushing. It could display a spinner when the flushing process is running, and some hints about how it when you hover over it:
+
+<ComponentDemo style="height: 400px;">
+  <ActionButton client:load actionName="Flushing" />
+</ComponentDemo>
+
+## Make it ~~stupid~~ fun
+
+If you ask me, there's nothing better to drive innovation than two people challenging each other. Specially if they never use the expression "are you out of your f***ing mind?".
+
+So, I was talking to a friend about this, and he suggested that the button _should make a flushing sound_ when you click it. I know a genius idea when I see one, so 2 minutes later I had this:
+
+<ComponentDemo style="height: 400px;">
+  <ActionButton client:load actionName="Flushing" sound />
+</ComponentDemo>
+
+And this, my friends, is why I love my job.
+
+🧡

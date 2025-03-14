@@ -1,4 +1,5 @@
 ---
+// import '@bomberstudios/css-library/index.css'
 import BaseHead from '@components/BaseHead.astro'
 import Header from '@components/Header.astro'
 import Footer from '@components/Footer.astro'
@@ -20,12 +21,14 @@ const { title, description } = Astro.props
     ;(function () {
       const trackVisit = function () {
         const img = new Image()
+        const currentPath = encodeURIComponent(window.location.pathname)
+        const referrer = encodeURIComponent(document.referrer || '')
         img.src =
-          'https://visitor-gleam-data.lovable.app/track?page=' +
-          encodeURIComponent(window.location.pathname) +
+          'https://f2b5f9ec-28f9-49b7-8bea-b5b469ee9ba8.lovableproject.com/track?page=' +
+          currentPath +
           '&ref=' +
-          encodeURIComponent(document.referrer) +
-          '&sid=fkfjly60tdf' +
+          referrer +
+          '&sid=89sqp8owpl5' +
           '&t=' +
           new Date().getTime()
         img.style.display = 'none'

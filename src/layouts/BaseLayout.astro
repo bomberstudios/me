@@ -16,5 +16,29 @@ const { title, description } = Astro.props
       <slot />
     </main>
     <Footer />
-  </body>
+  </body><script>
+    ;(function () {
+      const trackVisit = function () {
+        const img = new Image()
+        img.src =
+          'https://visitor-gleam-data.lovable.app/track?page=' +
+          encodeURIComponent(window.location.pathname) +
+          '&ref=' +
+          encodeURIComponent(document.referrer) +
+          '&sid=fkfjly60tdf' +
+          '&t=' +
+          new Date().getTime()
+        img.style.display = 'none'
+        document.body.appendChild(img)
+      }
+      if (
+        document.readyState === 'complete' ||
+        document.readyState === 'interactive'
+      ) {
+        setTimeout(trackVisit, 1)
+      } else {
+        document.addEventListener('DOMContentLoaded', trackVisit)
+      }
+    })()
+  </script>
 </html>

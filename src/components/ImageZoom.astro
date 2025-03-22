@@ -23,29 +23,16 @@ if (!images[realSrc]) {
   const handleClick = (event: Event) => {
     event.preventDefault()
     const target = event.target as HTMLImageElement
-
-    // Remove any existing zoomed images
-    const existingZoomed = document.querySelector('.zoom-overlay')
-    if (existingZoomed) {
-      existingZoomed.remove()
-    }
-
-    // Create new overlay and image elements
-    const overlay = document.createElement('div')
-    overlay.className = 'zoom-overlay'
-
-    const zoomedImg = document.createElement('img')
-    zoomedImg.src = target.src
-    zoomedImg.alt = target.alt
-    zoomedImg.className = 'zoomed'
-
-    overlay.appendChild(zoomedImg)
-    document.body.appendChild(overlay)
-
-    // Click handler to remove the zoomed image
-    overlay.addEventListener('click', () => {
-      overlay.remove()
-    })
+    const dialog = document.createElement('dialog')
+    const img = document.createElement('img')
+    dialog.appendChild(img)
+    img.src = target.src
+    img.alt = target.alt
+    document.body.appendChild(dialog)
+    dialog.setAttribute('width', img.width.toString())
+    dialog.setAttribute('height', img.height.toString())
+    dialog.addEventListener('click', () => dialog.remove())
+    dialog.showModal()
   }
 
   const zoomableImages = document.querySelectorAll('img.zoom')
@@ -56,8 +43,8 @@ if (!images[realSrc]) {
 
 <Image src={images[realSrc]()} alt={alt} class="zoom" loading={loading} />
 
-<style>
-  img {
+<style is:global>
+  img.zoom {
     max-width: 100%;
     height: auto;
     transition: all 0.2s ease;
@@ -67,34 +54,49 @@ if (!images[realSrc]) {
         zoom-in;
     }
     &:hover {
-      transform: scale(1.05);
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
     }
   }
-
-  :global(.zoom-overlay) {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
+  dialog {
     display: flex;
-    align-items: center;
     justify-content: center;
-    z-index: 1000;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    padding: 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
     cursor:
       url(../images/cursors/zoom-out.svg) 50 50,
       zoom-out;
+    img {
+      max-width: 100%;
+      max-height: 80vh;
+      &:hover {
+        transform: none;
+        box-shadow: none;
+      }
+    }
+  }
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+  }
+  dialog[open] {
+    animation: dialog-fade-in 0.2s ease-in-out;
+  }
+  dialog[close] {
+    animation: dialog-fade-out 0.2s ease-in-out;
   }
 
-  :global(.zoomed) {
-    max-height: 90vh;
-    max-width: 90vw;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  @keyframes dialog-fade-in {
+    from {
+      opacity: 0;
+      transform: scale(0.7);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 </style>

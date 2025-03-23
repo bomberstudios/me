@@ -35,14 +35,13 @@ if (!images[realSrc]) {
     document.body.appendChild(dialog)
     dialog.setAttribute('width', img.width.toString())
     dialog.setAttribute('height', img.height.toString())
-    dialog.addEventListener(
-      'click',
-      () =>
-        (dialog.animate(dialogFadeOut, {
-          duration: 300,
-          easing: 'ease'
-        }).onfinish = () => dialog.remove())
-    )
+    dialog.addEventListener('click', () => {
+      dialog.classList.add('fade-out')
+      dialog.animate(dialogFadeOut, {
+        duration: 300,
+        easing: 'ease'
+      }).onfinish = () => dialog.remove()
+    })
     dialog.showModal()
   }
 
@@ -90,11 +89,17 @@ if (!images[realSrc]) {
     }
   }
   dialog::backdrop {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);
   }
   dialog[open] {
     animation: dialog-fade-in 0.3s ease;
+  }
+  dialog[open]::backdrop {
+    animation: backdrop-fade-in 1s ease;
+  }
+  dialog.fade-out::backdrop {
+    animation: backdrop-fade-out 0.3s ease;
   }
   @keyframes dialog-fade-in {
     from {
@@ -104,6 +109,22 @@ if (!images[realSrc]) {
     to {
       opacity: 1;
       transform: scale(1);
+    }
+  }
+  @keyframes backdrop-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes backdrop-fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
     }
   }
 </style>

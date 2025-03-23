@@ -96,7 +96,7 @@ if (!images[realSrc]) {
     animation: dialog-fade-in 0.3s ease;
   }
   dialog[open]::backdrop {
-    animation: backdrop-fade-in 1s ease;
+    animation: backdrop-fade-in 0.8s ease-out;
   }
   dialog.fade-out::backdrop {
     animation: backdrop-fade-out 0.3s ease;
@@ -104,11 +104,11 @@ if (!images[realSrc]) {
   @keyframes dialog-fade-in {
     from {
       opacity: 0;
-      transform: scale(0.7);
+      transform: translateY(-100%);
     }
     to {
       opacity: 1;
-      transform: scale(1);
+      transform: translateY(0);
     }
   }
   @keyframes backdrop-fade-in {

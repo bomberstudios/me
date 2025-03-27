@@ -6,7 +6,7 @@ description: "An epic rant about the PSD file format"
 
 I have a soft spot in my heart for nerd humour. And this one is a classic I keep referring to, so I thought I’d save it here, for archival purposes.
 
-It comes from the source code of a Xee, an image previewer, and was added by someone named “paracelsus”, about 19 years ago.
+It comes from the source code of Xee, an image previewer, and was added by someone named “paracelsus”, about 19 years ago.
 
 Without further ado, here’s the world famous “PSD is not my favourite format” rant (with some edits for readability):
 

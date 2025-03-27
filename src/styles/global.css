@@ -16,6 +16,7 @@ html {
   font-size: 1.1em;
   color: var(--text-color);
   background-color: var(--bg-color);
+  interpolate-size: allow-keywords;
 }
 
 * {
@@ -76,7 +77,10 @@ blockquote {
   border-left: 2px solid var(--quote-color);
 
   p {
-    margin: 0;
+    margin-top: 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   em {

@@ -25,7 +25,8 @@ html {
 
 :root {
   color-scheme: light dark;
-  --brand: light-dark(#f60, #f60);
+  --orange: hsl(24, 100%, 49%);
+  --brand: light-dark(var(--orange), var(--orange));
   --brand-reverse: light-dark(#fff, #ddd);
   accent-color: var(--brand);
   --text-color: light-dark(#333, #aaa);
@@ -125,7 +126,7 @@ header {
     color: var(--header-text);
   }
 
-  border: 1px solid #ff660011;
+  border: 1px solid #fa640011;
   background-color: var(--header-bg);
   backdrop-filter: blur(20px);
   z-index: 1000;

@@ -35,7 +35,7 @@ html {
   --bg-color: light-dark(#fff, #222);
   --subtle: light-dark(#ddd, #363636);
   --subtler: light-dark(#f0f0f0, #555);
-  --subtle-text: light-dark(#aaa, #888);
+  --subtle-text: light-dark(#909090, #888);
   --radius: 0.5rem;
   --header-text: light-dark(#333, #ddd);
   --header-bg: light-dark(#ffffff55, #22222288);

@@ -39,7 +39,6 @@ html {
   --radius: 0.5rem;
   --header-text: light-dark(#333, #ddd);
   --header-bg: light-dark(#ffffff55, #22222288);
-  --link-dark: light-dark(#c05000, var(--orange));
   --measure: 56ch;
 }
 

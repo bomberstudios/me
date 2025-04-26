@@ -105,6 +105,11 @@ hr {
   border-top: 1px solid var(--subtle);
 }
 
+p {
+  margin-block: 1lh;
+  margin-trim: both;
+}
+
 /* Layout */
 body {
   display: flex;

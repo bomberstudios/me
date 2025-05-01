@@ -1,6 +1,7 @@
 ---
 title: "Using Storybook to replicate (and fix) UI bugs"
 date: "2025-04-30T09:47:13Z"
+description: "Learn how to use Storybook to replicate and fix UI bugs efficiently by simulating real-world scenarios, leveraging decorators, and creating reusable stories for debugging and collaboration."
 ---
 
 [Storybook](https://storybook.js.org) is an amazing tool. But I feel it's terribly underused (at least in my experience). I'm not talking about its great testing features (including a [soon to be improved accessibility testing addon](https://storybook.js.org/blog/preview-the-new-accessibility-addon/)), but something more mundane that's a great use case for the tool: **debugging and fixing UI bugs**. It's one of the "free" features we get from Storybook's main selling point: ["build UI components in isolation"](https://storybook.js.org/docs/get-started/why-storybook).

@@ -4,19 +4,21 @@
   "version": "1.0.0",
   "scripts": {
     "check": "astro check",
-    "start": "astro dev",
+    "start": "astro dev --open",
+    "prebuild": "npm run check",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "upgrade": "npx @astrojs/upgrade"
+    "upgrade": "npx @astrojs/upgrade",
+    "certificates": "brew install mkcert && mkcert -install && mkcert localhost"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/mdx": "^4.2.6",
-    "@astrojs/react": "^4.2.7",
-    "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.3.1",
-    "astro": "^5.7.10",
+    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/react": "^4.3.0",
+    "@astrojs/rss": "^4.0.12",
+    "@astrojs/sitemap": "^3.4.1",
+    "astro": "^5.9.0",
     "motion": "^12",
     "prettier": "^3",
     "prettier-plugin-astro": "^0.14",

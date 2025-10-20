@@ -205,7 +205,8 @@ main {
 
   li {
     margin-left: 1rem;
-    margin-block: 1lh;
+    margin-block-start: 0;
+    margin-block-end: 0.3lh;
     margin-trim: both;
   }
 

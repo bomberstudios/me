@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion, type Transition } from 'motion/react';
 import { useState } from 'react';
 import useSound from 'use-sound';
 import toggleOnSound from '../sounds/whistle_up.mp3';
@@ -29,7 +29,7 @@ export const RoundToggle = ({ enabled = true, size = 20, playSound = false }: Ro
   const rotations = 4;
   const speed = 0.6;
   const handleRotation = isOn ? 60 * rotations : 0;
-  const transition = {
+  const transition: Transition = {
     duration: speed,
     type: "tween",
     ease: "anticipate"

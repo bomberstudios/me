@@ -26,4 +26,4 @@ Things I _may_ add:
 - One-click resizing, using buttons instead of a `<select>`
 - Custom presets for sizes
 
-[Download Shot! from the Chrome Extension Store](https://chromewebstore.google.com/detail/ibnboohipcihigpgmoeipajbidjelggf/)
+[Download Shot! from the Chrome Web Store](https://chromewebstore.google.com/detail/shot/ibnboohipcihigpgmoeipajbidjelggf)

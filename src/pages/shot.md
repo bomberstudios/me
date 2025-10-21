@@ -17,6 +17,7 @@ It is intentionally simple, so it is defined by the things it does *not* do:
 - The output filename is not customizable
 - The save path cannot be changed: it's your `Downloads` folder
 - Also, while it says that Full Page support is coming, it may never make it to the extension because I don't really use it that much
+
 If your use case is different, this may not be your best option.
 
 Things I _may_ add:

@@ -18,7 +18,7 @@
     "@astrojs/react": "^4.4.2",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
-    "astro": "^5.16.6",
+    "astro": "^5.16.7",
     "motion": "^12",
     "react": "^19.0.0",
     "typescript": "^5",

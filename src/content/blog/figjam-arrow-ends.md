@@ -1,7 +1,7 @@
 ---
 title: FigJam arrow ends
 date: 2026-02-17T15:33
-description: A neat little detail on FigJam
+description: A neat little detail on FigJam's UI
 ---
 
 Found while drawing some diagrams in FigJam: the UI to set the arrow end of a connector line mirrors the orientation of the line.

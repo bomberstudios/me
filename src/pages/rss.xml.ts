@@ -11,6 +11,7 @@ export async function GET(context: { site: any }) {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     site: context.site,
+    customData: `<image><url>${context.site}favicon.png</url><title>${SITE_TITLE}</title><link>${context.site}</link></image>`,
     items: posts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.date,

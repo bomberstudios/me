@@ -13,12 +13,12 @@
     "certificates": "brew install mkcert && mkcert -install && mkcert localhost"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.7",
-    "@astrojs/mdx": "^5.0.0",
-    "@astrojs/react": "^5.0.0",
-    "@astrojs/rss": "^4.0.17",
-    "@astrojs/sitemap": "^3.7.1",
-    "astro": "^6.0.2",
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/react": "^5.0.2",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
+    "astro": "^6.1.2",
     "motion": "^12",
     "react": "^19.0.0",
     "typescript": "^5",

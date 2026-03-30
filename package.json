@@ -21,11 +21,6 @@
     "astro": "^6.1.2",
     "motion": "^12",
     "react": "^19.0.0",
-    "typescript": "^5",
     "use-sound": "^5.0.0"
-  },
-  "devDependencies": {
-    "@types/react": "^19",
-    "@types/react-dom": "^19"
   }
 }

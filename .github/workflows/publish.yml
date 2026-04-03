@@ -20,13 +20,13 @@ jobs:
         if: success() 
         run: |
           DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-          POST_TITLE=$(sed -E 's/[[:punct:]]//g ; s/[[:space:]]/-/g ; s/-+/-/g' <<<'${{ github.event.issue.title }}' | tr '[:upper:]' '[:lower:]')
+          POST_TITLE=$(sed -E 's/[[:punct:]]//g ; s/[[:space:]]/-/g ; s/-+/-/g' <<<"$ISSUE_TITLE" | tr '[:upper:]' '[:lower:]')
 
           # Create assets directory if it doesn't exist
           mkdir -p public/assets/posts/"${DATE:0:10}-${POST_TITLE}"
 
           # Process the body to download assets and update URLs
-          BODY='${{ github.event.issue.body }}'
+          BODY="$ISSUE_BODY"
 
           # Download images and videos from GitHub user content
           while IFS= read -r url; do
@@ -41,13 +41,16 @@ jobs:
           # Create post file with updated body
           cat <<EOF > $POST_DIRECTORY/"${POST_TITLE}".md
           ---
-          title: "${{ github.event.issue.title }}"
-          date: "${{ github.event.issue.created_at }}"
+          title: "$ISSUE_TITLE"
+          date: "$ISSUE_DATE"
           ---
           $BODY
           EOF
         env:
           POST_DIRECTORY: 'src/content/blog'
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_DATE: ${{ github.event.issue.created_at }}
       - name: Commit files
         if: success()
         run: |

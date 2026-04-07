@@ -1,7 +1,14 @@
 ---
+import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
 import FormattedDate from '@components/FormattedDate.astro'
-const posts = (await getCollection('blog')).sort(
+
+interface Props {
+  posts?: CollectionEntry<'blog'>[]
+}
+
+const { posts: propPosts } = Astro.props
+const posts = propPosts ?? (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 )
 ---
@@ -57,6 +64,15 @@ const posts = (await getCollection('blog')).sort(
       .title {
         line-height: 1.1;
         margin-bottom: 0.5rem;
+      }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    ul li a {
+      transition: none;
+      &:hover {
+        transform: none;
+        box-shadow: none;
       }
     }
   }

@@ -46,19 +46,24 @@ const posts = propPosts ?? (await getCollection('blog')).sort(
         text-decoration: none;
         transition: all 0.2s;
         padding: 1rem;
-        &:hover {
-          transform: matrix(1.07, 0, 0, 1.07, 0, 0);
-          box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.3);
-          color: white;
-          h2 {
+        border-radius: 0.5rem;
+        @media (hover: hover) {
+          &:hover {
+            transform: matrix(1.07, 0, 0, 1.07, 0, 0);
+            box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.3);
             color: white;
+            h2 {
+              color: white;
+            }
+            background-color: var(--brand);
+            .date {
+              transition: all 0.2s;
+              color: white;
+            }
           }
-          background-color: var(--brand);
-          border-radius: 0.5rem;
-          .date {
-            transition: all 0.2s;
-            color: white;
-          }
+        }
+        &:active {
+          background-color: var(--subtler);
         }
       }
       .title {

@@ -25,7 +25,7 @@ html {
 
 :root {
   color-scheme: light dark;
-  --orange: hsl(24, 100%, 49%);
+  --orange: #f60;
   --brand: light-dark(var(--orange), var(--orange));
   --brand-reverse: light-dark(#fff, #ddd);
   accent-color: var(--brand);
@@ -288,38 +288,11 @@ main {
   }
 }
 
-@keyframes slidein {
-  from {
-    transform: translateX(200%);
+@media (prefers-reduced-motion: reduce) {
+  @keyframes pulse {
+    0%, 100% {
+      transform: none;
+      opacity: 1;
+    }
   }
-
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideout {
-  from {
-    transform: translateX(0%);
-  }
-
-  to {
-    transform: translateX(-400%);
-  }
-}
-
-@view-transition {
-  navigation: auto;
-}
-
-main {
-  view-transition-name: main;
-}
-
-::view-transition-old(main) {
-  animation: slideout 0.5s ease-in-out;
-}
-
-::view-transition-new(main) {
-  animation: slidein 0.5s ease-in-out;
 }

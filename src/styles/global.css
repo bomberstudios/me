@@ -39,7 +39,8 @@ html {
   --radius: 0.5rem;
   --header-text: light-dark(#333, #ddd);
   --header-bg: light-dark(#ffffff55, #22222288);
-  --measure: 56ch;
+  --measure: 60ch;
+  --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
 }
 
 /* Selection */
@@ -104,9 +105,12 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: var(--font-heading);
   color: var(--brand);
-  line-height: 1.3;
-  font-weight: 900;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 hr {
@@ -124,6 +128,22 @@ p code {
   padding: 0.2rem 0.4rem;
   border-radius: var(--radius-small);
   background-color: var(--subtle);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--brand);
+  color: var(--brand-reverse);
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0 0 var(--radius) 0;
+  &:focus {
+    left: 0;
+  }
 }
 
 /* Layout */
@@ -227,15 +247,17 @@ main {
     }
 
     h1 {
-      line-height: 1.1;
+      line-height: 1.05;
       color: var(--brand);
-      font-size: 2rem;
+      font-size: clamp(2.75rem, 1.5rem + 5vw, 4.5rem);
+      letter-spacing: -0.03em;
       margin: 0;
       margin-bottom: 0.5rem;
       padding: 0;
     }
 
     h2 {
+      font-size: 1.75rem;
       margin: 2rem 0 1rem 0;
     }
 

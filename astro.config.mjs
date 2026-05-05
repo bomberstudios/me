@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, svgoOptimizer } from 'astro/config';
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
@@ -14,5 +14,8 @@ export default defineConfig({
         cert: './localhost.pem',
       },
     },
+  },
+  experimental: {
+    svgOptimizer: svgoOptimizer()
   }
 });

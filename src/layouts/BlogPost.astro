@@ -7,19 +7,18 @@ import { getCollection } from 'astro:content'
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 )
-const currentPost = posts.findIndex((post) => {
-  return post.id === Astro.url.pathname.replace(/\//g, '')
-})
+const currentPost = posts.findIndex((post) => post.id === Astro.props.id)
 
 const nextPost = posts[currentPost - 1]
 const previousPost = posts[currentPost + 1]
 
-type Props = CollectionEntry<'blog'>['data']
+type Props = CollectionEntry<'blog'>['data'] & { id: string }
 
-const { title, description, date, updatedDate } = Astro.props
+const { title, description, date, updatedDate, id } = Astro.props
+const ogImage = `/og/${id}.png`
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} image={ogImage}>
   <div class="blogpost">
     <div class="title">
       <h1>{title}</h1>

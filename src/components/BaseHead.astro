@@ -3,6 +3,7 @@
 // all pages through the use of the <BaseHead /> component.
 import "../styles/global.css";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { Font } from "astro:assets";
 
 interface Props {
   title: string;
@@ -23,9 +24,7 @@ const metaDescription = description || SITE_DESCRIPTION;
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
 <!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700..800&display=swap" rel="stylesheet" />
+<Font cssVariable="--font-heading" preload />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" type="image/png" href="/favicon.png" />
 <link rel="sitemap" href="/sitemap-index.xml" />

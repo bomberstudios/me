@@ -40,7 +40,6 @@ html {
   --header-text: light-dark(#333, #ddd);
   --header-bg: light-dark(#ffffff55, #22222288);
   --measure: 60ch;
-  --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
 }
 
 /* Selection */

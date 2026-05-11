@@ -4,7 +4,7 @@ date: "2020-01-06"
 tags: lego, heart, creativity, simple, less
 ---
 
-![LEGO Heart](/images/lego-heart.jpg)
+![LEGO Heart](@images/lego-heart.jpg)
 
 Two LEGO bricks, or a heart?
 

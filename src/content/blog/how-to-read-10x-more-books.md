@@ -6,7 +6,7 @@ date: "2024-12-29"
 
 Today marks the one year anniversary of one of the plans I had for 2024: **read more books.**
 
-![My reading streak for 2024](/images/books-streak.png)
+![My reading streak for 2024](@images/books-streak.png)
 
 By the end of 2023, I realized I had completely lost my ability to focus on a long piece of text. I could read articles & blog posts with some effort, but multi-day reading adventures (like reading, _and finishing_ a book) were simply not happening.
 

@@ -4,7 +4,7 @@ date: "2025-01-06"
 ---
 I just finished reading this comic book and enjoyed it very much, probably because I was looking at the main character and seeing myself in him.
 
-![Cover for "Todas las personas que fui"](/assets/posts/2025-01-06-todas-las-personas-que-fui/a0907af4-c279-4cf4-bb4d-a118dbd5606a)
+![Cover for "Todas las personas que fui"](@images/todas-las-personas-que-fui.png)
 
 I recently went through a similar experience to the one the author was talking about and it felt reassuring to see we went through it with sort of the same approach.
 

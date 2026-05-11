@@ -26,4 +26,8 @@ export default defineConfig({
   experimental: {
     svgOptimizer: svgoOptimizer(),
   },
+  image: {
+    responsiveStyles: true,
+    layout: 'constrained',
+  }
 });

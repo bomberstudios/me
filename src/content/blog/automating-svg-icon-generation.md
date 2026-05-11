@@ -27,7 +27,7 @@ _Until now._
 
 I started by creating a single `Icon` component in React, to be used throughout the app. This component has a `name` prop to pick the icon to display. Thanks to TypeScript types, the `name` is autocompleted in most code editors, reducing errors while consuming the icons. It also has a `size` prop to choose from a predefined list of sizes and a `color` prop to set the color, with sane defaults.
 
-![Storybook screenshot showing the Icon component](/images/svg-icons/storybook-icon-component.png)
+![Storybook screenshot showing the Icon component](@images/svg-icons/storybook-icon-component.png)
 
 The way the `Icon` component works is simple: it imports all the icons from an index file and then picks the right one based on the `name` prop. This way, we can easily add new icons by adding them to the file, without having to change the `Icon` component.
 
@@ -120,17 +120,17 @@ The key part here is the `replaceAttrValues` option, which replaces the `white` 
 
 This is how the icons look in the Figma file:
 
-![Screenshot of the Figma file with the icons](/images/svg-icons/figma-icons.png)
+![Screenshot of the Figma file with the icons](@images/svg-icons/figma-icons.png)
 
 And this is how they look in the app, once converted to React components:
 
-![Screenshot of the app with the icons](/images/svg-icons/storybook-icon-catalog.png)
+![Screenshot of the app with the icons](@images/svg-icons/storybook-icon-catalog.png)
 
 We use Storybook to showcase the icons, so that developers can easily find the one they need. The icons are displayed in two tones to make sure we're coloring the right parts of the icon. They also zoom on hover, to make it easier to see the details.
 
 A nice side effect of this process is that it is now easier to detect inconsistencies in the icons. For example, if two icons are supposed to represent the same thing but look different, it's easier to spot that now that they are all in one place. Or if two icons look the same but have different names, it's easier to spot that too:
 
-![Duplicate icons in the Storybook](/images/svg-icons/duplicated-icons.png)
+![Duplicate icons in the Storybook](@images/svg-icons/duplicated-icons.png)
 
 ### Step 4: Automate the export process
 

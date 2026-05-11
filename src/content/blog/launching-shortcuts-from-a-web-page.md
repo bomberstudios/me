@@ -12,9 +12,9 @@ It‘s pretty easy:
 
 1. Create a shortcut in Shortcuts.app and give it a nice name (I'm going to pick ‘Good Morning’, because this shortcut will speak ‘Good morning’ when run)
     
-    <img width="954" height="400" alt="Image" src="/assets/posts/2026-04-03-launching-shortcuts-from-a-web-page/15fc4d18-7ed3-455f-a749-d7ddd64cadca" />
+    ![Screenshot of Shortcuts App](@images/launching-shortcuts-from-a-web-page-01.png)
 
-3. Add a link on your web page that triggers the shortcut:
+2. Add a link on your web page that triggers the shortcut:
  
     ```html
     <a href="shortcuts://run-shortcut?name=Good%20Morning">Good Morning</a>
@@ -31,7 +31,7 @@ You can pass arguments to your Shortcut. In my case, instead of speaking a hardc
 
 We need to change the shortcut a bit to accept the new input:
 
-<img width="954" height="400" alt="Image" src="/assets/posts/2026-04-03-launching-shortcuts-from-a-web-page/12fa9cb5-fea7-45c7-874e-85b04183ae56" />
+![Screenshot of Shortcuts App](@images/launching-shortcuts-from-a-web-page-02.png)
 
 ## Moving forward
 

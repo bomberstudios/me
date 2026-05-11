@@ -6,7 +6,7 @@ tags: productivity
 
 I couldn't find any image of it I wanted to link to, so I made my own:
 
-![Eisenhower Decision Matrix](/images/eisenhower-matrix.png)
+![Eisenhower Decision Matrix](@images/eisenhower-matrix.png)
 
 ---
 

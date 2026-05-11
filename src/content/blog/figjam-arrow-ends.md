@@ -8,14 +8,14 @@ Found while drawing some diagrams in FigJam: the UI to set the arrow end of a co
 
 In this case, the start of the connector line is horizontal, and the end is vertical:
 
-![FigJam: mixed directions in arrow ends](/images/figjam-arrow-ends-mixed-directions.png)
+![FigJam: mixed directions in arrow ends](@images/figjam-arrow-ends-mixed-directions.png)
 
 Here, both ends are vertical:
 
-![](/images/figjam-arrow-ends-vertical-down.png)
+![](@images/figjam-arrow-ends-vertical-down.png)
 
 Not only that: the icons for the shapes also reflect the direction of the connector line, so the arrows will be pointing up if the connector is also pointing up:
 
-![](/images/figjam-arrow-ends-vertical-up.png)
+![](@images/figjam-arrow-ends-vertical-up.png)
 
 This level of attention to detail is a testament to a team's design skills and love for craft. But when it comes from a big company like Figma, it also tells a lot about their design *culture*.

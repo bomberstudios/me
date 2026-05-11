@@ -18,11 +18,11 @@ The Move is a small, portable, battery-powered device. It has 32 pads, 10 knobs,
 
 What it also has is a **great design**.
 
-![Ableton Move](/images/ableton-move.jpg)
+![Ableton Move](@images/ableton-move.jpg)
 
 I mean _look at it_. I've seen Figma files from so-called "designers" that could learn a thing or two from the alignment, spacing, and use of white space on this thing:
 
-![Ableton Move, vectorized](/images/ableton-move-overview.png)
+![Ableton Move, vectorized](@images/ableton-move-overview.png)
 
 And it's not just the looks. The Move is a joy to use. The pads are responsive, the knobs are smooth, the buttons are clicky. The screen is clear and easy to read. The menus are simple and intuitive…
 

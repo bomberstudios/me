@@ -22,6 +22,8 @@ export default defineConfig({
     weights: ['700 800'],
     styles: ['normal'],
     subsets: ['latin'],
+    fallbacks: ['Arial'],
+    optimizedFallbacks: true,
   }],
   experimental: {
     svgOptimizer: svgoOptimizer(),

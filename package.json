@@ -19,6 +19,7 @@
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
     "astro": "^6.2.2",
+    "fast-xml-parser": "^5.7.3",
     "motion": "^12",
     "react": "^19.0.0",
     "satori": "^0.26.0",

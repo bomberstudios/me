@@ -1,0 +1,85 @@
+---
+interface Props {
+  distance: number
+  duration: string
+  avgSpeed: number
+  elevationGain: number
+  elevationLoss: number
+  label: string
+}
+const { distance, duration, avgSpeed, elevationGain, elevationLoss, label } = Astro.props
+---
+
+<dl class="stats">
+  <div class="stat">
+    <dt>Distance</dt>
+    <dd>{distance} <span class="unit">km</span></dd>
+  </div>
+  <div class="stat">
+    <dt>Time</dt>
+    <dd>{duration} <span class="unit">h</span></dd>
+  </div>
+  <div class="stat">
+    <dt>Avg speed</dt>
+    <dd>{avgSpeed} <span class="unit">km/h</span></dd>
+  </div>
+  <div class="stat">
+    <dt>Elev. gain</dt>
+    <dd>+{elevationGain} <span class="unit">m</span></dd>
+  </div>
+  <div class="stat">
+    <dt>Elev. loss</dt>
+    <dd>−{elevationLoss} <span class="unit">m</span></dd>
+  </div>
+  <div class="stat">
+    <dt>Activity</dt>
+    <dd>{label}</dd>
+  </div>
+</dl>
+
+<style>
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .stat {
+    background: transparent;
+    padding: 1rem;
+    border-radius: var(--radius-large);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: light-dark(rgb(255 255 255 / 0.2), rgb(34 34 34 / 0.7));
+  }
+
+  dt {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: light-dark(#888, #666);
+    margin-bottom: 0.25rem;
+  }
+
+  dd {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--brand);
+    margin: 0;
+  }
+
+  .unit {
+    font-size: 1rem;
+    font-weight: 700;
+    color: light-dark(#888, #666);
+  }
+
+  .type dd {
+    font-size: 1.4rem;
+    color: var(--brand);
+  }
+</style>

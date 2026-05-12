@@ -6,10 +6,11 @@ import { SITE_DESCRIPTION } from '../consts'
 import PostList from '@components/PostList.astro'
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const posts = (await getCollection('blog')).sort(
-    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-  )
-  return paginate(posts, { pageSize: 10 })
+  const blog = await getCollection('blog')
+  const activities = await getCollection('activities')
+  const all = ([...blog, ...activities] as { id: string; data: { title: string; date: Date } }[])
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  return paginate(all, { pageSize: 10 })
 }) satisfies GetStaticPaths
 
 const { page } = Astro.props

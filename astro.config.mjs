@@ -16,14 +16,18 @@ export default defineConfig({
     },
   },
   fonts: [{
-    provider: fontProviders.google(),
+    provider: fontProviders.local(),
     name: 'Bricolage Grotesque',
     cssVariable: '--font-heading',
-    weights: ['700 800'],
-    styles: ['normal'],
-    subsets: ['latin'],
     fallbacks: ['Arial'],
     optimizedFallbacks: true,
+    options: {
+      variants: [{
+        weight: '700 800',
+        style: 'normal',
+        src: ['./src/assets/fonts/bricolage-grotesque-variable.woff2'],
+      }],
+    },
   }],
   experimental: {
     svgOptimizer: svgoOptimizer(),

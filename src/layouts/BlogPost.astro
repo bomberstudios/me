@@ -4,9 +4,13 @@ import BaseLayout from '@layouts/BaseLayout.astro'
 import FormattedDate from '@components/FormattedDate.astro'
 
 import { getCollection } from 'astro:content'
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-)
+type PostEntry = { id: string; data: { title: string; date: Date } }
+const posts = (
+  [
+    ...(await getCollection('blog')),
+    ...(await getCollection('activities'))
+  ] as PostEntry[]
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 const currentPost = posts.findIndex((post) => post.id === Astro.props.id)
 
 const nextPost = posts[currentPost - 1]

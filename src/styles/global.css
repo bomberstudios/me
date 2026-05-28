@@ -4,13 +4,13 @@ html {
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
-    'Segoe UI',
+    "Segoe UI",
     Roboto,
     Oxygen,
     Ubuntu,
     Cantarell,
-    'Open Sans',
-    'Helvetica Neue',
+    "Open Sans",
+    "Helvetica Neue",
     sans-serif;
   line-height: 1.5;
   font-size: 1.1em;
@@ -63,10 +63,10 @@ a {
   text-decoration-style: dotted;
   text-underline-offset: 0.3em;
   transition: text-decoration 300ms;
+}
 
-  &:hover {
-    text-decoration-color: var(--brand);
-  }
+a:hover {
+  text-decoration-color: var(--brand);
 }
 
 aside {
@@ -74,7 +74,7 @@ aside {
   padding: 1lh;
   margin: auto -1lh;
   border-radius: var(--radius);
-  background-color: color-mix(in srgb, yellow, white 80%)
+  background-color: color-mix(in srgb, yellow, white 80%);
 }
 
 blockquote {
@@ -141,6 +141,7 @@ p code {
   text-decoration: none;
   font-weight: bold;
   border-radius: 0 0 var(--radius) 0;
+
   &:focus {
     left: 0;
   }
@@ -163,19 +164,16 @@ header {
   border-radius: 999px;
   padding: 0.5rem 1.5rem 0.5rem 0.55rem;
   text-align: center;
+  border: 1px solid #ff660011;
+  background-color: var(--header-bg);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  position: sticky;
+  top: 20px;
 
   a {
     color: var(--header-text);
   }
-
-    border: 1px solid #ff660011;
-  background-color: var(--header-bg);
-  backdrop-filter: blur(20px);
-  z-index: 1000;
-
-  position: sticky;
-  top: 20px;
-
   .internal-links {
     display: flex;
     flex-direction: row;
@@ -250,7 +248,6 @@ main {
     max-width: 100%;
     height: auto;
     border-radius: var(--radius);
-    /* border: 1px solid var(--subtle); */
   }
 
   .blogpost {
@@ -272,32 +269,31 @@ main {
       font-size: 1.75rem;
       margin: 2rem 0 1rem 0;
     }
+  }
+}
+.post-navigation {
+  display: flex;
+  flex: 1 1;
+  gap: 1rem;
+  margin-top: 2rem;
+  align-items: center;
 
-    .post-navigation {
-      display: flex;
-      flex: 1 1;
-      gap: 1rem;
-      margin-top: 2rem;
-      align-items: center;
+  a {
+    flex: auto;
+    color: var(--brand);
+    text-decoration: none;
+    vertical-align: middle;
 
-      a {
-        flex: auto;
-        color: var(--brand);
-        text-decoration: none;
-        vertical-align: middle;
+    &:hover {
+      text-decoration: underline;
+    }
 
-        &:hover {
-          text-decoration: underline;
-        }
+    &.prev {
+      text-align: left;
+    }
 
-        &.prev {
-          text-align: left;
-        }
-
-        &.next {
-          text-align: right;
-        }
-      }
+    &.next {
+      text-align: right;
     }
   }
 }
@@ -344,7 +340,8 @@ main {
 
 @media (prefers-reduced-motion: reduce) {
   @keyframes pulse {
-    0%, 100% {
+    0%,
+    100% {
       transform: none;
       opacity: 1;
     }

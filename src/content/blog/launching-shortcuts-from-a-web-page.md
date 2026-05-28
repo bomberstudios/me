@@ -1,6 +1,7 @@
 ---
 title: "Launching Shortcuts from a web page"
 date: "2026-04-03T09:21:56Z"
+description: "A pretty clever technique to connect the web with your Apple devices"
 ---
 Today I learnt a new trick (thanks [Jorge Bastida](https://jorgebastida.com/)!): how to launch a Shortcut on iOS or macOS from a link on a web page.
 

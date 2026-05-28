@@ -8,3 +8,6 @@ npm-debug.log*
 .env.production
 .DS_Store
 *.pem
+
+# Raw activity data
+data/activities/

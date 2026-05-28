@@ -4,7 +4,7 @@ import FormattedDate from '@components/FormattedDate.astro'
 
 interface PostLike {
   id: string
-  data: { title: string; date: Date }
+  data: { title: string; date: Date; description?: string }
 }
 
 interface Props {
@@ -26,6 +26,11 @@ const posts: PostLike[] = propPosts ?? (await getCollection('blog')).sort(
           <p class="date">
             <FormattedDate date={post.data.date} />
           </p>
+          {
+            post.data.description && (
+              <p class="description">{post.data.description}</p>
+            )
+          }
         </a>
       </li>
     ))
@@ -74,6 +79,10 @@ const posts: PostLike[] = propPosts ?? (await getCollection('blog')).sort(
         font-size: 1.75rem;
         line-height: 1.1;
         margin-bottom: 0.5rem;
+      }
+      .description {
+        color: var(--subtle-text);
+        margin-top: 0.5rem;
       }
     }
   }

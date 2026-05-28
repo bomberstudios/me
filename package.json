@@ -10,15 +10,17 @@
     "preview": "astro preview",
     "astro": "astro",
     "upgrade": "npx @astrojs/upgrade",
-    "certificates": "brew install mkcert && mkcert -install && mkcert localhost"
+    "certificates": "brew install mkcert && mkcert -install && mkcert localhost",
+    "process-activities": "node scripts/process-activities.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
-    "@astrojs/mdx": "^5.0.4",
-    "@astrojs/react": "^5.0.4",
+    "@astrojs/markdown-satteri": "^0.2.1",
+    "@astrojs/mdx": "^6.0.1",
+    "@astrojs/react": "^5.0.6",
     "@astrojs/rss": "^4.0.18",
-    "@astrojs/sitemap": "^3.7.2",
-    "astro": "^6.2.2",
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^6.4.1",
     "fast-xml-parser": "^5.7.3",
     "motion": "^12",
     "react": "^19.0.0",

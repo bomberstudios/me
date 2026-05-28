@@ -1,19 +1,17 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import BaseLayout from '@layouts/BaseLayout.astro'
-import FormattedDate from '@components/FormattedDate.astro'
 import RouteMap from '@components/RouteMap.astro'
 import ActivityStats from '@components/ActivityStats.astro'
 
 type Props = CollectionEntry<'activities'>['data'] & { id: string }
 
-const { title, date, label, distance, duration, avgSpeed, elevationGain, elevationLoss, svgSegments, viewBox } = Astro.props
+const { title, label, distance, duration, avgSpeed, elevationGain, elevationLoss, svgSegments, viewBox } = Astro.props
 ---
 
 <BaseLayout title={title}>
   <article class="activity-post">
-      <h1>Activity: {label}</h1>
-      <p class="date"><FormattedDate date={date} /></p>
+      <h1>{title}</h1>
     <RouteMap svgSegments={svgSegments} viewBox={viewBox} />
   </article>
   <div class="stats-bar">

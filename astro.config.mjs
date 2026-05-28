@@ -3,6 +3,7 @@ import { defineConfig, svgoOptimizer, fontProviders } from 'astro/config';
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import { satteri } from '@astrojs/markdown-satteri';
 
 export default defineConfig({
   site: 'https://ale.today',
@@ -35,5 +36,12 @@ export default defineConfig({
   image: {
     responsiveStyles: true,
     layout: 'constrained',
+  },
+  markdown: {
+    processor: satteri({
+      features: {
+        directive: true
+      }
+    })
   }
 });

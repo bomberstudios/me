@@ -1,21 +1,42 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 import BlogPost from "@layouts/BlogPost.astro";
-import { render } from "astro:content";
+import ActivityPost from "@layouts/ActivityPost.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: post
-  }));
+  const blogPosts = await getCollection("blog");
+  const activities = await getCollection("activities");
+  return [
+    ...blogPosts.map((post) => ({
+      params: { slug: post.id },
+      props: { type: "blog" as const, entry: post },
+    })),
+    ...activities.map((activity) => ({
+      params: { slug: activity.id },
+      props: { type: "activity" as const, entry: activity },
+    })),
+  ];
 }
-type Props = CollectionEntry<"blog">;
 
-const post = Astro.props;
-const { Content } = await render(post);
+const { type, entry } = Astro.props as
+  | { type: "blog"; entry: CollectionEntry<"blog"> }
+  | { type: "activity"; entry: CollectionEntry<"activities"> };
+
+const blogEntry = type === "blog" ? (entry as CollectionEntry<"blog">) : null;
+const { Content } = blogEntry ? await render(blogEntry) : { Content: null };
 ---
 
-<BlogPost {...post.data} id={post.id}>
-  <Content />
-</BlogPost>
+{
+  type === "activity" ? (
+    <ActivityPost
+      {...(entry as CollectionEntry<"activities">).data}
+      id={entry.id}
+    />
+  ) : (
+    blogEntry && Content && (
+      <BlogPost {...blogEntry.data} id={blogEntry.id}>
+        <Content />
+      </BlogPost>
+    )
+  )
+}

@@ -1,0 +1,69 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import RouteMap from '@components/RouteMap.astro'
+import ActivityStats from '@components/ActivityStats.astro'
+
+type Props = CollectionEntry<'activities'>['data'] & { id: string }
+
+const { title, label, distance, duration, avgSpeed, elevationGain, elevationLoss, svgSegments, viewBox } = Astro.props
+---
+
+<BaseLayout title={title}>
+  <article class="activity-post">
+      <h1>{title}</h1>
+    <RouteMap svgSegments={svgSegments} viewBox={viewBox} />
+  </article>
+  <div class="stats-bar">
+    <ActivityStats
+      distance={distance}
+      duration={duration}
+      avgSpeed={avgSpeed}
+      elevationGain={elevationGain}
+      elevationLoss={elevationLoss}
+      label={label}
+    />
+  </div>
+</BaseLayout>
+
+<style>
+  .activity-post {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  header {
+    margin-bottom: 1.5rem;
+  }
+
+  .activity-type {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--orange);
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(2rem, 1rem + 4vw, 3.5rem);
+    line-height: 1.05;
+    margin: 0 0 0.5rem;
+  }
+
+  .date {
+    color: light-dark(#888, #666);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .stats-bar {
+    position: sticky;
+    bottom: 1rem;
+    z-index: 10;
+    padding: 0 2rem;
+  }
+</style>

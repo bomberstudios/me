@@ -1,14 +1,18 @@
 ---
-import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
 import FormattedDate from '@components/FormattedDate.astro'
 
+interface PostLike {
+  id: string
+  data: { title: string; date: Date; description?: string }
+}
+
 interface Props {
-  posts?: CollectionEntry<'blog'>[]
+  posts?: PostLike[]
 }
 
 const { posts: propPosts } = Astro.props
-const posts = propPosts ?? (await getCollection('blog')).sort(
+const posts: PostLike[] = propPosts ?? (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 )
 ---
@@ -22,6 +26,11 @@ const posts = propPosts ?? (await getCollection('blog')).sort(
           <p class="date">
             <FormattedDate date={post.data.date} />
           </p>
+          {
+            post.data.description && (
+              <p class="description">{post.data.description}</p>
+            )
+          }
         </a>
       </li>
     ))
@@ -70,6 +79,10 @@ const posts = propPosts ?? (await getCollection('blog')).sort(
         font-size: 1.75rem;
         line-height: 1.1;
         margin-bottom: 0.5rem;
+      }
+      .description {
+        color: var(--subtle-text);
+        margin-top: 0.5rem;
       }
     }
   }

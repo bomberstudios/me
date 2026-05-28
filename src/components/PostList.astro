@@ -12,9 +12,11 @@ interface Props {
 }
 
 const { posts: propPosts } = Astro.props
-const posts: PostLike[] = propPosts ?? (await getCollection('blog')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-)
+const posts: PostLike[] =
+  propPosts ??
+  (await getCollection('blog')).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  )
 ---
 
 <ul>
@@ -26,11 +28,9 @@ const posts: PostLike[] = propPosts ?? (await getCollection('blog')).sort(
           <p class="date">
             <FormattedDate date={post.data.date} />
           </p>
-          {
-            post.data.description && (
-              <p class="description">{post.data.description}</p>
-            )
-          }
+          {post.data.description && (
+            <p class="description">{post.data.description}</p>
+          )}
         </a>
       </li>
     ))
@@ -65,7 +65,8 @@ const posts: PostLike[] = propPosts ?? (await getCollection('blog')).sort(
               color: white;
             }
             background-color: var(--brand);
-            .date {
+            .date,
+            .description {
               transition: all 0.2s;
               color: white;
             }

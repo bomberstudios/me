@@ -5,7 +5,7 @@
   "scripts": {
     "check": "astro check",
     "start": "astro dev --open",
-    "prebuild": "bun run check && bun run process-activities",
+    "prebuild": "bun run check",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",

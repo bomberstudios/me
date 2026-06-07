@@ -184,10 +184,19 @@ async function main() {
 
       const validTimes = points.map(p => p.time).filter(t => t.getFullYear() > 2000)
       const date = validTimes.length > 0 ? validTimes[0] : new Date()
-      const duration =
-        validTimes.length > 1
-          ? validTimes[validTimes.length - 1].getTime() - validTimes[0].getTime()
-          : 0
+
+      const MOVING_SPEED_THRESHOLD = 1
+      let movingTime = 0
+      for (let i = 1; i < points.length; i++) {
+        const dt = points[i].time.getTime() - points[i - 1].time.getTime()
+        if (dt <= 0) continue
+        const segDist = haversineKm(points[i - 1].lat, points[i - 1].lon, points[i].lat, points[i].lon)
+        const speed = segDist / (dt / 3600000)
+        if (speed >= MOVING_SPEED_THRESHOLD) {
+          movingTime += dt
+        }
+      }
+      const duration = movingTime
       const avgSpeed = duration > 0 ? distance / (duration / 3600000) : 0
 
       const trk = gpx['trk']

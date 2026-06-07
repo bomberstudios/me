@@ -65,8 +65,11 @@ function parseTrackPoints(gpx) {
         const lon = parseFloat(String(pt['@_lon'] ?? 0))
         const ele = parseFloat(String(pt['ele'] ?? 0))
         const time = pt['time'] ? new Date(String(pt['time'])) : new Date(0)
+        const ext = pt['extensions']
+        const tpe = ext?.['ns3:TrackPointExtension']
+        const hr = tpe?.['ns3:hr'] !== undefined ? Number(tpe['ns3:hr']) : null
         if (!isNaN(lat) && !isNaN(lon)) {
-          points.push({ lat, lon, ele, time })
+          points.push({ lat, lon, ele, time, hr })
         }
       }
     }
@@ -123,6 +126,9 @@ function generateSvgSegments(points) {
 
   const svgSegments = []
   for (let i = 1; i < sampled.length; i++) {
+    const hrA = sampled[i - 1].hr
+    const hrB = sampled[i].hr
+    const hr = hrA !== null && hrB !== null ? Math.round((hrA + hrB) / 2) : (hrA ?? hrB ?? null)
     svgSegments.push({
       x1: Math.round(toSvgX(scaled[i - 1].x) * 10) / 10,
       y1: Math.round(toSvgY(scaled[i - 1].y) * 10) / 10,
@@ -130,6 +136,7 @@ function generateSvgSegments(points) {
       y2: Math.round(toSvgY(scaled[i].y) * 10) / 10,
       speed: Math.round(speeds[i] * 10) / 10,
       ele: Math.round((scaled[i - 1].ele + scaled[i].ele) / 2),
+      hr,
     })
   }
 

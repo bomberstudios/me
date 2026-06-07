@@ -32,6 +32,7 @@ const activities = defineCollection({
       x2: z.number(), y2: z.number(),
       speed: z.number(),
       ele: z.number(),
+      hr: z.number().nullable(),
     })),
     viewBox: z.string(),
   })

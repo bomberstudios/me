@@ -5,6 +5,7 @@ export interface SvgSegment {
   y2: number
   speed: number
   ele: number
+  hr: number | null
 }
 
 export function label(type: string): string {

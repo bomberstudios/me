@@ -20,7 +20,7 @@ Some details about why the SVG looks like it does:
 
 - The activity route is split into small, linear paths
 - Each path is colored according to the recorded speed (blue: slow, red: fast)
-- The width for each path also depends on speed (thicker is faster, but there's some randomness throw in to make things more interesting visually)
+- The width for each path ~~also depends on speed (thicker is faster, but there's some randomness throw in to make things more interesting visually)~~ → now this is based on heart rate information: higher heart rate, thicker line (plus some randomness to make things nicer)
 - Every stroke extends a bit beyond its actual start and end points, to give the route a nicer, pseudo-hand-sketched look. This also applies to the stroke opacity: fully opaque lines were a bit boring, so I made them semi transparent to get a watercolor-like texture
 
 You can take a look at the results here: [Activity: eMTB on May 26th, 2026](/activity-23018102369/).

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavaplanner</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: white;
+        --sunken: #ebe6e1;
+        --text: #2c2418;
+        --text-muted: #7a6e5f;
+        --orange: #ff6600;
+        --cheap: #3a7d5c;
+        --expensive: #c0493a;
+        --mid: #c4823e;
+        --badge-bg: #B8B4B0;
+        --hero-bg: #ebe4dc;
+      }
+
+      body {
+        font-family: 'Inter', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        margin: 0;
+        padding: 0;
+      }
+
+      .app {
+        margin: 0 auto;
+        padding: 0;
+      }
+
+      header {
+        padding: 2rem;
+
+        .title {
+          color: var(--orange);
+        }
+      }
+
+      header h1 {
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+
+      }
+
+      .title-date {
+        font-weight: 400;
+        font-size: 1.5rem;
+        color: var(--text-muted);
+      }
+
+      .hero {
+        background: var(--sunken);
+        padding: 2rem;
+        display: flex;
+        vertical-align: middle;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .hero-time {
+        font-size: 4rem;
+        font-weight: 900;
+        color: var(--orange);
+      }
+
+      .hero-badge {
+        background: var(--badge-bg);
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 700;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .chart-wrap {
+        position: relative;
+        width: 100%;
+        height: 280px;
+        padding: 2rem;
+      }
+
+      .tomorrow-section {
+        margin-top: 2rem;
+      }
+
+      .tomorrow-header {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text-muted);
+        margin-bottom: 0.75rem;
+      }
+
+      .tomorrow-hero {
+        background: var(--hero-bg);
+        border-radius: 12px;
+        padding: 1.25rem;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .tomorrow-hero .hero-time {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+      }
+
+      .tomorrow-hero .hero-badge {
+        font-size: clamp(1rem, 4vw, 1.4rem);
+        padding: 0.4rem 0.9rem;
+        border-radius: 8px;
+      }
+
+      .tomorrow-chart-wrap {
+        height: 220px;
+      }
+
+      .unavailable {
+        text-align: center;
+        padding: 2.5rem 1rem;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+
+      .unavailable .note {
+        margin-top: 0.4rem;
+        font-size: 0.75rem;
+        opacity: 0.6;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="app">
+      <header>
+        <h1>
+          <div id="title" class="title">Lavaplanner</div>
+          <div id="title-date" class="title-date"></div>
+        </h1>
+      </header>
+
+      <div class="hero">
+        <div class="hero-time" id="hero-time">--:--</div>
+        <div class="hero-badge" id="hero-badge"></div>
+      </div>
+
+      <div class="chart-wrap">
+        <canvas id="chart-today"></canvas>
+      </div>
+
+      <header>
+        <h1>
+          <div>Mañana</div>
+          <div id="tomorrow-header" class="title-date"></div>
+        </h1>
+      </header>
+
+      <div class="hero">
+        <div class="hero-time" id="tomorrow-time">--:--</div>
+        <div class="hero-badge" id="tomorrow-badge"></div>
+      </div>
+
+      <div class="tomorrow-section">
+        <div id="tomorrow-content">
+          <div class="unavailable" id="tomorrow-unavailable">
+            <div>Precios de mañana aún no publicados.</div>
+            <div class="note">Se publican a las 20:15</div>
+          </div>
+          <div class="hidden" id="tomorrow-data">
+            <div class="chart-wrap tomorrow-chart-wrap">
+              <canvas id="chart-tomorrow"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const ARCHIVE_URL = 'https://api.esios.ree.es/archives/70/download_json';
+
+      let todayChart = null;
+      let tomorrowChart = null;
+
+      const $ = (sel) => document.querySelector(sel);
+
+      function getLocalDates() {
+        const now = new Date();
+        const todayStr = now.toLocaleDateString('sv-SE');
+        const tomorrow = new Date(now);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        return { todayStr, tomorrowStr: tomorrow.toLocaleDateString('sv-SE') };
+      }
+
+      function isAfterPublicationTime() {
+        const cet = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Madrid' }));
+        return cet.getHours() >= 20 && cet.getMinutes() >= 15;
+      }
+
+      function formatDate(d) {
+        return d.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+      }
+
+      function parseArchiveData(json) {
+        const entries = json.PVPC || [];
+        return entries.map(e => ({
+          hour: parseInt(e.Hora.split('-')[0], 10),
+          pcb: parseFloat(e.PCB.replace(',', '.')),
+          cym: parseFloat(e.CYM.replace(',', '.')),
+          date: e.Dia
+        })).sort((a, b) => a.hour - b.hour);
+      }
+
+      const nowLine = {
+        id: 'nowLine',
+        beforeDatasetsDraw(chart) {
+          const now = new Date();
+          const cet = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Madrid' }));
+          const currentHour = cet.getHours();
+          const minutes = cet.getMinutes();
+          const idx = chart.data.labels.findIndex(l => l.startsWith(String(currentHour).padStart(2, '0')));
+          if (idx === -1) return;
+
+          const ctx = chart.ctx;
+          const xScale = chart.scales.x;
+          const yScale = chart.scales.y;
+          const barWidth = xScale.getPixelForValue(1) - xScale.getPixelForValue(0);
+          const barLeft = xScale.getPixelForValue(idx) - barWidth / 2;
+          const x = barLeft + (barWidth * minutes / 60);
+
+          ctx.save();
+          ctx.fillStyle = 'rgba(44, 36, 24, 0.06)';
+          ctx.fillRect(xScale.left, yScale.top, x - xScale.left, yScale.bottom - yScale.top);
+          ctx.restore();
+        },
+        afterDraw(chart) {
+          const now = new Date();
+          const cet = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Madrid' }));
+          const currentHour = cet.getHours();
+          const minutes = cet.getMinutes();
+          const idx = chart.data.labels.findIndex(l => l.startsWith(String(currentHour).padStart(2, '0')));
+          if (idx === -1) return;
+
+          const ctx = chart.ctx;
+          const xScale = chart.scales.x;
+          const yScale = chart.scales.y;
+          const barWidth = xScale.getPixelForValue(1) - xScale.getPixelForValue(0);
+          const barLeft = xScale.getPixelForValue(idx) - barWidth / 2;
+          const x = barLeft + (barWidth * minutes / 60);
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.setLineDash([4, 3]);
+          ctx.strokeStyle = '#2c2418';
+          ctx.lineWidth = 1;
+          ctx.moveTo(x, yScale.top);
+          ctx.lineTo(x, yScale.bottom);
+          ctx.stroke();
+
+          ctx.fillStyle = '#2c2418';
+          ctx.font = "700 9px 'Inter', sans-serif";
+          ctx.textAlign = 'center';
+          ctx.fillText('AHORA', x, yScale.top + 10);
+          ctx.restore();
+        }
+      };
+
+      function createChart(canvas, prices, showNowLine = true) {
+        const labels = prices.map(p => `${String(p.hour).padStart(2, '0')}:00`);
+        const values = prices.map(p => p.pcb / 1000);
+
+        const sorted = [...prices].sort((a, b) => a.pcb - b.pcb);
+        const cheapSet = new Set(sorted.slice(0, 5).map(p => p.hour));
+        const expensiveSet = new Set(sorted.slice(-5).map(p => p.hour));
+
+        const bg = prices.map(p => {
+          if (cheapSet.has(p.hour)) return 'rgba(58, 125, 92, 0.45)';
+          if (expensiveSet.has(p.hour)) return 'rgba(192, 73, 58, 0.45)';
+          return 'rgba(196, 130, 62, 0.3)';
+        });
+        const border = prices.map(p => {
+          if (cheapSet.has(p.hour)) return '#3a7d5c';
+          if (expensiveSet.has(p.hour)) return '#c0493a';
+          return '#c4823e';
+        });
+
+        return new Chart(canvas, {
+          type: 'bar',
+          data: {
+            labels,
+            datasets: [{
+              data: values,
+              backgroundColor: bg,
+              barPercentage: 0.95,
+              categoryPercentage: 1.0,
+            }]
+          },
+          plugins: showNowLine ? [nowLine] : [],
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#2c2418',
+                titleFont: { family: "'Inter', sans-serif", size: 11, weight: '700' },
+                bodyFont: { family: "'Inter', sans-serif", size: 12 },
+                padding: 10,
+                cornerRadius: 6,
+                callbacks: {
+                  label: (ctx) => `${ctx.parsed.y.toFixed(3)} EUR/kWh`
+                }
+              }
+            },
+            scales: {
+              x: {
+                grid: { display: false },
+                ticks: {
+                  font: { family: "'Inter', sans-serif", size: 10 },
+                  color: '#7a6e5f',
+                  maxRotation: 0,
+                  callback: function (val, i) { return i % 3 === 0 ? this.getLabelForValue(val) : ''; }
+                },
+                border: { display: false },
+                beginAtZero: true
+              },
+              y: {
+                grid: { color: '#e2dbd3', lineWidth: 0.5 },
+                ticks: { display: false },
+                border: { display: false },
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      }
+
+      function findOptimalWindow(prices, duration, upcomingOnly) {
+        if (!prices || prices.length < duration) return null;
+
+        const now = new Date();
+        const cet = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Madrid' }));
+        const currentHour = cet.getHours();
+        const currentMinutes = cet.getMinutes();
+
+        const sorted = [...prices].sort((a, b) => a.hour - b.hour);
+        let bestStart = null;
+        let bestCost = Infinity;
+
+        for (let i = 0; i <= sorted.length - duration; i++) {
+          const startHour = sorted[i].hour;
+          if (upcomingOnly && startHour < currentHour) continue;
+
+          const window = sorted.slice(i, i + duration);
+          const totalCost = window.reduce((sum, p) => sum + p.pcb, 0);
+
+          if (totalCost < bestCost) {
+            bestCost = totalCost;
+            bestStart = startHour;
+          }
+        }
+
+        if (bestStart === null) return null;
+
+        const endHour = (bestStart + duration) % 24;
+        const delay = bestStart - currentHour;
+        const isNow = upcomingOnly && bestStart === currentHour;
+
+        return {
+          start: bestStart,
+          end: endHour,
+          cost: bestCost,
+          delay: delay > 0 ? delay : null,
+          isNow,
+          minutes: isNow ? currentMinutes : 0
+        };
+      }
+
+      function renderHero(timeId, badgeId, prices, upcomingOnly) {
+        const optimal = findOptimalWindow(prices, 3, upcomingOnly);
+        if (!optimal) return;
+
+        const startStr = String(optimal.start).padStart(2, '0');
+        const minStr = String(optimal.minutes).padStart(2, '0');
+        $(`#${timeId}`).textContent = optimal.isNow ? `${startStr}:${minStr}` : `${startStr}:00`;
+
+        const badge = $(`#${badgeId}`);
+        if (optimal.isNow) {
+          badge.textContent = 'Ahora';
+          badge.classList.remove('hidden');
+        } else if (optimal.delay) {
+          badge.textContent = `+${optimal.delay}h`;
+          badge.classList.remove('hidden');
+        } else {
+          badge.classList.add('hidden');
+        }
+      }
+
+      function renderToday(prices) {
+        if (!prices || !prices.length) return;
+        renderHero('hero-time', 'hero-badge', prices, true);
+        if (todayChart) todayChart.destroy();
+        todayChart = createChart($('#chart-today'), prices);
+      }
+
+      function renderTomorrow(prices) {
+        if (!prices || !prices.length) return;
+        renderHero('tomorrow-time', 'tomorrow-badge', prices, false);
+        $('#tomorrow-unavailable').classList.add('hidden');
+        $('#tomorrow-data').classList.remove('hidden');
+        if (tomorrowChart) tomorrowChart.destroy();
+        tomorrowChart = createChart($('#chart-tomorrow'), prices, false);
+      }
+
+      function storageKey(day) { return `luz_${day}`; }
+
+      function loadFromStorage(key) {
+        try {
+          const raw = localStorage.getItem(key);
+          return raw ? JSON.parse(raw) : null;
+        } catch { return null; }
+      }
+
+      function saveToStorage(key, data) {
+        localStorage.setItem(key, JSON.stringify(data));
+      }
+
+      async function fetchArchive() {
+        const res = await fetch(ARCHIVE_URL);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      }
+
+      function generateFakeTomorrow() {
+        const { tomorrowStr } = getLocalDates();
+        const tomorrowDate = tomorrowStr.split('-').reverse().join('/');
+        const hours = [];
+        for (let h = 0; h < 24; h++) {
+          const base = h >= 13 && h <= 16 ? 60 : h >= 20 && h <= 22 ? 180 : 100;
+          const noise = (Math.random() - 0.5) * 30;
+          hours.push({
+            hour: h,
+            pcb: Math.max(10, base + noise),
+            cym: 0,
+            date: tomorrowDate
+          });
+        }
+        return hours;
+      }
+
+      async function load() {
+        const testMode = new URLSearchParams(window.location.search).has('test');
+        const { todayStr, tomorrowStr } = getLocalDates();
+        const todayDate = todayStr.split('-').reverse().join('/');
+        const tomorrowDate = tomorrowStr.split('-').reverse().join('/');
+
+        $('#title-date').textContent = formatDate(new Date(todayStr));
+        $('#tomorrow-header').textContent = formatDate(new Date(tomorrowStr));
+
+        const todayKey = storageKey(todayStr);
+        const tomorrowKey = storageKey(tomorrowStr);
+        const after2015 = isAfterPublicationTime();
+
+        let todayPrices = loadFromStorage(todayKey);
+        let tomorrowPrices = loadFromStorage(tomorrowKey);
+
+        if (testMode) {
+          tomorrowPrices = generateFakeTomorrow();
+        }
+
+        renderToday(todayPrices);
+        if (tomorrowPrices) renderTomorrow(tomorrowPrices);
+
+        const needToday = !todayPrices && !after2015;
+        const needTomorrow = after2015 && !tomorrowPrices;
+
+        if (!needToday && !needTomorrow) return;
+
+        try {
+          const json = await fetchArchive();
+          const all = parseArchiveData(json);
+          if (!all.length) return;
+
+          const freshToday = all.filter(p => p.date === todayDate);
+          const freshTomorrow = all.filter(p => p.date === tomorrowDate);
+
+          if (freshToday.length) {
+            saveToStorage(todayKey, freshToday);
+            renderToday(freshToday);
+          }
+          if (freshTomorrow.length) {
+            saveToStorage(tomorrowKey, freshTomorrow);
+            renderTomorrow(freshTomorrow);
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      load();
+    </script>
+  </body>
+
+</html>

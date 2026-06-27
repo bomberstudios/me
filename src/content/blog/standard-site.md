@@ -6,7 +6,6 @@ ogImage: "og-standard-site.png"
 atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbuvqap3e25"
 ---
 
-
 If you can read this, it means the experiment to add [standard.site](https://standard.site) support to my blog did work.
 
 I'm not going to explain what standard.site is, or why I think it's A Good Idea™, but if you want some context, these resources are *pretty* cool:
@@ -111,6 +110,8 @@ I'd say that's a yes.
 Now, for the final test: I'll publish a new post (this one that I'm writing), and run `sequoia publish` to see if it posts on Bluesky (or Eurosky, in my case).
 
 If that works, I can declare this experiment a success, and move on to automating everything so that it happens on my CI. I won't bore you with the details, since everything is *very well* documented on [Sequoia's documentation about workflows](https://sequoia.pub/workflows).
+
+**Update:** turns out publishing with sequoia (at least the way my blog is set up) introduces a sort of race condition, in which it shares a link to a post before the website is deployed. I need to think a bit about this, will keep you posted…
 
 ## Further Tweaking
 

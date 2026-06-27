@@ -2,6 +2,7 @@
 title: A plan to write more in 2025
 date: "2024-12-30"
 description: A simple idea to get myself to write more in the new year.
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3ld7ou2v"
 ---
 
 I've been thinking about [yesterday's post](/how-to-read-10x-more-books/), and how the plan I used to read more books didn't really work for other things like making music, or learning new things.

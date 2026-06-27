@@ -1,7 +1,7 @@
 ---
 title: Stop complicating your life
 date: "2020-01-04"
-tags: personal, writing, blogging, quote
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3nre3v2x"
 ---
 
 A simple, yet powerful idea that made 2019 better:

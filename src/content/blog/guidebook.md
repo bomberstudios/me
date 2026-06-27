@@ -1,7 +1,7 @@
 ---
 title: GUIdebook
 date: "2024-12-28"
-tags: telegram
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3lkj2h2t"
 ---
 
 For those of us who started in design eons ago and want to get nostalgic, here's a collection of splash screens from ancient apps that will surely bring back some pleasant memories: <https://guidebookgallery.org/splashes>

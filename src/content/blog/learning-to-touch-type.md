@@ -1,8 +1,8 @@
 ---
 title: Learning to touch type
 date: "2022-03-04"
-tags: keyboard, productivity
 description: Some notes about my journey to learn touch typing on my 40s.
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3mmf3z2t"
 ---
 
 I have been using keyboards for more than 40 years.

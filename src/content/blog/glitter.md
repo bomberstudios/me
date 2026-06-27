@@ -1,7 +1,7 @@
 ---
 title: Glitter
 date: "2020-02-22"
-tags: maya
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3mrvs72t"
 ---
 
 When Violeta was 2 years old, you could almost have a full conversation with her. She started speaking very early, and I’ve always enjoyed the fact that I could chat with her about pretty much anything. 

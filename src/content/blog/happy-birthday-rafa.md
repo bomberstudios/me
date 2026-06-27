@@ -1,7 +1,7 @@
 ---
 title: Happy birthday, Rafa
 date: "2020-01-09"
-tags: life, friends, birthday
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3nfrj32o"
 ---
 > This post was initially written in Spanish, a few years ago. I rescued it from my Facebook page, something I hope to do with most of the stuff I've written there over the years. I'm not entirely happy with my translation, so the original is at the bottom.
 

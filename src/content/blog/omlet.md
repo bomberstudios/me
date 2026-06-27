@@ -2,6 +2,7 @@
 title: Playing with Omlet
 date: "2025-03-12"
 description: "My first impressions about Omlet.dev"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3hxt4x2t"
 ---
 
 Today I’m playing with [omlet.dev](https://omlet.dev) (a tool to get analytics on how and where your React components are used) and **I’m loving it**. It works beautifully out of the box, and they just released a VS Code extension that’s *magic*.

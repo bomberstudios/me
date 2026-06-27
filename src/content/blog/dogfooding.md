@@ -1,8 +1,8 @@
 ---
 title: Dogfooding
 date: "2022-11-08"
-tags: design, product
 description: Some reflections on the idea that being your own customer helps you make a better product.
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3minwm2v"
 ---
 
 > This is the long-form version of [a thread I posted on Twitter on January 2022](https://mobile.twitter.com/bomberstudios/status/1487038014916337665).

@@ -1,6 +1,7 @@
 ---
 title: "Desert Island Music #3"
 date: "2023-01-27"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3m3jzz2t"
 ---
 It was the summer of ’95.
 

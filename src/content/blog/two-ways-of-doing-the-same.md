@@ -2,6 +2,7 @@
 title: Two ways of doing (almost) the same
 date: 2026-02-17
 description: Sometimes, subtle details have more impact than we may think…
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3gqv2j25"
 ---
 
 In [Zed](https://zed.dev), you can opt out of all AI features, by _enabling_ this option:

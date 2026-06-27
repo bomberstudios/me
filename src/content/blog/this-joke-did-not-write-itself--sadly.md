@@ -1,6 +1,7 @@
 ---
 title: "This joke did not write itself, sadly"
 date: "2025-01-11"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3kmtdy2u"
 ---
 I wanted to write a joke for my About section, so I asked Copilot for a regex that matches “Product Designer”, “Product Engineer”, “Design Engineer”, “Design Manager” and “Product Manager”.
 

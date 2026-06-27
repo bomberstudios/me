@@ -1,8 +1,8 @@
 ---
 title: Parenting & Work
 date: "2020-01-10"
-tags: life, parenting, work
 description: Some thoughts about the challenges of working while parenting responsibly, prompted by a question on our \#parenting Slack channel
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3ndv2j2t"
 ---
 
 Today, someone posted this question in the #parenting[^1] channel at work:

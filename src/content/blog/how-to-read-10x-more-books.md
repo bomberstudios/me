@@ -2,6 +2,7 @@
 title: How to Read 10x More Books
 description: A simple strategy to read more books
 date: "2024-12-29"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3lf2qi2u"
 ---
 
 Today marks the one year anniversary of one of the plans I had for 2024: **read more books.**

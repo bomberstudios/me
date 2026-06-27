@@ -1,6 +1,7 @@
 ---
 title: "Alien Dreamtime"
 date: "2025-02-03"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3j353b2t"
 ---
 The first time I listened to [Space Time Continuum with Terrence McKenna - Alien Dreamtime](https://www.discogs.com/release/13634894-Space-Time-Continuum-With-Terence-McKenna-Alien-Dreamtime) I had no idea I’d keep coming back to it for decades, and quote it so much.
 

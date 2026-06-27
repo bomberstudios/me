@@ -1,6 +1,7 @@
 ---
 title: "Moving forward"
 date: "2025-01-16"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3jpuk52x"
 ---
 Putting into action [something I wrote about a few days ago](/action-and-happiness), I’ve now taken some actual steps to get closer to where I want to be. Action.
 

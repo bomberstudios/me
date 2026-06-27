@@ -1,7 +1,7 @@
 ---
 title: Go with the flow
 date: "2020-01-08"
-tags: life
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3njrib25"
 ---
 
 14 years ago to this day, I moved to Madrid.

@@ -1,6 +1,7 @@
 ---
 title: "Generating brown noise, take 2"
 date: "2025-01-15T13:00:06Z"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3k3fbm2v"
 ---
 Following yesterday's post about brown noise generation, I have a found a way more convenient way of solving the problem: Apple’s Accessibility features.
 

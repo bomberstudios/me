@@ -1,6 +1,7 @@
 ---
 title: "Douglas Adams on HyperCard"
 date: "2023-01-16"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3mczbe2v"
 ---
 [This MacUser article](https://archive.org/details/MacUser8712December1987/page/n164/mode/1up?view=theater) written in 1987 by none other than Douglas Adams, is both a fun review of HyperCard and a love letter to the personal computer.
 

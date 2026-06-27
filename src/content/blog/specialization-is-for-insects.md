@@ -1,8 +1,8 @@
 ---
 title: Specialization is for insects
 date: "2020-01-07"
-tags: shame
 link: https://humanparts.medium.com/the-case-for-being-a-multi-hyphenate-216e2e19a30d
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3nlpyu2v"
 ---
 
 Just finished reading [this article about how being a multi-hyphen person is a great approach to life](https://humanparts.medium.com/the-case-for-being-a-multi-hyphenate-216e2e19a30d).

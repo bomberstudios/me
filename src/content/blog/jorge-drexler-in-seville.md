@@ -1,7 +1,7 @@
 ---
 title: Jorge Drexler in Seville
 date: "2020-02-02"
-tags: music, concert, life, seville, drexler
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3mvi7e2t"
 ---
 
 Yesterday night, me and my wife went to see Jorge Drexler play his last album live in Seville. It was an amazing concert, and we were lucky enough to get tickets on the 2nd row. Being so close to Jorge and seeing how his eyes got wet when singing one of my favorite songs made the whole night worth it.

@@ -2,7 +2,7 @@
 title: Design Books Recommendations
 date: "2020-08-24"
 description: A list of must-read design books, last updated on 2025-02-12.
-tags: design, books
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3mq3ae2v"
 ---
 
 Someone at Design:ES asked for a list of must-read design books, and instead of writing a long reply on Slack, I thought I'd share it here in case it helps others.

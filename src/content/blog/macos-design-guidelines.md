@@ -1,7 +1,7 @@
 ---
 title: macOS Design Guidelines by Mario Guzman
 date: "2024-12-31"
-tags: telegram
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3lb7ae2v"
 ---
 
 If you design apps for Mac (or are simply interested in the topic), [Mario Guzman](https://www.linkedin.com/in/marioguzman/) has a couple of design guides on his website: one on [general layout](https://marioaguzman.github.io/design/layoutguidelines/), and another one [specifically for toolbars](https://marioaguzman.github.io/design/toolbarguidelines/).

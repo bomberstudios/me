@@ -1,6 +1,7 @@
 ---
 title: "This site is now running on Astro"
 date: "2025-02-16T21:49:08Z"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3ivobj2t"
 ---
 I know you don’t care too much about the internals of this blog, but just in case you do: after 5 years of using Jekyll to power this site, I finally decided to upgrade to something a bit more modern.
 

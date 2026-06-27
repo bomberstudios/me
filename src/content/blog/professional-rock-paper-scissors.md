@@ -1,6 +1,7 @@
 ---
 title: Professional Rock, Paper, Scissors
 date: "2024-12-23"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3lmct42t"
 ---
 
 Today I learned that (to no one's surprise, really) there is a World Championship of Rock, Paper, Scissors.

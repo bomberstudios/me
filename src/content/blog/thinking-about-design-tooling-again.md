@@ -2,6 +2,7 @@
 title: Thinking about design tooling, again
 date: 2025-04-19
 description: A few thoughts on design tooling.
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3hihvd2o"
 ---
 
 For _reasons_, I am remastering* one of my ancient design projects.

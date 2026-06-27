@@ -1,8 +1,8 @@
 ---
 title: Magic Box
 date: "2020-12-25"
-tags: hardware, diy
 description: A home-made, electronic, magic box that thinks it is a keyboard.
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3moam72t"
 ---
 
 One of my new year’s resolutions for 2020 was [spending more time building happiness, and less time trying to buy it readymade](https://ale.today/lego-heart/).

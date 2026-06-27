@@ -1,7 +1,7 @@
 ---
 title: The 1250 calories diet
 date: "2020-01-13"
-tags: health
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3n7yxp2t"
 ---
 
 [Yesterday](/i-forgot-to-write-yesterday/) I wrote about long term goals, and one of the things I mentioned was how I used a long term vision to lose 20 kgs a few years ago.

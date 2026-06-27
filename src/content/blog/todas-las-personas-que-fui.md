@@ -1,6 +1,7 @@
 ---
 title: "Todas las personas que fui"
 date: "2025-01-06"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3kvztr2t"
 ---
 I just finished reading this comic book and enjoyed it very much, probably because I was looking at the main character and seeing myself in him.
 

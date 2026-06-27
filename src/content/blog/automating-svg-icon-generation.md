@@ -2,6 +2,7 @@
 title: Automating SVG Icon Generation
 date: 2025-03-08
 description: How to automate SVG icon generation with Figma, SVGR, React and Vite.
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3iajjb2t"
 ---
 
 I'm quite proud of this week's achievement: I automated the process of updating icons in a React app from a Figma file. I'm sharing the details for my future self and whoever might find it useful.

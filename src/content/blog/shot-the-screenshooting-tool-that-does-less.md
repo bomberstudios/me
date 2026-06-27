@@ -2,6 +2,7 @@
 title: Shot!, the screenshooting tool that does less
 date: "2025-10-20"
 description: "Meet Shot!, the screenshooting tool that does less"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3gyfpn2x"
 ---
 
 I take *lots* of screenshots daily. I use [Shottr](https://shottr.cc) for that, and I absolutely adore it.

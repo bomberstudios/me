@@ -1,6 +1,7 @@
 ---
 title: "Bye, Omnivore. Hello, GoodLinks"
 date: "2025-01-19"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3j6q7t2o"
 ---
 When [Omnivore](https://omnivore.app) shut down last year, I started looking for alternatives.
 

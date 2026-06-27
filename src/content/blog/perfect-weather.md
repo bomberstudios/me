@@ -1,7 +1,7 @@
 ---
 title: Perfect weather
 date: "2020-01-26"
-tags: zen, wisdom
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3n4hqr2t"
 ---
 
 There's an old zen tale I keep referring to, but whenever I want to share it with someone I never find it online.

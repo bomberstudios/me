@@ -1,6 +1,7 @@
 ---
 title: "Poor man’s flat white recipe for AeroPress"
 date: "2023-03-11"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3lxn4u2t"
 ---
 Since I moved away from Madrid City, one of the things I miss most is having a nice coffee place around the corner where I can have a decent [flat white](https://en.wikipedia.org/wiki/Flat_white). There are literally *zero* places nearby that serve good coffee.
 

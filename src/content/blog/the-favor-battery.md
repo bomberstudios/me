@@ -1,6 +1,7 @@
 ---
 title: "The favor battery"
 date: "2025-02-10"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3ixpmd2o"
 ---
 Today, while reading [The Effective Product Designer](https://productdesigninterview.com/the-effective-product-designer), I came across an interesting concept: the _favor battery_.
 

@@ -1,6 +1,7 @@
 ---
 title: "Serving local Astro projects with HTTPS"
 date: "2025-05-05T21:00:00Z"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3h44752d"
 ---
 
 > This post is dedicated to [Yak Shaving](https://en.wiktionary.org/wiki/yak_shaving), the noble art of completing 75 side quests before doing the thing you actually wanted to get done.

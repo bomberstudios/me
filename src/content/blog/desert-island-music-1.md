@@ -1,6 +1,7 @@
 ---
 title: "Desert Island Music #1"
 date: "2023-01-23T11:28:54Z"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3m7c5r2t"
 ---
 I’ve been thinking a lot recently about timeless music, and how I keep coming back to certain records. And also, how I keep *forgetting* these records that, in some cases, have literally saved my life.
 

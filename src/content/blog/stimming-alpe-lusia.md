@@ -1,6 +1,7 @@
 ---
 title: Stimming - Alpe Lusia
 date: "2025-03-11"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3hzujt2o"
 ---
 
 Now playing: [Stimming - Alpe Lusia](https://diynamic.bandcamp.com/album/alpe-lusia) (2016).

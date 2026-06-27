@@ -1,6 +1,7 @@
 ---
 title: "I’ve started using emacs"
 date: "2023-03-30"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3lvrvi2u"
 ---
 I was getting increasingly mad with VS Code lately (random slowdowns, UX issues, and a general sense of it being built with wire and duct tape).
 

@@ -1,6 +1,7 @@
 ---
 title: "Text Replacements in macOS, and an alternative to it"
 date: "2025-01-10"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3kqd532o"
 ---
 A friend is moving from Linux to macOS on his work laptop. He asked me for some common tools for daily work, and one of them was a text expander tool.
 

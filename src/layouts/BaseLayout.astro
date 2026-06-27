@@ -3,13 +3,13 @@
 import BaseHead from '@components/BaseHead.astro'
 import Header from '@components/Header.astro'
 import Footer from '@components/Footer.astro'
-const { title, description, image } = Astro.props
+const { title, description, image, atUri } = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} image={image} />
+    <BaseHead title={title} description={description} image={image} atUri={atUri} />
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to content</a>

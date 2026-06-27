@@ -1,6 +1,7 @@
 ---
 title: "What to do with your life"
 date: "2025-01-02"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3l5cae2v"
 ---
 [Julian Shapiro](https://www.julian.com) is, in many ways, a person I look up to for inspiration.
 

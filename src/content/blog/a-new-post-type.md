@@ -2,6 +2,7 @@
 title: A new post type
 date: 2026-05-28T16:43
 description: Introducing a small experiment on my blog to share sport activities
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3gke2z25"
 ---
 
 If you've subscribed to this blog's RSS feed, you have probably seen a couple of new entries, named "Activity: Whatever…".

@@ -1,6 +1,7 @@
 ---
 title: "Ableton Move, or how to excel at design embracing simplicity"
 date: "2024-11-23"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3lo7au2v"
 ---
 I am not a musician.
 

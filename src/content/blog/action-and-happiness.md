@@ -1,6 +1,7 @@
 ---
 title: "Action and happiness"
 date: "2025-01-01"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3l7bte2t"
 ---
 I came across this quote while reading ["Liminal Thinking”](https://amzn.to/40e3dBw), and it feels very appropriate for New Year's Day:
 

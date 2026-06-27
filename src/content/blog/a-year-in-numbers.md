@@ -2,6 +2,7 @@
 title: "Riding bikes in 2024: a year in numbers"
 date: "2024-12-29"
 description: A bunch of random data about my bike rides in 2024
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3lgsxb2t"
 ---
 
 As 2024 comes to an end, I thought it would be interesting to look at some stats from this year (I'm clearly not riding my bikes until next year, since I'm away from home).

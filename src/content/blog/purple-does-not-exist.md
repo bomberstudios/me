@@ -1,7 +1,7 @@
 ---
 title: Purple does not exist
 date: "2024-12-28"
-tags: telegram
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3liojj2t"
 ---
 
 Apparently, [purple does not exist](https://btr.mt/analects/purple-doesn't-exist) (I swear this is not an April's Fools[^1] prank, I hate that kind of joke).

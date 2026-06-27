@@ -1,8 +1,8 @@
 ---
 title: Things to do when you’re laid off
 date: "2022-11-06"
-tags: life, work
 description: Here are some ideas if you found yourself without a job in November 2022.
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3mkjiu2v"
 ---
 
 A very good friend, who’s recently been laid off, was wondering if it was wise to treat themselves to a new game console in the face of an uncertain future.

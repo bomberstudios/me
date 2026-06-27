@@ -1,7 +1,7 @@
 ---
 title: LEGO Heart
 date: "2020-01-06"
-tags: lego, heart, creativity, simple, less
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3nnlzq2u"
 ---
 
 ![LEGO Heart](@images/lego-heart.jpg)

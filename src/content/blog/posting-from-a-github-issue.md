@@ -1,6 +1,7 @@
 ---
 title: "Posting from a GitHub issue"
 date: "2023-01-11T16:38:43Z"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3mevan2x"
 ---
 One of the things I loved (and miss) from the early internet days is the remix spirit. Everything was there for you to tinker with it, experiment, and make it your own.
 

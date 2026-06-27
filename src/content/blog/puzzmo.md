@@ -1,6 +1,7 @@
 ---
 title: "Puzzmo"
 date: "2023-12-04"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3lrzbx2t"
 ---
 I became aware of [Puzzmo](https://puzzmo.com) via my friend kp, who now works there.
 

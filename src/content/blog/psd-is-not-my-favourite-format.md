@@ -2,6 +2,7 @@
 title: "PSD is not my favourite format"
 date: 2025-03-27
 description: "An epic rant about the PSD file format"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3hmajq2u"
 ---
 
 I have a soft spot in my heart for nerd humour. And this one is a classic I keep referring to, so I thought I’d save it here, for archival purposes.

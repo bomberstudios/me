@@ -1,6 +1,7 @@
 ---
 title: "Desert Island Music #2"
 date: "2023-01-24"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3m5ib62z"
 ---
 Imagine going to a music festival with some friends, having the time of your lives, and telling stories about _that weekend_ for years, only to discover, years later, that _there is a record that captured the final (and best) DJ set of that festival_.
 

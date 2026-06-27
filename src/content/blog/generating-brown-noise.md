@@ -1,6 +1,7 @@
 ---
 title: "Generating brown noise"
 date: "2025-01-14"
+atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbr3kfhkz2t"
 ---
 I recently read that background brown noise helps with focus and anxiety, so *of course* I am testing that hypothesis on myself.
 

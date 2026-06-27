@@ -85,7 +85,7 @@ Once everything is set up, running `sequoia publish --dry-run` shows it's findin
 
 Now, running `sequoia publish` should publish the `site.standard.document` records to my PDS. I can check that everything worked by inspecting the data directly on atproto.at (and you can, too, [since everything is public on the atmosphere…](https://atproto.at/uri/at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document)).
 
-In addition to publishing the records, sequioa also did something interesting: it added a new `atUri` attribute to the frontmatter of *all* the posts on my site. This is awesome, because it saves me a ton of manual work and I can focus on the next step: use that info on the HTML for each post.
+In addition to publishing the records, sequoia also did something interesting: it added a new `atUri` attribute to the frontmatter of *all* the posts on my site. This is awesome, because it saves me a ton of manual work and I can focus on the next step: use that info on the HTML for each post.
 
 On the template for my posts, I can use some of Astro's magic sauce to do
 

@@ -20,9 +20,9 @@ export async function GET(context: { site: any }) {
       title: entry.data.title,
       pubDate: entry.data.date,
       description: 'description' in entry.data ? entry.data.description : undefined,
-      content: entry.collection === 'activities'
-        ? activityToHtml(entry.data)
-        : ('rendered' in entry ? entry.rendered?.html : undefined),
+      // content: entry.collection === 'activities'
+      //   ? activityToHtml(entry.data)
+      //   : ('rendered' in entry ? entry.rendered?.html : undefined),
       link: `/${entry.id}/`
     }))
   })

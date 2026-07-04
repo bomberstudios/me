@@ -11,7 +11,9 @@
     "astro": "astro",
     "upgrade": "bunx @astrojs/upgrade",
     "certificates": "brew install mkcert && mkcert -install && mkcert localhost",
-    "process-activities": "bun scripts/process-activities.mjs"
+    "process-activities": "bun scripts/process-activities.mjs",
+    "deploy": "sequoia publish && npm run build",
+    "new-post": "bun scripts/new-post.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
@@ -26,6 +28,7 @@
     "motion": "^12",
     "react": "^19.0.0",
     "satori": "^0.26.0",
-    "use-sound": "^5.0.0"
+    "use-sound": "^5.0.0",
+    "sequoia-cli": "0.5.7"
   }
 }

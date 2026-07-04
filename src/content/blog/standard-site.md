@@ -2,7 +2,6 @@
 title: This blog now supports standard.site
 description: Some (mostly technical) notes about adding atproto support to my Astro blog
 date: 2026-06-27
-ogImage: "og-standard-site.png"
 atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpbuvqap3e25"
 ---
 

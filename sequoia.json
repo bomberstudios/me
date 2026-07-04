@@ -1,0 +1,13 @@
+{
+  "$schema": "https://tangled.org/stevedylan.dev/sequoia/raw/main/sequoia.schema.json",
+  "siteUrl": "https://ale.today",
+  "contentDir": "./src/content/blog",
+  "imagesDir": "./src/images",
+  "outputDir": "./dist",
+  "pathPrefix": "",
+  "publicationUri": "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.publication/3mpblbkhym2kv",
+  "frontmatter": {
+    "publishDate": "date"
+  },
+  "publishContent": true
+}

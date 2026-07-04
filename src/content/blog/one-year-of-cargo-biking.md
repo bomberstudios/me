@@ -3,7 +3,6 @@ title: One year of cargo biking
 date: 2026-07-01T07:36:31Z
 description: Some random notes from my first year with an electric cargo bike, and why you should (maybe) get one
 atUri: "at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.document/3mpla46jymr2r"
-ogImage: "og-one-year-of-cargo-biking.png"
 ---
 
 

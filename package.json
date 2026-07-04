@@ -12,7 +12,7 @@
     "upgrade": "bunx @astrojs/upgrade",
     "certificates": "brew install mkcert && mkcert -install && mkcert localhost",
     "process-activities": "bun scripts/process-activities.mjs",
-    "deploy": "sequoia auth && sequoia publish && npm run build",
+    "deploy": "sequoia publish && npm run build",
     "new-post": "bun scripts/new-post.mjs"
   },
   "dependencies": {

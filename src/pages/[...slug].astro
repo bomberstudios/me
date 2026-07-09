@@ -1,29 +1,29 @@
 ---
-import { type CollectionEntry, getCollection, render } from "astro:content";
-import BlogPost from "@layouts/BlogPost.astro";
-import ActivityPost from "@layouts/ActivityPost.astro";
+import { type CollectionEntry, getCollection, render } from 'astro:content'
+import BlogPost from '@layouts/BlogPost.astro'
+import ActivityPost from '@layouts/ActivityPost.astro'
 
 export async function getStaticPaths() {
-  const blogPosts = await getCollection("blog");
-  const activities = await getCollection("activities");
+  const blogPosts = await getCollection('blog')
+  const activities = await getCollection('activities')
   return [
     ...blogPosts.map((post) => ({
       params: { slug: post.id },
-      props: { type: "blog" as const, entry: post },
+      props: { type: 'blog' as const, entry: post },
     })),
     ...activities.map((activity) => ({
       params: { slug: activity.id },
-      props: { type: "activity" as const, entry: activity },
+      props: { type: 'activity' as const, entry: activity },
     })),
-  ];
+  ]
 }
 
 const { type, entry } = Astro.props as
-  | { type: "blog"; entry: CollectionEntry<"blog"> }
-  | { type: "activity"; entry: CollectionEntry<"activities"> };
+  | { type: 'blog'; entry: CollectionEntry<'blog'> }
+  | { type: 'activity'; entry: CollectionEntry<'activities'> }
 
-const blogEntry = type === "blog" ? (entry as CollectionEntry<"blog">) : null;
-const { Content } = blogEntry ? await render(blogEntry) : { Content: null };
+const blogEntry = type === 'blog' ? (entry as CollectionEntry<'blog'>) : null
+const { Content } = blogEntry ? await render(blogEntry) : { Content: null }
 ---
 
 {

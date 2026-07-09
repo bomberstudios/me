@@ -2,27 +2,25 @@
 import type { CollectionEntry } from 'astro:content'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import FormattedDate from '@components/FormattedDate.astro'
+import PostNavigation from '@components/PostNavigation.astro'
 
-import { getCollection } from 'astro:content'
-type PostEntry = { id: string; data: { title: string; date: Date } }
-const posts = (
-  [
-    ...(await getCollection('blog')),
-    ...(await getCollection('activities'))
-  ] as PostEntry[]
-).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+import { getMergedPosts } from '@utils/content'
+const posts = await getMergedPosts()
 const currentPost = posts.findIndex((post) => post.id === Astro.props.id)
-
-const nextPost = posts[currentPost - 1]
-const previousPost = posts[currentPost + 1]
 
 type Props = CollectionEntry<'blog'>['data'] & { id: string }
 
 const { title, description, date, updatedDate, id, atUri } = Astro.props
 const ogImage = `/og/${id}.png`
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 ---
 
-<BaseLayout title={title} description={description} image={ogImage} atUri={atUri}>
+<BaseLayout
+  title={title}
+  description={description}
+  image={ogImage}
+  atUri={atUri}
+>
   <div class="blogpost">
     <div class="title">
       <h1>{title}</h1>
@@ -38,21 +36,14 @@ const ogImage = `/og/${id}.png`
       </div>
     </div>
     <slot />
-    <div class="post-navigation">
-      {
-        previousPost ? (
-          <a href={`/${previousPost.id}/`} class="prev">
-            ‹ {previousPost.data.title}
-          </a>
-        ) : null
-      }
-      {
-        nextPost ? (
-          <a href={`/${nextPost.id}/`} class="next">
-            {nextPost.data.title} ›
-          </a>
-        ) : null
-      }
-    </div>
+    <atmentions-reactions
+      data-url={canonicalURL.href}
+      data-aturi={atUri}
+      variant="minimal"
+    />
+    <PostNavigation
+      prev={posts[currentPost + 1] ? { id: posts[currentPost + 1].id, title: posts[currentPost + 1].data.title } : undefined}
+      next={posts[currentPost - 1] ? { id: posts[currentPost - 1].id, title: posts[currentPost - 1].data.title } : undefined}
+    />
   </div>
 </BaseLayout>

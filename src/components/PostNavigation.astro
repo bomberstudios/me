@@ -1,0 +1,66 @@
+---
+interface Props {
+  prev: { id: string; title: string } | undefined
+  next: { id: string; title: string } | undefined
+}
+
+const { prev, next } = Astro.props
+---
+
+<div class="post-navigation">
+  {
+    prev ? (
+      <a href={`/${prev.id}/`} class="prev">
+        ‹ {prev.title}
+      </a>
+    ) : null
+  }
+  {
+    next ? (
+      <a href={`/${next.id}/`} class="next">
+        {next.title} ›
+      </a>
+    ) : null
+  }
+</div>
+
+<style>
+  .post-navigation {
+    display: flex;
+    flex: 1 1;
+    gap: 1rem;
+    margin-top: 2rem;
+    align-items: center;
+
+    a {
+      flex: auto;
+      color: var(--brand);
+      text-decoration: none;
+      vertical-align: middle;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &.prev {
+        text-align: left;
+      }
+
+      &.next {
+        text-align: right;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .post-navigation {
+      flex-direction: column;
+      gap: 0.5rem;
+
+      a.prev,
+      a.next {
+        text-align: center;
+      }
+    }
+  }
+</style>

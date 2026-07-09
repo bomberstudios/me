@@ -1,7 +1,7 @@
-import { glob } from 'astro/loaders';
-import { defineCollection } from 'astro:content';
-import { z } from 'astro/zod';
-import { gpxLoader } from './loaders/gpx-loader';
+import { glob } from 'astro/loaders'
+import { defineCollection } from 'astro:content'
+import { z } from 'astro/zod'
+import { gpxLoader } from './loaders/gpx-loader'
 
 const blog = defineCollection({
   loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
@@ -35,8 +35,8 @@ const activities = defineCollection({
       ele: z.number(),
       hr: z.number().nullable(),
     })),
-    viewBox: z.string(),
+    viewBox: z.string()
   })
 })
 
-export const collections = { blog, activities };
+export const collections = { blog, activities }

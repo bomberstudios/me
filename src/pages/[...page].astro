@@ -1,15 +1,12 @@
 ---
 import type { GetStaticPaths } from 'astro'
-import { getCollection } from 'astro:content'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { SITE_DESCRIPTION } from '../consts'
 import PostList from '@components/PostList.astro'
+import { getMergedPosts } from '@utils/content'
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const blog = await getCollection('blog')
-  const activities = await getCollection('activities')
-  const all = ([...blog, ...activities] as { id: string; data: { title: string; date: Date } }[])
-    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  const all = await getMergedPosts()
   return paginate(all, { pageSize: 10 })
 }) satisfies GetStaticPaths
 

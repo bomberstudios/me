@@ -1,25 +1,9 @@
 import type { CollectionEntry } from 'astro:content'
-import { label } from '../loaders/gpx-utils'
-
-function hue(speed: number, minSpeed: number, range: number) {
-  return Math.round((1 - (speed - minSpeed) / range) * 240)
-}
+import { label, MIN_WIDTH, MAX_WIDTH, hue, extend } from '../loaders/gpx-utils'
 
 function lineWidth(speed: number, minSpeed: number, range: number) {
-  const MIN_WIDTH = 1
-  const MAX_WIDTH = 4
   const w = MIN_WIDTH + ((speed - minSpeed) / range) * (MAX_WIDTH - MIN_WIDTH)
   return Math.round(w * 10) / 10 * Math.random() * 2
-}
-
-function extend(s: { x1: number; y1: number; x2: number; y2: number }) {
-  const OVERSHOOT = 1
-  const dx = s.x2 - s.x1
-  const dy = s.y2 - s.y1
-  const len = Math.sqrt(dx * dx + dy * dy) || 1
-  const ux = (dx / len) * OVERSHOOT
-  const uy = (dy / len) * OVERSHOOT
-  return { x1: s.x1 - ux, y1: s.y1 - uy, x2: s.x2 + ux, y2: s.y2 + uy }
 }
 
 export function activityToHtml(data: CollectionEntry<'activities'>['data']): string {

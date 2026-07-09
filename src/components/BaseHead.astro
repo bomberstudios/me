@@ -1,24 +1,21 @@
 ---
-// Import the global.css file here so that it is included on
-// all pages through the use of the <BaseHead /> component.
-import "../styles/global.css";
-// import cssURL from "../styles/global.css?url";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import { Font } from "astro:assets";
+import '../styles/global.css'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
+import { Font } from 'astro:assets'
 
 interface Props {
-  title: string;
-  description: string;
-  image?: string;
-  atUri?: string;
+  title: string
+  description: string
+  image?: string
+  atUri?: string
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const { title, description, image = "/og.png", atUri } = Astro.props;
+const { title, description, image = '/og.png', atUri } = Astro.props
 
-const pageTitle = title ? `${SITE_TITLE} › ${title}` : SITE_TITLE;
-const metaDescription = description || SITE_DESCRIPTION;
+const pageTitle = title ? `${SITE_TITLE} \u203A ${title}` : SITE_TITLE
+const metaDescription = description || SITE_DESCRIPTION
 ---
 
 <!-- Global Metadata -->
@@ -27,7 +24,6 @@ const metaDescription = description || SITE_DESCRIPTION;
 
 <!-- Fonts -->
 <Font cssVariable="--font-heading" preload />
-<!-- <link rel="preload" href={cssURL} as="style"> -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" type="image/png" href="/favicon.png" />
 <link rel="sitemap" href="/sitemap-index.xml" />
@@ -40,6 +36,9 @@ const metaDescription = description || SITE_DESCRIPTION;
 <meta name="generator" content={Astro.generator} />
 <link rel="site.standard.publication" href="at://did:plc:34yvx4hv64znmh2i2fezoyqx/site.standard.publication/3mpblbkhym2kv" />
 {atUri && <link rel="site.standard.document" href={atUri} />}
+
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/gh/pixeline/atmentions@v0.1.2/dist/atmentions.min.js" />
+<script is:inline type="module" src="https://cdn.jsdelivr.net/gh/pixeline/atmentions@v0.1.2/dist/atmentions.min.js"></script>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

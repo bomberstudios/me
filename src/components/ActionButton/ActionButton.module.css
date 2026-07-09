@@ -33,9 +33,6 @@ button {
   }
   &.active {
     background-color: var(--button-bg-active);
-    &:hover {
-      /* background-color: var(--button-bg-active-hover); */
-    }
     .icon {
       animation: spin 1s linear infinite;
     }

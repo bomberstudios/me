@@ -185,6 +185,14 @@
         overflow-y: auto;
         background: var(--surface);
       }
+      .sidebar-header {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: var(--text-dim);
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
 
       .search-input {
         width: 100%;
@@ -402,6 +410,71 @@
       .token-copy-btn.copied .token-copy-tip {
         opacity: 1;
       }
+
+      .token-raw-btn {
+        background: none;
+        border: none;
+        color: var(--text-dim);
+        cursor: pointer;
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 1;
+        flex-shrink: 0;
+        opacity: 0;
+        transition: opacity .15s, color .15s, background .15s;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-family: var(--mono);
+      }
+      .token-card:hover .token-raw-btn { opacity: 1; }
+      .token-raw-btn:hover { color: var(--accent); background: var(--input-bg); }
+      .token-raw-btn.active { opacity: 1; color: var(--accent); background: var(--input-bg); }
+
+      .token-raw {
+        display: none;
+        margin: 8px -14px -14px;
+        background: var(--input-bg);
+        border-top: 1px solid var(--border);
+        border-radius: 0 0 6px 6px;
+        position: relative;
+      }
+      .token-raw.open { display: block; }
+      .token-raw pre {
+        padding: 10px 14px;
+        font-size: 10px;
+        font-family: var(--mono);
+        line-height: 1.5;
+        color: var(--text-dim);
+        overflow-x: auto;
+        white-space: pre;
+        margin: 0;
+      }
+      .token-raw-copy {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--text-dim);
+        cursor: pointer;
+        padding: 2px;
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 1;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: color .15s, border-color .15s;
+      }
+      .token-raw-copy:hover { color: var(--accent); border-color: var(--accent); }
+      .token-raw-copy.copied { color: var(--accent); border-color: var(--accent); }
 
       .token-type-badge {
         font-size: 9px;
@@ -855,6 +928,7 @@
     <div class="main">
       <div class="sidebar" id="sidebar">
         <input id="searchInput" class="search-input" placeholder="Search tokens..." style="display:none">
+        <div id="treeNavHeader" class="sidebar-header" style="display:none">Tokens</div>
         <div id="treeNav" class="tree-nav"></div>
       </div>
       <div class="content" id="content">
@@ -1008,7 +1082,7 @@
           if (!records.length) {
             content.innerHTML = '<div class="no-tokens">No token collections found.</div>'
             recordBar.classList.remove('show'); recordBar.innerHTML = ''
-            searchInput.style.display = 'none'; treeNav.innerHTML = ''
+            searchInput.style.display = 'none'; document.getElementById('treeNavHeader').style.display = 'none'; treeNav.innerHTML = ''
             return
           }
 
@@ -1101,8 +1175,9 @@
         state.tokenMap = new Map()
         for (const t of state.flatTokens) state.tokenMap.set(t.path, t.token)
         state.filteredTokens = state.flatTokens
-        searchInput.style.display = 'block'
-        searchInput.value = ''
+      searchInput.style.display = 'block'
+      document.getElementById('treeNavHeader').style.display = 'block'
+      searchInput.value = ''
         searchInput.placeholder = 'Search ' + state.flatTokens.length + ' tokens\u2026'
         buildSidebar(state.flatTokens)
         renderContent(state.flatTokens)
@@ -1183,7 +1258,10 @@
           if (!groups[top]) groups[top] = []
           groups[top].push(t)
         }
-        for (const [g, gTokens] of Object.entries(groups)) {
+        const GROUP_ORDER = ['color', 'typography', 'font', 'text', 'spacing', 'space', 'size', 'dimension', 'layout', 'border', 'radius', 'outline', 'shadow', 'elevation', 'opacity', 'motion', 'animation', 'transition', 'duration', 'easing', 'icon', 'media', 'breakpoint', 'zindex']
+        const groupRank = g => { const i = GROUP_ORDER.indexOf(g.toLowerCase()); return i >= 0 ? i : 99 + g.charCodeAt(0) }
+        const sorted = Object.entries(groups).sort((a, b) => groupRank(a[0]) - groupRank(b[0]))
+        for (const [g, gTokens] of sorted) {
           html += '<div class="token-group"><div class="token-group-title">' + g + '</div><div class="token-grid">'
           for (const t of gTokens) html += renderTokenCard(t)
           html += '</div></div>'
@@ -1198,6 +1276,16 @@
               target.style.outline = '2px solid var(--accent)'
               target.style.outlineOffset = '2px'
               setTimeout(() => target.style.outline = '', 2000)
+            }
+          })
+        })
+        content.querySelectorAll('.token-raw-btn').forEach(el => {
+          el.addEventListener('click', () => {
+            const card = el.closest('.token-card')
+            const raw = card.querySelector('.token-raw')
+            if (raw) {
+              raw.classList.toggle('open')
+              el.classList.toggle('active')
             }
           })
         })
@@ -1219,6 +1307,15 @@
             } catch { }
           })
         })
+        content.querySelectorAll('.token-raw-copy').forEach(el => {
+          el.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(el.dataset.raw)
+              el.classList.add('copied')
+              setTimeout(() => el.classList.remove('copied'), 1200)
+            } catch { }
+          })
+        })
       }
 
       function renderTokenCard(t) {
@@ -1231,6 +1328,7 @@
         html += '<div class="token-card-header">'
         html += '<span class="token-card-name">' + t.path + '</span>'
         html += '<button class="token-copy-btn" data-token-path="' + t.path + '" title="Copy token path"><span class="token-copy-tip">Copied</span>&#x2398;</button>'
+        html += '<button class="token-raw-btn" title="Show raw definition">{}</button>'
         if (type) html += '<span class="token-type-badge">' + type + '</span>'
         html += '</div>'
         if (desc) html += '<div class="token-desc">' + escapeHtml(desc) + '</div>'
@@ -1244,6 +1342,8 @@
           const links = refs.map(r => '<span class="token-ref-link" data-token-path="' + r.slice(1, -1) + '">' + r + '</span>')
           html += '<div class="token-ref-label">' + links.join('') + '</div>'
         }
+        const raw = JSON.stringify(t.token, null, 2)
+        html += '<div class="token-raw"><button class="token-raw-copy" data-raw="' + escapeHtml(raw) + '" title="Copy raw JSON"><span class="token-copy-tip">Copied</span>&#x2398;</button><pre>' + escapeHtml(raw) + '</pre></div>'
         html += '</div>'
         return html
       }

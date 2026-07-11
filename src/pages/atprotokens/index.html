@@ -14,7 +14,7 @@
         --text-dim: #6e7681;
         --accent: #f60;
         --accent-dim: #ff8833;
-        --radius: 8px;
+        --radius: 0.5rem;
         --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
         --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
         --input-bg: #f6f8fa;
@@ -344,9 +344,12 @@
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        padding: 14px;
+        padding: 0.7rem 1rem 1rem 1rem;
         transition: box-shadow .2s, border-color .2s;
         box-shadow: var(--shadow-card);
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
       }
 
       .token-card:hover {
@@ -357,8 +360,7 @@
       .token-card-header {
         display: flex;
         align-items: center;
-        gap: 4px;
-        margin-bottom: 6px;
+        gap: 0.2rem;
       }
 
       .token-card-name {
@@ -367,74 +369,44 @@
         word-break: break-all;
       }
 
-      .token-copy-btn {
+      /* ── Card Buttons ── */
+      .card-btn {
         background: none;
         border: none;
         color: var(--text-dim);
         cursor: pointer;
-        padding: 2px 4px;
-        border-radius: 4px;
-        font-size: 20px;
+        padding: 0;
         line-height: 1;
         flex-shrink: 0;
-        opacity: 0;
-        transition: opacity .15s, color .15s, background .15s;
-        position: relative;
         width: 28px;
         height: 28px;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
+        transition: opacity .15s, color .15s, background .15s;
+        opacity: 0;
+        font-size: 14px;
       }
 
-      .token-card:hover .token-copy-btn {
+      .token-card:hover .card-btn {
         opacity: 1;
       }
 
-      .token-copy-btn:hover {
+      .card-btn:hover {
         color: var(--accent);
         background: var(--input-bg);
       }
 
-      .token-copy-btn[copied] {
+      .card-btn.active,
+      .card-btn[copied] {
         opacity: 1;
         color: var(--accent);
       }
 
-      .token-raw-btn {
-        background: none;
-        border: none;
-        color: var(--text-dim);
-        cursor: pointer;
-        padding: 2px 4px;
-        border-radius: 4px;
-        font-size: 14px;
-        line-height: 1;
-        flex-shrink: 0;
-        opacity: 0;
-        transition: opacity .15s, color .15s, background .15s;
-        width: 28px;
-        height: 28px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      .card-btn-raw {
         font-weight: 700;
         font-family: var(--mono);
-      }
-
-      .token-card:hover .token-raw-btn {
-        opacity: 1;
-      }
-
-      .token-raw-btn:hover {
-        color: var(--accent);
-        background: var(--input-bg);
-      }
-
-      .token-raw-btn.active {
-        opacity: 1;
-        color: var(--accent);
-        background: var(--input-bg);
+        font-size: 13px;
       }
 
       .token-raw {
@@ -461,32 +433,24 @@
         margin: 0;
       }
 
-      .token-raw-copy {
+      .copy-btn-raw {
         position: absolute;
         top: 6px;
         right: 6px;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        color: var(--text-dim);
-        cursor: pointer;
-        padding: 2px;
-        border-radius: 4px;
-        font-size: 14px;
-        line-height: 1;
         width: 24px;
         height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        background: var(--surface);
+        opacity: 1;
+        color: var(--text-dim);
         transition: color .15s, border-color .15s;
       }
 
-      .token-raw-copy:hover {
+      .copy-btn-raw:hover {
         color: var(--accent);
         border-color: var(--accent);
       }
 
-      .token-raw-copy[copied] {
+      .copy-btn-raw[copied] {
         color: var(--accent);
         border-color: var(--accent);
       }
@@ -563,8 +527,8 @@
       .render-color .swatch {
         width: 44px;
         height: 44px;
-        border-radius: 6px;
-        border: 1px solid var(--border);
+        border-radius: 2px;
+        /* border: 1px solid var(--border); */
         flex-shrink: 0;
         background-size: 12px 12px;
         background-position: 0 0, 0 6px, 6px -6px, -6px 0;
@@ -577,7 +541,7 @@
       .render-color .swatch-inner {
         width: 100%;
         height: 100%;
-        border-radius: 5px;
+        border-radius: 2px;
       }
 
       .render-color .color-info {
@@ -597,37 +561,10 @@
         font-weight: 600;
       }
 
-      .render-color .color-row .copy-hex {
-        background: none;
-        border: none;
-        color: var(--text-dim);
-        cursor: pointer;
-        padding: 2px;
-        border-radius: 4px;
-        font-size: 18px;
-        line-height: 1;
-        opacity: 0;
-        transition: opacity .15s;
-        position: relative;
+      .render-color .color-row .card-btn {
         width: 26px;
         height: 26px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .render-color:hover .color-row .copy-hex {
-        opacity: 1;
-      }
-
-      .render-color .color-row .copy-hex:hover {
-        color: var(--accent);
-        background: var(--input-bg);
-      }
-
-      .render-color .color-row .copy-hex[copied] {
-        opacity: 1;
-        color: var(--accent);
+        font-size: 18px;
       }
 
       .render-color .color-space {
@@ -1126,11 +1063,11 @@
         }
 
         _attachEvents() {
-          this.querySelector('.token-raw-btn')?.addEventListener('click', () => {
+          this.querySelector('.card-btn-raw')?.addEventListener('click', () => {
             const raw = this.querySelector('.token-raw')
             if (raw) {
               raw.classList.toggle('open')
-              this.querySelector('.token-raw-btn')?.classList.toggle('active')
+              this.querySelector('.card-btn-raw')?.classList.toggle('active')
             }
           })
 
@@ -1451,8 +1388,8 @@
         let html = '<div class="token-card" id="token-' + cssId(t.path) + '">'
         html += '<div class="token-card-header">'
         html += '<span class="token-card-name">' + t.path + '</span>'
-        html += '<copy-button class="token-copy-btn" value="' + t.path + '" title="Copy token path"></copy-button>'
-        html += '<button class="token-raw-btn" title="Show raw definition">{}</button>'
+        html += '<copy-button class="card-btn" value="' + t.path + '" title="Copy token path"></copy-button>'
+        html += '<button class="card-btn card-btn-raw" title="Show raw definition">{}</button>'
         if (type) html += '<span class="token-type-badge">' + type + '</span>'
         html += '</div>'
         if (desc) html += '<div class="token-desc">' + escapeHtml(desc) + '</div>'
@@ -1467,7 +1404,7 @@
           html += '<div class="token-ref-label">' + links.join('') + '</div>'
         }
         const raw = JSON.stringify(t.token, null, 2)
-        html += '<div class="token-raw"><copy-button class="token-raw-copy" value="' + escapeHtml(raw) + '" title="Copy raw JSON"></copy-button><pre>' + escapeHtml(raw) + '</pre></div>'
+        html += '<div class="token-raw"><copy-button class="copy-btn-raw" value="' + escapeHtml(raw) + '" title="Copy raw JSON"></copy-button><pre>' + escapeHtml(raw) + '</pre></div>'
         html += '</div>'
         return html
       }
@@ -1551,7 +1488,7 @@
         const alpha = v.alpha != null ? parseFloatSafe(v.alpha) : 1
         const cs = v.colorSpace || ''
         const alphaStr = alpha < 1 ? '<div style="font-size:10px;color:var(--text-dim)">alpha ' + alpha.toFixed(2) + '</div>' : ''
-        return '<div class="render-color"><div class="swatch"><div class="swatch-inner" style="background:' + css + '"></div></div><div class="color-info"><div class="color-row"><span class="hex">' + hex + '</span><copy-button class="copy-hex" value="' + hex + '" title="Copy hex"></copy-button></div><div class="color-space">' + cs + '</div>' + alphaStr + '</div></div>'
+        return '<div class="render-color"><div class="swatch"><div class="swatch-inner" style="background:' + css + '"></div></div><div class="color-info"><div class="color-row"><span class="hex">' + hex + '</span><copy-button class="card-btn" value="' + hex + '" title="Copy hex"></copy-button></div><div class="color-space">' + cs + '</div>' + alphaStr + '</div></div>'
       }
 
       function renderDimension(v) {

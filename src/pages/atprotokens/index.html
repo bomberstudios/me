@@ -575,11 +575,52 @@
       /* Dimension */
       .render-dimension {
         display: flex;
-        align-items: baseline;
-        gap: 4px;
+        align-items: center;
+        gap: 12px;
       }
 
-      .render-dimension .val {
+      .render-dimension .dim-preview {
+        width: 80px;
+        height: 80px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        flex-shrink: 0;
+        background-size: 12px 12px;
+        background-position: 0 0, 0 6px, 6px -6px, -6px 0;
+        background-image: linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
+          linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
+          linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        cursor: pointer;
+        transition: border-color .15s;
+      }
+
+      .render-dimension .dim-preview:hover {
+        border-color: var(--accent);
+      }
+
+      .render-dimension .dim-preview .dim-box {
+        background: var(--accent);
+      }
+
+      [data-theme="dark"] .render-dimension .dim-preview {
+        background-image: linear-gradient(45deg, #30363d 25%, transparent 25%),
+          linear-gradient(-45deg, #30363d 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, #30363d 75%),
+          linear-gradient(-45deg, transparent 75%, #30363d 75%);
+      }
+
+      .render-dimension .dim-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .render-dimension .dim-info .val {
         font-size: 28px;
         font-weight: 700;
         font-family: var(--mono);
@@ -587,26 +628,80 @@
         line-height: 1.1;
       }
 
-      .render-dimension .unit {
+      .render-dimension .dim-info .unit {
         font-size: 14px;
         color: var(--text-dim);
         font-weight: 400;
       }
 
-      .render-dimension .scale {
-        margin-top: 6px;
-        height: 4px;
-        background: var(--border);
-        border-radius: 2px;
-        position: relative;
-        overflow: hidden;
+      /* Dimension full-screen overlay */
+      .dim-overlay {
+        position: fixed;
+        inset: 0;
+        background: var(--bg);
+        z-index: 1000;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
       }
 
-      .render-dimension .scale .fill {
-        height: 100%;
-        background: var(--accent);
-        border-radius: 2px;
-        transition: width .3s;
+      .dim-overlay.open {
+        display: flex;
+      }
+
+      .dim-overlay .dim-scale-info {
+        font-family: var(--mono);
+        font-size: 14px;
+        color: var(--text-dim);
+      }
+
+      .dim-overlay .dim-scale-info .val {
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .dim-overlay .dim-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: none;
+        border: 1px solid var(--border);
+        color: var(--text-dim);
+        padding: 6px 12px;
+        border-radius: var(--radius);
+        cursor: pointer;
+        font-family: var(--font);
+        font-size: 13px;
+      }
+
+      .dim-overlay .dim-close:hover {
+        color: var(--text);
+        border-color: var(--hover-border);
+      }
+
+      .dim-overlay .dim-full-area {
+        width: 80vw;
+        height: 80vh;
+        background-size: 12px 12px;
+        background-position: 0 0, 0 6px, 6px -6px, -6px 0;
+        background-image: linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
+          linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
+          linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      [data-theme="dark"] .dim-overlay .dim-full-area {
+        background-image: linear-gradient(45deg, #30363d 25%, transparent 25%),
+          linear-gradient(-45deg, #30363d 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, #30363d 75%),
+          linear-gradient(-45deg, transparent 75%, #30363d 75%);
       }
 
       /* Font Family */
@@ -855,6 +950,8 @@
         text-align: center;
       }
     </style>
+    <script defer src="https://ping.ale.today/script.js" data-website-id="d88847de-8065-4d33-a4a2-e56784814d22"></script>
+    <script defer src="https://ping.ale.today/recorder.js" data-website-id="d88847de-8065-4d33-a4a2-e56784814d22"></script>
   </head>
 
   <body>
@@ -863,7 +960,7 @@
       <h1><span class="logo"></span>Token Viewer</h1>
       <div style="flex:1;min-width:200px">
         <div class="url-row">
-          <input id="atUrlInput" value="at://bomberstudios.com/org.designtxt.tokenCollection" placeholder="at:// URI" spellcheck="false">
+          <input id="atUrlInput" value="at://did:plc:34yvx4hv64znmh2i2fezoyqx/org.designtxt.tokenCollection" placeholder="at:// URI" spellcheck="false">
           <span class="kbd">&#8984;K</span>
         </div>
 
@@ -1222,6 +1319,15 @@
             return
           }
 
+          // Sort: all-token-types first, then by name
+          records.sort((a, b) => {
+            const aRkey = a.uri.split('/').pop()
+            const bRkey = b.uri.split('/').pop()
+            if (aRkey === 'all-token-types') return -1
+            if (bRkey === 'all-token-types') return 1
+            return (a.value.name || aRkey).localeCompare(b.value.name || bRkey)
+          })
+
           state = { ...state, pds, did, handle, records, activeRecordIdx: 0 }
 
           buildRecordTabs()
@@ -1497,9 +1603,50 @@
         const num = m ? m[1] : s
         const unit = m ? m[2] : ''
         const n = parseFloatSafe(num)
-        const pct = Math.min(n / 200 * 100, 100)
-        return `<div class="render-dimension"><span class="val">${num}</span><span class="unit">${unit}</span></div><div class="render-dimension"><div class="scale"><div class="fill" style="width:${pct}%"></div></div></div>`
+        // Convert to approximate pixels for preview
+        let px = n
+        if (unit === 'rem' || unit === 'em') px = n * 16
+        else if (unit === 'pt') px = n * 1.333
+        else if (unit === 'cm') px = n * 37.8
+        else if (unit === 'mm') px = n * 3.78
+        else if (unit === 'in') px = n * 96
+        else if (unit !== 'px' && unit !== '') px = 0 // viewport units, %, etc.
+        const canPreview = unit === '' || unit === 'px' || unit === 'rem' || unit === 'em' || unit === 'pt' || unit === 'cm' || unit === 'mm' || unit === 'in'
+        const size = canPreview ? Math.max(4, Math.min(72, px)) : 0
+        const preview = canPreview ? `<div class="dim-preview" data-dim-px="${px}" onclick="showDimFull(this)"><div class="dim-box" style="width:${size}px;height:${size}px"></div></div>` : ''
+        return `<div class="render-dimension">${preview}<div class="dim-info"><span class="val">${num}</span><span class="unit">${unit || 'px'}</span></div></div>`
       }
+
+      // Dimension full-screen overlay
+      let dimOverlay = null
+      function showDimFull(el) {
+        const n = parseFloatSafe(el.dataset.dimPx)
+        if (!dimOverlay) {
+          dimOverlay = document.createElement('div')
+          dimOverlay.className = 'dim-overlay'
+          dimOverlay.innerHTML = `
+            <button class="dim-close" onclick="closeDimFull()">Close</button>
+            <div class="dim-scale-info"></div>
+            <div class="dim-full-area"></div>
+          `
+          dimOverlay.addEventListener('click', (e) => {
+            if (e.target === dimOverlay) closeDimFull()
+          })
+          document.body.appendChild(dimOverlay)
+        }
+        const area = dimOverlay.querySelector('.dim-full-area')
+        area.innerHTML = `<div class="dim-box" style="width:${n}px;height:${n}px;background:var(--accent)"></div>`
+        dimOverlay.querySelector('.dim-scale-info').innerHTML = `${Math.round(n)}px at 100%`
+        dimOverlay.classList.add('open')
+      }
+
+      function closeDimFull() {
+        if (dimOverlay) dimOverlay.classList.remove('open')
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && dimOverlay?.classList.contains('open')) closeDimFull()
+      })
 
       function renderFontFamily(v) {
         const families = Array.isArray(v) ? v : [String(v).split(',')]

@@ -1026,6 +1026,47 @@
       }
       customElements.define('copy-button', CopyButton)
 
+      // ─── Token Card WebComponent ──────────────────────────────────────────
+
+      class TokenCard extends HTMLElement {
+        connectedCallback() {
+          this._render()
+        }
+
+        _render() {
+          const path = this.getAttribute('path')
+          if (!path) return
+          const token = state.flatTokens.find(t => t.path === path)
+          if (!token) return
+          this.innerHTML = renderTokenCard(token)
+          this._attachEvents()
+        }
+
+        _attachEvents() {
+          this.querySelector('.token-raw-btn')?.addEventListener('click', () => {
+            const raw = this.querySelector('.token-raw')
+            if (raw) {
+              raw.classList.toggle('open')
+              this.querySelector('.token-raw-btn')?.classList.toggle('active')
+            }
+          })
+
+          this.querySelectorAll('.token-ref-link').forEach(el => {
+            el.addEventListener('click', () => {
+              const path = el.dataset.tokenPath
+              const target = document.getElementById('token-' + cssId(path))
+              if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                target.style.outline = '2px solid var(--accent)'
+                target.style.outlineOffset = '2px'
+                setTimeout(() => target.style.outline = '', 2000)
+              }
+            })
+          })
+        }
+      }
+      customElements.define('token-card', TokenCard)
+
       // ─── AT Protocol helpers ──────────────────────────────────────────────
 
       // ─── DTCG helpers ─────────────────────────────────────────────────────
@@ -1338,32 +1379,10 @@
         const sorted = Object.entries(groups).sort((a, b) => groupRank(a[0]) - groupRank(b[0]))
         for (const [g, gTokens] of sorted) {
           html += '<div class="token-group"><div class="token-group-title">' + g + '</div><div class="token-grid">'
-          for (const t of gTokens) html += renderTokenCard(t)
+          for (const t of gTokens) html += '<token-card path="' + t.path + '"></token-card>'
           html += '</div></div>'
         }
         content.innerHTML = html
-        content.querySelectorAll('.token-ref-link').forEach(el => {
-          el.addEventListener('click', () => {
-            const path = el.dataset.tokenPath
-            const target = document.getElementById('token-' + cssId(path))
-            if (target) {
-              target.scrollIntoView({ behavior: 'smooth', block: 'center' })
-              target.style.outline = '2px solid var(--accent)'
-              target.style.outlineOffset = '2px'
-              setTimeout(() => target.style.outline = '', 2000)
-            }
-          })
-        })
-        content.querySelectorAll('.token-raw-btn').forEach(el => {
-          el.addEventListener('click', () => {
-            const card = el.closest('.token-card')
-            const raw = card.querySelector('.token-raw')
-            if (raw) {
-              raw.classList.toggle('open')
-              el.classList.toggle('active')
-            }
-          })
-        })
 
       }
 

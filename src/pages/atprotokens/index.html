@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Viewer</title>
+    <style>
+      :root {
+        --bg: #f8f9fa;
+        --surface: #ffffff;
+        --border: #d0d7de;
+        --text: #1f2328;
+        --text-dim: #6e7681;
+        --accent: #f60;
+        --accent-dim: #ff8833;
+        --radius: 8px;
+        --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+        --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        --input-bg: #f6f8fa;
+        --hover-border: #1f2328;
+        --shadow-card: 0 1px 3px rgba(31, 35, 40, 0.08), 0 1px 2px rgba(31, 35, 40, 0.06);
+        --shadow-card-hover: 0 4px 12px rgba(31, 35, 40, 0.12);
+      }
+
+      [data-theme="dark"] {
+        --bg: #0d1117;
+        --surface: #161b22;
+        --border: #30363d;
+        --text: #e6edf3;
+        --text-dim: #8b949e;
+        --accent: #ff6600;
+        --accent-dim: #cc5200;
+        --input-bg: #010409;
+        --hover-border: #484f58;
+        --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3);
+        --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+        min-height: 100vh;
+      }
+
+      /* Header */
+      .header {
+        border-bottom: 1px solid var(--border);
+        padding: 12px 20px;
+        background: var(--surface);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .header h1 {
+        font-size: 16px;
+        font-weight: 600;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .header h1 .logo {
+        width: 20px;
+        height: 20px;
+        background: var(--accent);
+        border-radius: 4px;
+        display: inline-block;
+      }
+
+      .url-row {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .url-row input {
+        background: var(--input-bg);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 8px 12px;
+        border-radius: var(--radius);
+        font-size: 14px;
+        font-family: var(--mono);
+        outline: none;
+        flex: 1;
+        min-width: 100px;
+      }
+
+      .url-row input:focus {
+        border-color: var(--accent);
+      }
+
+      .url-row .kbd {
+        font-size: 10px;
+        color: var(--text-dim);
+        background: var(--input-bg);
+        border: 1px solid var(--border);
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-family: var(--mono);
+        flex-shrink: 0;
+      }
+
+
+      .theme-btn {
+        background: none;
+        border: 1px solid var(--border);
+        color: var(--text-dim);
+        padding: 4px 8px;
+        border-radius: var(--radius);
+        cursor: pointer;
+        font-size: 15px;
+        line-height: 1;
+      }
+
+      .theme-btn:hover {
+        color: var(--text);
+        border-color: var(--hover-border);
+      }
+
+      /* Record tabs */
+      .record-bar {
+        display: none;
+        border-bottom: 1px solid var(--border);
+        padding: 0 20px;
+        background: var(--surface);
+        gap: 0;
+        overflow-x: auto;
+      }
+
+      .record-bar.show {
+        display: flex;
+      }
+
+      .record-tab {
+        padding: 8px 16px;
+        font-size: 13px;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        color: var(--text-dim);
+        white-space: nowrap;
+        transition: color .15s, border-color .15s;
+      }
+
+      .record-tab:hover {
+        color: var(--text);
+      }
+
+      .record-tab.active {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+
+      /* Main layout */
+      .main {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        height: calc(100vh - 99px);
+      }
+
+      @media (max-width: 768px) {
+        .main {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Sidebar */
+      .sidebar {
+        border-right: 1px solid var(--border);
+        padding: 12px;
+        overflow-y: auto;
+        background: var(--surface);
+      }
+
+      .search-input {
+        width: 100%;
+        background: var(--input-bg);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 6px 10px;
+        border-radius: var(--radius);
+        font-size: 13px;
+        outline: none;
+        margin-bottom: 8px;
+      }
+
+      .search-input:focus {
+        border-color: var(--accent);
+      }
+
+      .tree-nav {
+        font-size: 12px;
+      }
+
+      .tree-item {
+        padding: 2px 0 2px 12px;
+        cursor: pointer;
+        color: var(--text-dim);
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        border-radius: 3px;
+        transition: color .1s;
+      }
+
+      .tree-item:hover {
+        color: var(--text);
+      }
+
+      .tree-item .chevron {
+        width: 14px;
+        flex-shrink: 0;
+        text-align: center;
+        color: var(--text-dim);
+        font-size: 9px;
+        transition: transform .15s;
+      }
+
+      .tree-item .chevron.open {
+        transform: rotate(90deg);
+      }
+
+      .tree-item .name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .tree-item .badge {
+        font-size: 9px;
+        padding: 1px 5px;
+        border-radius: 8px;
+        background: var(--border);
+        color: var(--text-dim);
+        margin-left: auto;
+        flex-shrink: 0;
+      }
+
+      .tree-item.active {
+        color: var(--accent);
+      }
+
+      .tree-item.active .badge {
+        background: var(--accent-dim);
+        color: #fff;
+      }
+
+      .tree-children {
+        display: none;
+      }
+
+      .tree-children.open {
+        display: block;
+      }
+
+      .tree-empty {
+        color: var(--text-dim);
+        font-size: 13px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      /* Content */
+      .content {
+        padding: 20px 24px;
+        overflow-y: auto;
+        background: var(--bg);
+      }
+
+      .content-header {
+        margin-bottom: 20px;
+      }
+
+      .content-header h2 {
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .content-header .meta {
+        font-size: 12px;
+        color: var(--text-dim);
+        margin-top: 3px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .token-group {
+        margin-bottom: 20px;
+      }
+
+      .token-group-title {
+        font-size: 11px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--text-dim);
+        text-transform: uppercase;
+        letter-spacing: .06em;
+      }
+
+      .token-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 10px;
+      }
+
+      .token-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 14px;
+        transition: box-shadow .2s, border-color .2s;
+        box-shadow: var(--shadow-card);
+      }
+
+      .token-card:hover {
+        box-shadow: var(--shadow-card-hover);
+        border-color: var(--hover-border);
+      }
+
+      .token-card-header {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 6px;
+      }
+
+      .token-card-name {
+        font-size: 12px;
+        font-weight: 600;
+        font-family: var(--mono);
+        word-break: break-all;
+      }
+
+      .token-copy-btn {
+        background: none;
+        border: none;
+        color: var(--text-dim);
+        cursor: pointer;
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-size: 20px;
+        line-height: 1;
+        flex-shrink: 0;
+        opacity: 0;
+        transition: opacity .15s, color .15s, background .15s;
+        position: relative;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .token-card:hover .token-copy-btn {
+        opacity: 1;
+      }
+
+      .token-copy-btn:hover {
+        color: var(--accent);
+        background: var(--input-bg);
+      }
+
+      .token-copy-btn.copied {
+        opacity: 1;
+        color: var(--accent);
+      }
+
+      [data-theme="dark"] .token-copy-btn.copied {
+        color: var(--accent);
+      }
+
+      .token-copy-tip {
+        position: absolute;
+        top: -24px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--text);
+        color: var(--bg);
+        font-size: 10px;
+        padding: 2px 6px;
+        border-radius: 3px;
+        white-space: nowrap;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity .15s;
+      }
+
+      .token-copy-btn.copied .token-copy-tip {
+        opacity: 1;
+      }
+
+      .token-type-badge {
+        font-size: 9px;
+        padding: 1px 6px;
+        border-radius: 8px;
+        background: #fff0e0;
+        color: #cc5200;
+        flex-shrink: 0;
+        font-weight: 500;
+        text-transform: lowercase;
+        margin-left: auto;
+      }
+
+      [data-theme="dark"] .token-type-badge {
+        background: rgba(255, 102, 0, 0.12);
+        color: #f60;
+      }
+
+      .token-desc {
+        font-size: 11px;
+        color: var(--text-dim);
+        margin-bottom: 6px;
+        font-style: italic;
+      }
+
+      .token-value {
+        font-size: 12px;
+        font-family: var(--mono);
+        color: var(--text-dim);
+        word-break: break-all;
+      }
+
+      .token-value.ref {
+        color: var(--accent);
+      }
+
+      .token-ref-label {
+        font-size: 10px;
+        font-family: var(--mono);
+        margin-top: 6px;
+        padding-top: 4px;
+        border-top: 1px dashed var(--border);
+        word-break: break-all;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+
+      .token-ref-link {
+        color: var(--accent);
+        text-decoration: none;
+        cursor: pointer;
+        padding: 1px 4px;
+        border-radius: 3px;
+      }
+
+      .token-ref-link:hover {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      /* ── Type renderers ── */
+
+      /* Color */
+      .render-color {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .render-color .swatch {
+        width: 44px;
+        height: 44px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        flex-shrink: 0;
+        background-size: 12px 12px;
+        background-position: 0 0, 0 6px, 6px -6px, -6px 0;
+        background-image: linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
+          linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
+          linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
+      }
+
+      .render-color .swatch-inner {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+      }
+
+      .render-color .color-info {
+        line-height: 1.5;
+      }
+
+      .render-color .color-row {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .render-color .color-row .hex {
+        font-family: var(--mono);
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .render-color .color-row .copy-hex {
+        background: none;
+        border: none;
+        color: var(--text-dim);
+        cursor: pointer;
+        padding: 2px;
+        border-radius: 4px;
+        font-size: 18px;
+        line-height: 1;
+        opacity: 0;
+        transition: opacity .15s;
+        position: relative;
+        width: 26px;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .render-color:hover .color-row .copy-hex {
+        opacity: 1;
+      }
+
+      .render-color .color-row .copy-hex:hover {
+        color: var(--accent);
+        background: var(--input-bg);
+      }
+
+      .render-color .color-row .copy-hex.copied {
+        opacity: 1;
+        color: var(--accent);
+      }
+
+      [data-theme="dark"] .render-color .color-row .copy-hex.copied {
+        color: var(--accent);
+      }
+
+      .render-color .color-space {
+        font-size: 10px;
+        color: var(--text-dim);
+      }
+
+      /* Dimension */
+      .render-dimension {
+        display: flex;
+        align-items: baseline;
+        gap: 4px;
+      }
+
+      .render-dimension .val {
+        font-size: 28px;
+        font-weight: 700;
+        font-family: var(--mono);
+        color: var(--text);
+        line-height: 1.1;
+      }
+
+      .render-dimension .unit {
+        font-size: 14px;
+        color: var(--text-dim);
+        font-weight: 400;
+      }
+
+      .render-dimension .scale {
+        margin-top: 6px;
+        height: 4px;
+        background: var(--border);
+        border-radius: 2px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .render-dimension .scale .fill {
+        height: 100%;
+        background: var(--accent);
+        border-radius: 2px;
+        transition: width .3s;
+      }
+
+      /* Font Family */
+      .render-font-family {
+        padding: 10px 12px;
+        background: var(--input-bg);
+        border-radius: 6px;
+      }
+
+      .render-font-family .preview {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .render-font-family .preview .big {
+        font-size: 36px;
+        line-height: 1;
+        color: var(--text);
+        flex-shrink: 0;
+      }
+
+      .render-font-family .preview .pangram {
+        font-size: 13px;
+        line-height: 1.4;
+        color: var(--text-dim);
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .render-font-family .label {
+        font-size: 10px;
+        color: var(--text-dim);
+        margin-top: 6px;
+        font-family: var(--mono);
+      }
+
+      /* Font Weight */
+      .render-font-weight {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .render-font-weight .sample {
+        font-size: 28px;
+        line-height: 1.1;
+        flex-shrink: 0;
+      }
+
+      .render-font-weight .meta {
+        font-size: 11px;
+        color: var(--text-dim);
+      }
+
+      .render-font-weight .meta .num {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--text);
+      }
+
+      /* Duration */
+      .render-duration {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .render-duration .val {
+        font-size: 22px;
+        font-weight: 600;
+        font-family: var(--mono);
+        color: var(--text);
+        line-height: 1.1;
+      }
+
+      .render-duration .unit {
+        font-size: 12px;
+        color: var(--text-dim);
+        font-weight: 400;
+      }
+
+      .render-duration .bar {
+        width: 60px;
+        height: 4px;
+        background: var(--border);
+        border-radius: 2px;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .render-duration .bar .fill {
+        height: 100%;
+        width: 60%;
+        background: var(--accent);
+        border-radius: 2px;
+        animation: pulse-bar 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse-bar {
+
+        0%,
+        100% {
+          width: 30%;
+        }
+
+        50% {
+          width: 70%;
+        }
+      }
+
+      /* Cubic Bezier */
+      .render-bezier {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .render-bezier .chart {
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+      }
+
+      .render-bezier .chart svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .render-bezier .coords {
+        font-size: 11px;
+        color: var(--text-dim);
+        font-family: var(--mono);
+        line-height: 1.6;
+      }
+
+      /* Number */
+      .render-number {
+        font-size: 22px;
+        font-weight: 600;
+        font-family: var(--mono);
+        color: var(--text);
+      }
+
+      /* String */
+      .render-string {
+        font-size: 12px;
+        font-family: var(--mono);
+        color: var(--text);
+        background: var(--input-bg);
+        padding: 4px 8px;
+        border-radius: 4px;
+        display: inline-block;
+      }
+
+      /* Stroke Style */
+      .render-stroke-style {}
+
+      .render-stroke-style svg {
+        width: 100%;
+        height: 24px;
+        display: block;
+      }
+
+      /* Border */
+      .render-border-preview {
+        padding: 8px 0;
+      }
+
+      .render-border-preview .box {
+        width: 100%;
+        height: 44px;
+        border-radius: 6px;
+        background: var(--input-bg);
+      }
+
+      /* Shadow */
+      .render-shadow-preview {
+        padding: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 64px;
+      }
+
+      .render-shadow-preview .box {
+        width: 80px;
+        height: 48px;
+        background: var(--surface);
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        transition: box-shadow .3s;
+      }
+
+      /* Gradient */
+      .render-gradient {
+        height: 40px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+      }
+
+      /* Typography */
+      .render-typography {
+        padding: 12px 14px;
+        background: var(--input-bg);
+        border-radius: 6px;
+      }
+
+      .render-typography .sample {
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 8px;
+        color: var(--text);
+      }
+
+      .render-typography .props {
+        font-size: 10px;
+        color: var(--text-dim);
+        font-family: var(--mono);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+
+      .render-typography .props span {
+        background: var(--surface);
+        padding: 1px 6px;
+        border-radius: 3px;
+        border: 1px solid var(--border);
+      }
+
+      /* Initial state */
+      .connect-prompt {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        color: var(--text-dim);
+        font-size: 14px;
+      }
+
+      .no-tokens {
+        color: var(--text-dim);
+        padding: 24px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="header">
+      <h1><span class="logo"></span>Token Viewer</h1>
+      <div style="flex:1;min-width:200px">
+        <div class="url-row">
+          <input id="atUrlInput" value="at://bomberstudios.com/org.designtxt.tokenCollection" placeholder="at:// URI" spellcheck="false">
+          <span class="kbd">&#8984;K</span>
+        </div>
+
+      </div>
+      <button id="themeBtn" class="theme-btn" title="Toggle theme">&#9790;</button>
+    </div>
+
+    <div id="recordBar" class="record-bar"></div>
+
+    <div class="main">
+      <div class="sidebar" id="sidebar">
+        <input id="searchInput" class="search-input" placeholder="Search tokens..." style="display:none">
+        <div id="treeNav" class="tree-nav"></div>
+      </div>
+      <div class="content" id="content">
+        <div class="connect-prompt">Enter an at:// URI above (or press &#8984;K)</div>
+      </div>
+    </div>
+
+    <script>
+      // ─── Theme ────────────────────────────────────────────────────────────
+
+      const themeBtn = document.getElementById('themeBtn')
+      function getTheme() { return localStorage.getItem('token-viewer-theme') || 'light' }
+      function setTheme(t) {
+        document.documentElement.setAttribute('data-theme', t)
+        localStorage.setItem('token-viewer-theme', t)
+        themeBtn.textContent = t === 'dark' ? '\u263C' : '\u263E'
+      }
+      themeBtn.addEventListener('click', () => {
+        setTheme(getTheme() === 'dark' ? 'light' : 'dark')
+      })
+      setTheme(getTheme())
+
+      // ─── AT Protocol helpers ──────────────────────────────────────────────
+
+      // ─── DTCG helpers ─────────────────────────────────────────────────────
+
+      function isTokenNode(n) {
+        return n && typeof n === 'object' && !Array.isArray(n) && ('$value' in n)
+      }
+
+      function collectTokens(obj, inheritedType, path, tokens) {
+        if (!obj || typeof obj !== 'object') return
+        for (const [key, val] of Object.entries(obj)) {
+          if (key.startsWith('$') || key === 'name' || key === 'description' || key === 'createdAt') continue
+          if (!val || typeof val !== 'object' || Array.isArray(val)) continue
+          const type = val.$type || inheritedType || null
+          if (isTokenNode(val)) tokens.push({ name: key, path: path ? path + '.' + key : key, token: val, type })
+          if (!('$value' in val)) collectTokens(val, type, path ? path + '.' + key : key, tokens)
+        }
+      }
+
+      function flattenTree(tree) {
+        const t = []; collectTokens(tree, null, '', t); return t
+      }
+
+      function parseFloatSafe(v) {
+        if (typeof v === 'number') return v
+        const n = parseFloat(v)
+        return isNaN(n) ? 0 : n
+      }
+
+      function isRef(v) { return typeof v === 'string' && /^\{[\w.]+\}$/.test(v) }
+
+      function dimStr(v) {
+        if (typeof v === 'string') return v
+        if (typeof v === 'number') return String(v)
+        if (v && typeof v === 'object') {
+          return (typeof v.value === 'number' ? v.value : parseFloatSafe(v.value)) + (v.unit || '')
+        }
+        return String(v)
+      }
+
+      // ─── Color helpers ────────────────────────────────────────────────────
+
+      function colorToCSS(v) {
+        if (typeof v === 'string') return v
+        if (!v || typeof v !== 'object') return '#808080'
+        const hex = v.hex || (() => {
+          const c = (v.components || []).map(x => Math.round(clamp(parseFloatSafe(x)) * 255))
+          return c.length >= 3 ? '#' + c.slice(0, 3).map(x => x.toString(16).padStart(2, '0')).join('') : '#808080'
+        })()
+        const alpha = v.alpha != null ? parseFloatSafe(v.alpha) : 1
+        if (alpha >= 1) return hex
+        const r = parseInt(hex.slice(1, 3), 16)
+        const g = parseInt(hex.slice(3, 5), 16)
+        const b = parseInt(hex.slice(5, 7), 16)
+        return `rgba(${r},${g},${b},${alpha})`
+      }
+      function clamp(v) { return Math.max(0, Math.min(1, v)) }
+
+      const FONT_WEIGHT_MAP = { thin: 100, hairline: 100, 'extra-light': 200, 'ultra-light': 200, light: 300, normal: 400, regular: 400, medium: 500, 'semi-bold': 600, 'demi-bold': 600, bold: 700, 'extra-bold': 800, 'ultra-bold': 800, black: 900, heavy: 900, 'extra-black': 950, 'ultra-black': 950 }
+
+      function fontWeightNum(v) {
+        if (v == null) return 400
+        if (typeof v === 'number') return v
+        if (/^\d+$/.test(v)) return parseInt(v, 10)
+        return FONT_WEIGHT_MAP[v.toLowerCase()] || 400
+      }
+
+      // ─── UI state ─────────────────────────────────────────────────────────
+
+      const atUrlInput = document.getElementById('atUrlInput')
+      const recordBar = document.getElementById('recordBar')
+      const treeNav = document.getElementById('treeNav')
+      const content = document.getElementById('content')
+      const searchInput = document.getElementById('searchInput')
+
+      let state = { pds: '', did: '', handle: '', records: [], activeRecordIdx: 0, flatTokens: [], filteredTokens: [], tokenMap: new Map() }
+
+      atUrlInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') loadFromAtUrl(atUrlInput.value.trim())
+      })
+
+      document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+          e.preventDefault()
+          atUrlInput.focus()
+          atUrlInput.select()
+        }
+      })
+
+      async function loadFromAtUrl(url) {
+        atUrlInput.value = url
+        // Parse at://<identifier>/<collection>[/<rkey>]
+        const m = url.match(/^at:\/\/([^/]+)\/([^/]+)(?:\/([^/]+))?$/)
+        if (!m) { content.innerHTML = '<div class="connect-prompt">Invalid at:// URI</div>'; return }
+        const identifier = m[1]
+        const collection = m[2]
+        const rkey = m[3]
+
+        if (collection !== 'org.designtxt.tokenCollection') {
+          content.innerHTML = '<div class="connect-prompt">Only org.designtxt.tokenCollection is supported</div>'
+          return
+        }
+
+        content.innerHTML = '<div class="connect-prompt">Resolving\u2026</div>'
+
+        try {
+          let did, pds, handle = identifier
+
+          if (identifier.startsWith('did:')) {
+            did = identifier
+            const info = await resolveDID(did)
+            pds = info.pds
+            did = info.did
+          } else {
+            // Resolve handle → DID via well-known PDS endpoints
+            const found = await resolveHandleToDID(identifier)
+            did = found.did
+            pds = found.pds
+          }
+
+          let records
+          if (rkey) {
+            const rec = await getRecord(pds, did, collection, rkey)
+            records = [{ uri: rec.uri, value: rec.value, cid: rec.cid }]
+          } else {
+            records = await listRecords(pds, did, collection)
+          }
+
+          if (!records.length) {
+            content.innerHTML = '<div class="no-tokens">No token collections found.</div>'
+            recordBar.classList.remove('show'); recordBar.innerHTML = ''
+            searchInput.style.display = 'none'; treeNav.innerHTML = ''
+            return
+          }
+
+          state = { ...state, pds, did, handle, records, activeRecordIdx: 0 }
+
+          buildRecordTabs()
+          showRecord(0)
+        } catch (err) {
+          content.innerHTML = '<div class="connect-prompt">Error: ' + escapeHtml(err.message) + '</div>'
+        }
+      }
+
+      async function resolveDID(did) {
+        if (did.startsWith('did:plc:')) {
+          const res = await fetch('https://plc.directory/' + did)
+          if (!res.ok) throw new Error('DID resolution failed: ' + res.status)
+          const doc = await res.json()
+          const pds = doc.service?.find(s => s.type === 'AtprotoPersonalDataServer')?.serviceEndpoint
+          if (!pds) throw new Error('No PDS in DID document')
+          return { did, pds }
+        }
+        if (did.startsWith('did:web:')) {
+          const domain = did.slice(8)
+          const res = await fetch('https://' + domain + '/.well-known/did.json')
+          if (!res.ok) throw new Error('DID web resolution failed: ' + res.status)
+          const doc = await res.json()
+          const pds = doc.service?.find(s => s.type === 'AtprotoPersonalDataServer')?.serviceEndpoint
+          if (!pds) throw new Error('No PDS in DID document')
+          return { did, pds }
+        }
+        throw new Error('Unsupported DID method')
+      }
+
+      const PDS_ENDPOINTS = ['https://bsky.social', 'https://eurosky.social', 'https://morel.us', 'https://pds.turpialapp.com']
+
+      async function resolveHandleToDID(handle) {
+        for (const pds of PDS_ENDPOINTS) {
+          try {
+            const res = await fetch(pds + '/xrpc/com.atproto.identity.resolveHandle?handle=' + encodeURIComponent(handle))
+            if (res.ok) {
+              const { did } = await res.json()
+              const info = await resolveDID(did)
+              return { did: info.did, pds: info.pds }
+            }
+          } catch { }
+        }
+        throw new Error('Could not resolve handle: ' + handle)
+      }
+
+      async function getRecord(pds, did, collection, rkey) {
+        const url = pds + '/xrpc/com.atproto.repo.getRecord?repo=' + encodeURIComponent(did) + '&collection=' + encodeURIComponent(collection) + '&rkey=' + encodeURIComponent(rkey)
+        const res = await fetch(url)
+        if (!res.ok) throw new Error('getRecord failed: ' + res.status)
+        return res.json()
+      }
+
+      async function listRecords(pds, did, collection) {
+        let cursor, records = []
+        do {
+          const params = new URLSearchParams({ repo: did, collection })
+          if (cursor) params.set('cursor', cursor)
+          const res = await fetch(pds + '/xrpc/com.atproto.repo.listRecords?' + params)
+          if (!res.ok) throw new Error('listRecords failed: ' + res.status)
+          const data = await res.json()
+          records = records.concat(data.records)
+          cursor = data.cursor
+        } while (cursor)
+        return records
+      }
+
+      function buildRecordTabs() {
+        recordBar.classList.add('show')
+        recordBar.innerHTML = state.records.map((r, i) => {
+          const label = r.value.name || r.uri.split('/').pop() || 'Record ' + (i + 1)
+          return `<div class="record-tab${i === state.activeRecordIdx ? ' active' : ''}" data-idx="${i}">${label}</div>`
+        }).join('')
+        recordBar.querySelectorAll('.record-tab').forEach(el => {
+          el.addEventListener('click', () => {
+            document.querySelectorAll('.record-tab').forEach(t => t.classList.remove('active'))
+            el.classList.add('active')
+            showRecord(parseInt(el.dataset.idx))
+          })
+        })
+      }
+
+      function showRecord(idx) {
+        state.activeRecordIdx = idx
+        atUrlInput.value = state.records[idx].uri
+        state.flatTokens = flattenTree(state.records[idx].value)
+        state.tokenMap = new Map()
+        for (const t of state.flatTokens) state.tokenMap.set(t.path, t.token)
+        state.filteredTokens = state.flatTokens
+        searchInput.style.display = 'block'
+        searchInput.value = ''
+        searchInput.placeholder = 'Search ' + state.flatTokens.length + ' tokens\u2026'
+        buildSidebar(state.flatTokens)
+        renderContent(state.flatTokens)
+      }
+
+      searchInput.addEventListener('input', () => {
+        const q = searchInput.value.toLowerCase().trim()
+        state.filteredTokens = q ? state.flatTokens.filter(t =>
+          t.path.toLowerCase().includes(q) || (t.token.$description || '').toLowerCase().includes(q) || (t.type || '').toLowerCase().includes(q)
+        ) : state.flatTokens
+        buildSidebar(state.filteredTokens)
+        renderContent(state.filteredTokens)
+      })
+
+      // ─── Sidebar ─────────────────────────────────────────────────────────
+
+      function buildSidebar(tokens) {
+        if (!tokens.length) { treeNav.innerHTML = '<div class="tree-empty">No matching tokens</div>'; return }
+        const tree = {}
+        for (const t of tokens) {
+          let node = tree
+          for (const part of t.path.split('.')) { if (!node[part]) node[part] = {}; node = node[part] }
+          node._token = t
+        }
+        treeNav.innerHTML = renderTree(tree, '')
+        treeNav.querySelectorAll('.tree-item').forEach(el => {
+          el.addEventListener('click', (e) => {
+            e.stopPropagation()
+            const children = el.nextElementSibling
+            if (children?.classList.contains('tree-children')) {
+              children.classList.toggle('open')
+              el.querySelector('.chevron')?.classList.toggle('open')
+            }
+            const target = document.getElementById('token-' + cssId(el.dataset.path))
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'center' })
+              target.style.outline = '2px solid var(--accent)'
+              target.style.outlineOffset = '2px'
+              setTimeout(() => target.style.outline = '', 1500)
+            }
+          })
+        })
+      }
+
+      function cssId(s) { return s.replace(/[^\w-]/g, '_') }
+
+      function renderTree(node, path) {
+        let html = ''
+        for (const key of Object.keys(node).filter(k => k !== '_token').sort()) {
+          const child = node[key]
+          const fullPath = path ? path + '.' + key : key
+          const hasChildren = Object.keys(child).filter(k => k !== '_token').length > 0
+          const type = child._token?.type || ''
+          html += `<div class="tree-item" data-path="${fullPath}">`
+          html += `<span class="chevron${hasChildren ? ' open' : ''}">${hasChildren ? '\u25B6' : ''}</span>`
+          html += `<span class="name">${key}</span>`
+          if (type) html += `<span class="badge">${type}</span>`
+          html += '</div>'
+          if (hasChildren) html += `<div class="tree-children open">${renderTree(child, fullPath)}</div>`
+        }
+        return html
+      }
+
+      // ─── Content ─────────────────────────────────────────────────────────
+
+      function renderContent(tokens) {
+        if (!tokens.length) { content.innerHTML = '<div class="no-tokens">No matching tokens</div>'; return }
+        const val = state.records[state.activeRecordIdx].value
+        let html = '<div class="content-header">'
+        html += '<h2>' + (val.name || 'Token Collection') + '</h2>'
+        html += '<div class="meta">' + tokens.length + ' tokens'
+        if (val.description) html += '<span>' + val.description + '</span>'
+        if (val.createdAt) html += '<span>' + new Date(val.createdAt).toLocaleDateString() + '</span>'
+        html += '</div></div>'
+        const groups = {}
+        for (const t of tokens) {
+          const top = t.path.split('.')[0]
+          if (!groups[top]) groups[top] = []
+          groups[top].push(t)
+        }
+        for (const [g, gTokens] of Object.entries(groups)) {
+          html += '<div class="token-group"><div class="token-group-title">' + g + '</div><div class="token-grid">'
+          for (const t of gTokens) html += renderTokenCard(t)
+          html += '</div></div>'
+        }
+        content.innerHTML = html
+        content.querySelectorAll('.token-ref-link').forEach(el => {
+          el.addEventListener('click', () => {
+            const path = el.dataset.tokenPath
+            const target = document.getElementById('token-' + cssId(path))
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'center' })
+              target.style.outline = '2px solid var(--accent)'
+              target.style.outlineOffset = '2px'
+              setTimeout(() => target.style.outline = '', 2000)
+            }
+          })
+        })
+        content.querySelectorAll('.token-copy-btn').forEach(el => {
+          el.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(el.dataset.tokenPath)
+              el.classList.add('copied')
+              setTimeout(() => el.classList.remove('copied'), 1200)
+            } catch { }
+          })
+        })
+        content.querySelectorAll('.copy-hex').forEach(el => {
+          el.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(el.dataset.hex)
+              el.classList.add('copied')
+              setTimeout(() => el.classList.remove('copied'), 1200)
+            } catch { }
+          })
+        })
+      }
+
+      function renderTokenCard(t) {
+        const v = t.token.$value, type = t.type, desc = t.token.$description
+        const hasRef = hasRefs(v)
+        const resolved = hasRef ? resolveTokenRefs(v) : v
+        let rendered = ''
+        if (type && resolved !== undefined) rendered = renderTypeValue(type, resolved)
+        let html = '<div class="token-card" id="token-' + cssId(t.path) + '">'
+        html += '<div class="token-card-header">'
+        html += '<span class="token-card-name">' + t.path + '</span>'
+        html += '<button class="token-copy-btn" data-token-path="' + t.path + '" title="Copy token path"><span class="token-copy-tip">Copied</span>&#x2398;</button>'
+        if (type) html += '<span class="token-type-badge">' + type + '</span>'
+        html += '</div>'
+        if (desc) html += '<div class="token-desc">' + escapeHtml(desc) + '</div>'
+        if (rendered) html += rendered
+        else if (resolved !== undefined) {
+          const isR = isRef(resolved)
+          html += '<div class="token-value' + (isR ? ' ref' : '') + '">' + (isR ? resolved : JSON.stringify(resolved)) + '</div>'
+        }
+        if (hasRef) {
+          const refs = extractRefs(v)
+          const links = refs.map(r => '<span class="token-ref-link" data-token-path="' + r.slice(1, -1) + '">' + r + '</span>')
+          html += '<div class="token-ref-label">' + links.join('') + '</div>'
+        }
+        html += '</div>'
+        return html
+      }
+
+      function resolveTokenRefs(v) {
+        const tokenMap = state.tokenMap
+        function walk(val) {
+          if (typeof val === 'string' && /^\{[\w.]+\}$/.test(val)) {
+            const path = val.slice(1, -1)
+            const target = tokenMap.get(path)
+            if (target && target.$value !== undefined) return walk(target.$value)
+            return val
+          }
+          if (val && typeof val === 'object') {
+            if (Array.isArray(val)) return val.map(walk)
+            const result = {}
+            for (const [k, vv] of Object.entries(val)) result[k] = walk(vv)
+            return result
+          }
+          return val
+        }
+        return walk(v)
+      }
+
+      function hasRefs(v) {
+        if (typeof v === 'string' && /^\{[\w.]+\}$/.test(v)) return true
+        if (v && typeof v === 'object') {
+          if (Array.isArray(v)) return v.some(hasRefs)
+          return Object.values(v).some(hasRefs)
+        }
+        return false
+      }
+
+      function extractRefs(v) {
+        const refs = new Set()
+        function walk(val) {
+          if (typeof val === 'string' && /^\{[\w.]+\}$/.test(val)) refs.add(val)
+          else if (val && typeof val === 'object') { (Array.isArray(val) ? val : Object.values(val)).forEach(walk) }
+        }
+        walk(v)
+        return [...refs]
+      }
+
+      function escapeHtml(s) {
+        const d = document.createElement('div')
+        d.textContent = s
+        return d.innerHTML
+      }
+
+      function renderTypeValue(type, v) {
+        if (typeof v === 'string' && isRef(v)) return '<div class="token-value ref">' + v + '</div>'
+        switch (type) {
+          case 'color': return renderColor(v)
+          case 'dimension': return renderDimension(v)
+          case 'fontFamily': return renderFontFamily(v)
+          case 'fontWeight': return renderFontWeight(v)
+          case 'duration': return renderDuration(v)
+          case 'cubicBezier': return renderCubicBezier(v)
+          case 'number': return '<div class="render-number">' + (typeof v === 'string' ? v : String(v)) + '</div>'
+          case 'string': return '<div class="render-string">' + escapeHtml(String(v)) + '</div>'
+          case 'strokeStyle': return renderStrokeStyle(v)
+          case 'border': return renderBorder(v)
+          case 'transition': return renderTransition(v)
+          case 'shadow': return renderShadow(v)
+          case 'gradient': return renderGradient(v)
+          case 'typography': return renderTypography(v)
+          default: return ''
+        }
+      }
+
+      // ─── Individual renderers ─────────────────────────────────────────────
+
+      function renderColor(v) {
+        if (typeof v === 'string') {
+          const css = v.startsWith('#') || v.startsWith('rgb') || v.startsWith('hsl') ? v : '#' + v
+          return '<div class="render-color"><div class="swatch"><div class="swatch-inner" style="background:' + css + '"></div></div><div class="color-info"><div class="color-row"><span class="hex">' + v + '</span></div></div></div>'
+        }
+        if (typeof v !== 'object') return ''
+        const css = colorToCSS(v)
+        const hex = v.hex || ''
+        const alpha = v.alpha != null ? parseFloatSafe(v.alpha) : 1
+        const cs = v.colorSpace || ''
+        const alphaStr = alpha < 1 ? '<div style="font-size:10px;color:var(--text-dim)">alpha ' + alpha.toFixed(2) + '</div>' : ''
+        return '<div class="render-color"><div class="swatch"><div class="swatch-inner" style="background:' + css + '"></div></div><div class="color-info"><div class="color-row"><span class="hex">' + hex + '</span><button class="copy-hex" data-hex="' + hex + '" title="Copy hex"><span class="token-copy-tip">Copied</span>&#x2398;</button></div><div class="color-space">' + cs + '</div>' + alphaStr + '</div></div>'
+      }
+
+      function renderDimension(v) {
+        const s = dimStr(v)
+        const m = s.match(/^([\d.]+)(.*)/)
+        const num = m ? m[1] : s
+        const unit = m ? m[2] : ''
+        const n = parseFloatSafe(num)
+        const pct = Math.min(n / 200 * 100, 100)
+        return `<div class="render-dimension"><span class="val">${num}</span><span class="unit">${unit}</span></div><div class="render-dimension"><div class="scale"><div class="fill" style="width:${pct}%"></div></div></div>`
+      }
+
+      function renderFontFamily(v) {
+        const families = Array.isArray(v) ? v : [String(v).split(',')]
+        const first = Array.isArray(v) ? v[0] : String(v).split(',')[0].trim()
+        const stack = Array.isArray(v) ? v.join(', ') : String(v)
+        const cleanFirst = first.replace(/['"]/g, '')
+        return `<div class="render-font-family"><div class="preview"><div class="big" style="font-family:'${cleanFirst}',${stack}">Aa</div><div class="pangram" style="font-family:'${cleanFirst}',${stack}">Pack my box with five dozen liquor jugs.</div></div><div class="label">${stack}</div></div>`
+      }
+
+      function renderFontWeight(v) {
+        const num = fontWeightNum(v)
+        return `<div class="render-font-weight"><div class="sample" style="font-weight:${num}">Aa</div><div class="meta"><div class="num">${num}</div><div style="font-size:10px">${v}</div></div></div>`
+      }
+
+      function renderDuration(v) {
+        let val, unit = ''
+        if (typeof v === 'number') { val = v; unit = 'ms' }
+        else if (typeof v === 'string') { const m = v.match(/^([\d.]+)(.*)/); val = m ? m[1] : v; unit = m ? m[2] : '' }
+        else if (v && typeof v === 'object') { val = parseFloatSafe(v.value); unit = v.unit || 'ms' }
+        else return ''
+        return `<div class="render-duration"><span class="val">${val}</span><span class="unit">${unit}</span><div class="bar"><div class="fill"></div></div></div>`
+      }
+
+      function renderCubicBezier(v) {
+        const arr = Array.isArray(v) ? v.map(c => typeof c === 'string' ? parseFloat(c) : c) : []
+        if (arr.length < 4) return ''
+        const [x1, y1, x2, y2] = arr
+        const d = `M0,1 C${x1},${1 - y1} ${x2},${1 - y2} 1,0`
+        return `<div class="render-bezier"><div class="chart"><svg viewBox="0 0 1 1" preserveAspectRatio="none">
+    <rect x="0" y="0" width="1" height="1" fill="none" stroke="var(--border)" stroke-width="0.015"/>
+    <line x1="0" y1="1" x2="${x1}" y2="${1 - y1}" stroke="var(--border)" stroke-width="0.01"/>
+    <line x1="1" y1="0" x2="${x2}" y2="${1 - y2}" stroke="var(--border)" stroke-width="0.01"/>
+    <path d="${d}" fill="none" stroke="var(--accent)" stroke-width="0.035" stroke-linecap="round"/>
+    <circle cx="${x1}" cy="${1 - y1}" r="0.05" fill="var(--accent)" opacity="0.6"/>
+    <circle cx="${x2}" cy="${1 - y2}" r="0.05" fill="var(--accent)" opacity="0.6"/>
+  </svg></div><div class="coords">(${x1.toFixed(3)}, ${y1.toFixed(3)})<br>(${x2.toFixed(3)}, ${y2.toFixed(3)})</div></div>`
+      }
+
+      function renderStrokeStyle(v) {
+        if (typeof v !== 'object') return ''
+        const dash = v.dashArray || []
+        const cap = v.lineCap || 'butt'
+        const join = v.lineJoin || 'miter'
+        const dashStr = dash.length ? dash.map(d => parseFloatSafe(d) * 4).join(', ') : ''
+        return `<div class="render-stroke-style"><svg width="100%" height="24" viewBox="0 0 200 24">
+    <line x1="10" y1="12" x2="190" y2="12" stroke="var(--text)" stroke-width="6" stroke-linecap="${cap}" stroke-linejoin="${join}" stroke-dasharray="${dashStr || 'none'}"/>
+    <line x1="10" y1="12" x2="190" y2="12" stroke="var(--border)" stroke-width="1" stroke-linecap="square" stroke-dasharray="${dashStr || 'none'}"/>
+  </svg></div>`
+      }
+
+      function renderBorder(v) {
+        if (typeof v !== 'object') return ''
+        const w = v.width ? dimStr(v.width) : '2px'
+        const style = v.style || 'solid'
+        const color = v.color ? (typeof v.color === 'object' ? colorToCSS(v.color) : v.color) : 'var(--border)'
+        return `<div class="render-border-preview"><div class="box" style="border:${w} ${style} ${color}"></div></div>`
+      }
+
+      function renderTransition(v) {
+        if (typeof v !== 'object') return ''
+        const dur = v.duration ? dimStr(v.duration) : ''
+        const delay = v.delay ? dimStr(v.delay) : ''
+        let h = '<div style="display:flex;flex-wrap:wrap;gap:4px;font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-bottom:6px">'
+        if (dur) h += '<span>duration: ' + dur + '</span>'
+        if (delay) h += '<span>delay: ' + delay + '</span>'
+        h += '</div>'
+        if (v.timingFunction) h += renderCubicBezier(v.timingFunction)
+        return h
+      }
+
+      function renderShadow(v) {
+        const layers = Array.isArray(v) ? v : [v]
+        const cssShadows = layers.map(l => {
+          const color = l.color && typeof l.color === 'object' ? colorToCSS(l.color) : (l.color || 'rgba(0,0,0,0.3)')
+          const ox = dimStr(l.offsetX || 0)
+          const oy = dimStr(l.offsetY || 0)
+          const blur = dimStr(l.blur || 0)
+          const spread = dimStr(l.spread || 0)
+          return (l.inset ? 'inset ' : '') + ox + ' ' + oy + ' ' + blur + ' ' + spread + ' ' + color
+        }).join(', ')
+        return `<div class="render-shadow-preview"><div class="box" style="box-shadow:${cssShadows}"></div></div>`
+      }
+
+      function renderGradient(v) {
+        if (typeof v !== 'object') return ''
+        const stops = v.colorStops || []
+        const angles = v.angles || []
+        if (!stops.length) return ''
+        const makeStop = s => {
+          const color = s.color && typeof s.color === 'object' ? colorToCSS(s.color) : (s.color || '#888')
+          const pos = s.position ? ' ' + (typeof s.position === 'string' ? parseFloatSafe(s.position) * 100 + '%' : s.position) : ''
+          return color + pos
+        }
+        let css
+        if (v.type === 'radial') {
+          css = 'radial-gradient(' + stops.map(makeStop).join(', ') + ')'
+        } else {
+          css = 'linear-gradient(' + (angles[0] || '180deg') + ', ' + stops.map(makeStop).join(', ') + ')'
+        }
+        return '<div class="render-gradient" style="background:' + css + '"></div>'
+      }
+
+      function renderTypography(v) {
+        if (typeof v !== 'object') return ''
+        const fam = v.fontFamily ? (Array.isArray(v.fontFamily) ? v.fontFamily : [v.fontFamily]) : null
+        const weight = v.fontWeight != null ? fontWeightNum(v.fontWeight) : null
+        const size = v.fontSize ? dimStr(v.fontSize) : null
+        const lh = v.lineHeight ? dimStr(v.lineHeight) : null
+        const ls = v.letterSpacing ? dimStr(v.letterSpacing) : null
+        const decor = v.textDecoration || null
+        let style = ''
+        if (fam) style += 'font-family:' + fam.join(',') + ';'
+        if (size) style += 'font-size:' + size + ';'
+        if (weight) style += 'font-weight:' + weight + ';'
+        if (lh) style += 'line-height:' + lh + ';'
+        if (ls) style += 'letter-spacing:' + ls + ';'
+        if (decor) style += 'text-decoration:' + decor + ';'
+        let props = '<div class="props">'
+        if (fam) props += '<span>' + fam[0] + '</span>'
+        if (size) props += '<span>' + size + '</span>'
+        if (weight) props += '<span>' + v.fontWeight + '</span>'
+        if (lh) props += '<span>lh ' + lh + '</span>'
+        if (ls) props += '<span>ls ' + ls + '</span>'
+        if (decor) props += '<span>' + decor + '</span>'
+        props += '</div>'
+        return '<div class="render-typography"><div class="sample" style="' + style + '">The quick brown fox jumps over the lazy dog</div>' + props + '</div>'
+      }
+
+      // ─── Boot ─────────────────────────────────────────────────────────────
+
+      if (atUrlInput.value) loadFromAtUrl(atUrlInput.value)
+    </script>
+  </body>
+
+</html>

@@ -18,7 +18,7 @@
         --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
         --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
         --input-bg: #f6f8fa;
-        --hover-border: #1f2328;
+        --hover-border: var(--accent-dim);
         --shadow-card: 0 1px 3px rgba(31, 35, 40, 0.08), 0 1px 2px rgba(31, 35, 40, 0.06);
         --shadow-card-hover: 0 4px 12px rgba(31, 35, 40, 0.12);
       }
@@ -32,7 +32,7 @@
         --accent: #ff6600;
         --accent-dim: #cc5200;
         --input-bg: #010409;
-        --hover-border: #484f58;
+        --hover-border: var(--accent-dim);
         --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3);
         --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.4);
       }
@@ -348,7 +348,6 @@
       }
 
       .token-card-name {
-        font-size: 12px;
         font-weight: 600;
         font-family: var(--mono);
         word-break: break-all;
@@ -918,7 +917,7 @@
         </div>
 
       </div>
-      <button id="themeBtn" class="theme-btn" title="Toggle theme">&#9790;</button>
+      <theme-toggle></theme-toggle>
     </div>
 
     <div id="recordBar" class="record-bar"></div>
@@ -935,20 +934,6 @@
     </div>
 
     <script>
-      // ─── Theme ────────────────────────────────────────────────────────────
-
-      const themeBtn = document.getElementById('themeBtn')
-      function getTheme() { return localStorage.getItem('token-viewer-theme') || 'light' }
-      function setTheme(t) {
-        document.documentElement.setAttribute('data-theme', t)
-        localStorage.setItem('token-viewer-theme', t)
-        themeBtn.textContent = t === 'dark' ? '\u263C' : '\u263E'
-      }
-      themeBtn.addEventListener('click', () => {
-        setTheme(getTheme() === 'dark' ? 'light' : 'dark')
-      })
-      setTheme(getTheme())
-
       // ─── Copy Button WebComponent ──────────────────────────────────────────
 
       class CopyButton extends HTMLElement {
@@ -1025,6 +1010,89 @@
         }
       }
       customElements.define('copy-button', CopyButton)
+
+      // ─── Theme Toggle WebComponent ────────────────────────────────────────
+
+      class ThemeToggle extends HTMLElement {
+        connectedCallback() {
+          this.className = 'theme-btn'
+          this.setAttribute('title', 'Toggle theme')
+          this.addEventListener('click', () => {
+            const next = this._getTheme() === 'dark' ? 'light' : 'dark'
+            this._setTheme(next)
+          })
+          this._setTheme(this._getTheme())
+        }
+
+        _getTheme() {
+          return localStorage.getItem('token-viewer-theme') || 'light'
+        }
+
+        _setTheme(t) {
+          document.documentElement.setAttribute('data-theme', t)
+          localStorage.setItem('token-viewer-theme', t)
+          this.textContent = t === 'dark' ? '\u263C' : '\u263E'
+        }
+      }
+      customElements.define('theme-toggle', ThemeToggle)
+
+      // ─── Record Tab WebComponent ──────────────────────────────────────────
+
+      class RecordTab extends HTMLElement {
+        connectedCallback() {
+          this.className = 'record-tab'
+          if (this.hasAttribute('active')) this.classList.add('active')
+          this.addEventListener('click', () => {
+            document.querySelectorAll('record-tab').forEach(t => t.classList.remove('active'))
+            this.classList.add('active')
+            showRecord(parseInt(this.getAttribute('index')))
+          })
+        }
+      }
+      customElements.define('record-tab', RecordTab)
+
+      // ─── Tree Item WebComponent ────────────────────────────────────────────
+
+      class TreeItem extends HTMLElement {
+        connectedCallback() {
+          if (this._rendered) return
+          this._rendered = true
+
+          const path = this.getAttribute('path') || ''
+          const name = this.getAttribute('name') || ''
+          const type = this.getAttribute('type') || ''
+          const childrenHtml = this.innerHTML
+          const hasChildren = this.innerHTML.trim().length > 0
+
+          let html = '<div class="tree-item" data-path="' + path.replace(/"/g, '&quot;') + '">'
+          html += '<span class="chevron' + (hasChildren ? ' open' : '') + '">' + (hasChildren ? '\u25B6' : '') + '</span>'
+          html += '<span class="name">' + name.replace(/"/g, '&quot;') + '</span>'
+          if (type) html += '<span class="badge">' + type.replace(/"/g, '&quot;') + '</span>'
+          html += '</div>'
+          if (hasChildren) html += '<div class="tree-children open">' + childrenHtml + '</div>'
+
+          this.innerHTML = html
+
+          this.addEventListener('click', (e) => {
+            const item = e.target.closest('.tree-item')
+            if (!item || item.parentElement !== this) return
+            e.stopPropagation()
+            const childrenDiv = item.nextElementSibling
+            if (childrenDiv?.classList.contains('tree-children')) {
+              childrenDiv.classList.toggle('open')
+              item.querySelector('.chevron')?.classList.toggle('open')
+            }
+            const target = document.getElementById('token-' + cssId(path))
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'center' })
+              target.style.outline = '2px solid var(--accent)'
+              target.style.outlineOffset = '2px'
+              setTimeout(() => target.style.outline = '', 1500)
+            }
+          })
+        }
+      }
+      customElements.define('tree-item', TreeItem)
 
       // ─── Token Card WebComponent ──────────────────────────────────────────
 
@@ -1273,15 +1341,8 @@
         recordBar.classList.add('show')
         recordBar.innerHTML = state.records.map((r, i) => {
           const label = r.value.name || r.uri.split('/').pop() || 'Record ' + (i + 1)
-          return `<div class="record-tab${i === state.activeRecordIdx ? ' active' : ''}" data-idx="${i}">${label}</div>`
+          return `<record-tab index="${i}"${i === state.activeRecordIdx ? ' active' : ''}>${label}</record-tab>`
         }).join('')
-        recordBar.querySelectorAll('.record-tab').forEach(el => {
-          el.addEventListener('click', () => {
-            document.querySelectorAll('.record-tab').forEach(t => t.classList.remove('active'))
-            el.classList.add('active')
-            showRecord(parseInt(el.dataset.idx))
-          })
-        })
       }
 
       function showRecord(idx) {
@@ -1318,41 +1379,21 @@
           for (const part of t.path.split('.')) { if (!node[part]) node[part] = {}; node = node[part] }
           node._token = t
         }
-        treeNav.innerHTML = renderTree(tree, '')
-        treeNav.querySelectorAll('.tree-item').forEach(el => {
-          el.addEventListener('click', (e) => {
-            e.stopPropagation()
-            const children = el.nextElementSibling
-            if (children?.classList.contains('tree-children')) {
-              children.classList.toggle('open')
-              el.querySelector('.chevron')?.classList.toggle('open')
-            }
-            const target = document.getElementById('token-' + cssId(el.dataset.path))
-            if (target) {
-              target.scrollIntoView({ behavior: 'smooth', block: 'center' })
-              target.style.outline = '2px solid var(--accent)'
-              target.style.outlineOffset = '2px'
-              setTimeout(() => target.style.outline = '', 1500)
-            }
-          })
-        })
+        treeNav.innerHTML = renderTreeItems(tree, '')
       }
 
       function cssId(s) { return s.replace(/[^\w-]/g, '_') }
 
-      function renderTree(node, path) {
+      function renderTreeItems(node, path) {
         let html = ''
         for (const key of Object.keys(node).filter(k => k !== '_token').sort()) {
           const child = node[key]
           const fullPath = path ? path + '.' + key : key
           const hasChildren = Object.keys(child).filter(k => k !== '_token').length > 0
           const type = child._token?.type || ''
-          html += `<div class="tree-item" data-path="${fullPath}">`
-          html += `<span class="chevron${hasChildren ? ' open' : ''}">${hasChildren ? '\u25B6' : ''}</span>`
-          html += `<span class="name">${key}</span>`
-          if (type) html += `<span class="badge">${type}</span>`
-          html += '</div>'
-          if (hasChildren) html += `<div class="tree-children open">${renderTree(child, fullPath)}</div>`
+          html += '<tree-item path="' + fullPath.replace(/"/g, '&quot;') + '" name="' + key.replace(/"/g, '&quot;') + '"' + (type ? ' type="' + type.replace(/"/g, '&quot;') + '"' : '') + '>'
+          if (hasChildren) html += renderTreeItems(child, fullPath)
+          html += '</tree-item>'
         }
         return html
       }

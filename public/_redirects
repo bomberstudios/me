@@ -1,3 +1,4 @@
 /feed.xml /rss.xml 301
 /feed /rss.xml 301
 /stats https://ping.ale.today
+/atprotokens https://designtxt.org/atproto/ 301

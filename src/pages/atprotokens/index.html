@@ -7,6 +7,7 @@
     <title>Token Viewer</title>
     <style>
       :root {
+        color-scheme: light dark;
         --bg: #f8f9fa;
         --surface: #ffffff;
         --border: #d0d7de;
@@ -21,9 +22,11 @@
         --hover-border: var(--accent-dim);
         --shadow-card: 0 1px 3px rgba(31, 35, 40, 0.08), 0 1px 2px rgba(31, 35, 40, 0.06);
         --shadow-card-hover: 0 4px 12px rgba(31, 35, 40, 0.12);
+        --checker-color: light-dark(#e0e0e0, #30363d);
       }
 
-      [data-theme="dark"] {
+      html[color-scheme="dark"] {
+        color-scheme: dark;
         --bg: #0d1117;
         --surface: #161b22;
         --border: #30363d;
@@ -378,7 +381,7 @@
         margin-left: auto;
       }
 
-      [data-theme="dark"] .token-type-badge {
+      html[color-scheme="dark"] .token-type-badge {
         background: rgba(255, 102, 0, 0.12);
         color: #f60;
       }
@@ -388,6 +391,64 @@
         color: var(--text-dim);
         margin-bottom: 6px;
         font-style: italic;
+      }
+
+      .token-advanced {
+        display: none;
+        margin: 8px -14px -14px;
+        background: var(--input-bg);
+        border-top: 1px solid var(--border);
+        border-radius: 0 0 6px 6px;
+        padding: 10px 14px;
+      }
+
+      .token-advanced.open {
+        display: block;
+      }
+
+      .token-advanced-section {
+        margin-bottom: 8px;
+      }
+
+      .token-advanced-section:last-child {
+        margin-bottom: 0;
+      }
+
+      .token-advanced-label {
+        font-size: 9px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: var(--text-dim);
+        margin-bottom: 4px;
+      }
+
+      .token-advanced-code {
+        font-size: 10px;
+        font-family: var(--mono);
+        line-height: 1.5;
+        color: var(--text);
+        white-space: pre-wrap;
+        word-break: break-all;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 6px 8px;
+        position: relative;
+      }
+
+      .token-advanced-code copy-button {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 20px;
+        height: 20px;
+      }
+
+      .card-btn-advanced {
+        font-size: 11px;
+        font-family: var(--mono);
+        font-weight: 400;
       }
 
       .token-value {
@@ -441,12 +502,6 @@
         border-radius: 2px;
         /* border: 1px solid var(--border); */
         flex-shrink: 0;
-        background-size: 10px 10px;
-        background-position: 0 0, 0 5px, 5px -5px, -5px 0;
-        background-image: linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
-          linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
-          linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
-          linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
       }
 
       .render-color .swatch-inner {
@@ -496,12 +551,6 @@
         border-radius: 6px;
         border: 1px solid var(--border);
         flex-shrink: 0;
-        background-size: 10px 10px;
-        background-position: 0 0, 0 5px, 5px -5px, -5px 0;
-        background-image: linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
-          linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
-          linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
-          linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -518,11 +567,48 @@
         background: var(--accent);
       }
 
-      [data-theme="dark"] .render-dimension .dim-preview {
-        background-image: linear-gradient(45deg, #30363d 25%, transparent 25%),
-          linear-gradient(-45deg, #30363d 25%, transparent 25%),
-          linear-gradient(45deg, transparent 75%, #30363d 75%),
-          linear-gradient(-45deg, transparent 75%, #30363d 75%);
+      .render-dimension .dim-radius {
+        background: none;
+        border: 1px solid var(--border);
+      }
+
+      .render-dimension .dim-font-size {
+        background: none;
+        border: 1px solid var(--border);
+        padding: 8px 12px;
+      }
+
+      .render-dimension .dim-font-size .sample {
+        color: var(--text);
+        line-height: 1.2;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .render-dimension .dim-letter-spacing {
+        background: none;
+        border: 1px solid var(--border);
+        padding: 8px 12px;
+      }
+
+      .render-dimension .dim-letter-spacing .sample {
+        color: var(--text);
+        font-size: 18px;
+        line-height: 1.2;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .render-dimension .dim-line-height {
+        background: none;
+        border: 1px solid var(--border);
+        padding: 8px 12px;
+      }
+
+      .render-dimension .dim-line-height .sample {
+        color: var(--text);
+        max-height: 80px;
+        overflow: hidden;
       }
 
       .render-dimension .dim-info {
@@ -595,24 +681,11 @@
       .dim-overlay .dim-full-area {
         width: 80vw;
         height: 80vh;
-        background-size: 10px 10px;
-        background-position: 0 0, 0 5px, 5px -5px, -5px 0;
-        background-image: linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
-          linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
-          linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
-          linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
         border-radius: 8px;
         border: 1px solid var(--border);
         display: flex;
         align-items: center;
         justify-content: center;
-      }
-
-      [data-theme="dark"] .dim-overlay .dim-full-area {
-        background-image: linear-gradient(45deg, #30363d 25%, transparent 25%),
-          linear-gradient(-45deg, #30363d 25%, transparent 25%),
-          linear-gradient(45deg, transparent 75%, #30363d 75%),
-          linear-gradient(-45deg, transparent 75%, #30363d 75%);
       }
 
       /* Font Family */
@@ -725,11 +798,12 @@
         display: flex;
         align-items: center;
         gap: 14px;
+        padding: 1rem;
       }
 
       .render-bezier .chart {
-        width: 80px;
-        height: 80px;
+        width: 120px;
+        height: 120px;
         flex-shrink: 0;
       }
 
@@ -888,6 +962,24 @@
     </div>
 
     <script>
+      // ─── Checker Grid WebComponent ─────────────────────────────────────────
+
+      class CheckerGrid extends HTMLElement {
+        connectedCallback() {
+          const size = parseInt(this.getAttribute('size'), 10) || 10
+          const half = size / 2
+          this.style.backgroundSize = `${size}px ${size}px`
+          this.style.backgroundPosition = `0 0, 0 ${half}px, ${half}px -${half}px, -${half}px 0`
+          this.style.backgroundImage = [
+            'linear-gradient(45deg, var(--checker-color) 25%, transparent 25%)',
+            'linear-gradient(-45deg, var(--checker-color) 25%, transparent 25%)',
+            'linear-gradient(45deg, transparent 75%, var(--checker-color) 75%)',
+            'linear-gradient(-45deg, transparent 75%, var(--checker-color) 75%)'
+          ].join(', ')
+        }
+      }
+      customElements.define('checker-grid', CheckerGrid)
+
       // ─── Copy Button WebComponent ──────────────────────────────────────────
 
       class CopyButton extends HTMLElement {
@@ -983,7 +1075,7 @@
         }
 
         _setTheme(t) {
-          document.documentElement.setAttribute('data-theme', t)
+          document.documentElement.style.colorScheme = t
           localStorage.setItem('token-viewer-theme', t)
           this.textContent = t === 'dark' ? '\u263C' : '\u263E'
         }
@@ -1027,6 +1119,14 @@
             if (raw) {
               raw.classList.toggle('open')
               this.querySelector('.card-btn-raw')?.classList.toggle('active')
+            }
+          })
+
+          this.querySelector('.card-btn-advanced')?.addEventListener('click', () => {
+            const adv = this.querySelector('.token-advanced')
+            if (adv) {
+              adv.classList.toggle('open')
+              this.querySelector('.card-btn-advanced')?.classList.toggle('active')
             }
           })
 
@@ -1316,16 +1416,236 @@
 
       }
 
+      // ─── CSS snippet generators ─────────────────────────────────────────
+
+      function inferCssProp(path, type) {
+        const p = path.toLowerCase()
+        if (type === 'color') {
+          if (/bg|background/.test(p)) return 'background-color'
+          if (/border/.test(p) && !/color/.test(p)) return 'border-color'
+          if (/shadow/.test(p)) return '--tw-shadow-color'
+          return 'color'
+        }
+        if (type === 'dimension') {
+          if (/radius/.test(p)) return 'border-radius'
+          if (/spacing|space|gap|padding|margin/.test(p)) return 'padding'
+          if (/font[-_\s]?size|type[-_\s]?size|text[-_\s]?size/.test(p)) return 'font-size'
+          if (/letter[-_\s]?spacing/.test(p)) return 'letter-spacing'
+          if (/line[-_\s]?height/.test(p)) return 'line-height'
+          if (/width/.test(p)) return 'width'
+          if (/height/.test(p)) return 'height'
+          if (/size/.test(p)) return 'width'
+          return 'padding'
+        }
+        if (type === 'fontFamily') return 'font-family'
+        if (type === 'fontWeight') return 'font-weight'
+        if (type === 'duration') return 'transition-duration'
+        if (type === 'cubicBezier') return 'transition-timing-function'
+        if (type === 'border') return 'border'
+        if (type === 'shadow') return 'box-shadow'
+        if (type === 'gradient') return 'background'
+        if (type === 'opacity') return 'opacity'
+        if (type === 'strokeStyle') return 'stroke'
+        if (type === 'typography') return null
+        return null
+      }
+
+      function generateCssSnippet(t) {
+        const v = t.token.$value, type = t.type
+        if (!type || v === undefined) return null
+        const resolved = hasRefs(v) ? resolveTokenRefs(v) : v
+        if (resolved === undefined) return null
+        const lines = []
+        const prop = inferCssProp(t.path, type)
+        switch (type) {
+          case 'color':
+            if (prop) lines.push(prop + ': ' + (typeof resolved === 'string' ? resolved : colorToCSS(resolved)) + ';')
+            break
+          case 'dimension':
+            if (prop) lines.push(prop + ': ' + dimStr(resolved) + ';')
+            break
+          case 'fontFamily': {
+            const fam = Array.isArray(resolved) ? resolved : [String(resolved)]
+            lines.push('font-family: ' + fam.join(', ') + ';')
+            break
+          }
+          case 'fontWeight':
+            lines.push('font-weight: ' + fontWeightNum(resolved) + ';')
+            break
+          case 'duration':
+            lines.push('transition-duration: ' + dimStr(resolved) + ';')
+            break
+          case 'cubicBezier': {
+            const arr = Array.isArray(resolved) ? resolved : []
+            if (arr.length >= 4) lines.push('transition-timing-function: cubic-bezier(' + arr.join(', ') + ');')
+            break
+          }
+          case 'border': {
+            if (typeof resolved === 'object') {
+              const w = resolved.width ? dimStr(resolved.width) : '1px'
+              const s = resolved.style || 'solid'
+              const c = resolved.color ? (typeof resolved.color === 'object' ? colorToCSS(resolved.color) : resolved.color) : '#000'
+              lines.push('border: ' + w + ' ' + s + ' ' + c + ';')
+            }
+            break
+          }
+          case 'shadow': {
+            const layers = Array.isArray(resolved) ? resolved : [resolved]
+            const css = layers.map(l => {
+              const color = l.color && typeof l.color === 'object' ? colorToCSS(l.color) : (l.color || 'rgba(0,0,0,0.3)')
+              return (l.inset ? 'inset ' : '') + dimStr(l.offsetX || 0) + ' ' + dimStr(l.offsetY || 0) + ' ' + dimStr(l.blur || 0) + ' ' + dimStr(l.spread || 0) + ' ' + color
+            }).join(',\n    ')
+            lines.push('box-shadow: ' + css + ';')
+            break
+          }
+          case 'gradient': {
+            if (typeof resolved === 'object') {
+              const stops = resolved.colorStops || []
+              const angles = resolved.angles || []
+              const makeStop = s => {
+                const color = s.color && typeof s.color === 'object' ? colorToCSS(s.color) : (s.color || '#888')
+                const pos = s.position ? ' ' + (typeof s.position === 'string' ? parseFloatSafe(s.position) * 100 + '%' : s.position) : ''
+                return color + pos
+              }
+              if (resolved.type === 'radial') lines.push('background: radial-gradient(' + stops.map(makeStop).join(', ') + ');')
+              else lines.push('background: linear-gradient(' + (angles[0] || '180deg') + ', ' + stops.map(makeStop).join(', ') + ');')
+            }
+            break
+          }
+          case 'transition': {
+            if (typeof resolved === 'object') {
+              const parts = []
+              if (resolved.duration) parts.push(dimStr(resolved.duration))
+              if (resolved.timingFunction) {
+                const arr = Array.isArray(resolved.timingFunction) ? resolved.timingFunction : []
+                if (arr.length >= 4) parts.push('cubic-bezier(' + arr.join(', ') + ')')
+              }
+              if (resolved.delay) parts.push(dimStr(resolved.delay))
+              if (parts.length) lines.push('transition: ' + parts.join(' ') + ';')
+            }
+            break
+          }
+          case 'typography': {
+            if (typeof resolved === 'object') {
+              if (resolved.fontFamily) {
+                const fam = Array.isArray(resolved.fontFamily) ? resolved.fontFamily : [resolved.fontFamily]
+                lines.push('font-family: ' + fam.join(', ') + ';')
+              }
+              if (resolved.fontSize) lines.push('font-size: ' + dimStr(resolved.fontSize) + ';')
+              if (resolved.fontWeight != null) lines.push('font-weight: ' + fontWeightNum(resolved.fontWeight) + ';')
+              if (resolved.lineHeight) lines.push('line-height: ' + dimStr(resolved.lineHeight) + ';')
+              if (resolved.letterSpacing) lines.push('letter-spacing: ' + dimStr(resolved.letterSpacing) + ';')
+              if (resolved.textDecoration) lines.push('text-decoration: ' + resolved.textDecoration + ';')
+            }
+            break
+          }
+          case 'opacity':
+            lines.push('opacity: ' + resolved + ';')
+            break
+          default:
+            return null
+        }
+        return lines.length ? lines.join('\n') : null
+      }
+
+      function generateTailwindSnippet(t) {
+        const v = t.token.$value, type = t.type
+        if (!type || v === undefined) return null
+        const resolved = hasRefs(v) ? resolveTokenRefs(v) : v
+        if (resolved === undefined) return null
+        const name = t.path.split('.').pop()
+        const lines = []
+        switch (type) {
+          case 'color': {
+            const hex = typeof resolved === 'string' ? resolved : colorToCSS(resolved)
+            lines.push("'" + name + "': '" + hex + "'")
+            break
+          }
+          case 'dimension':
+            lines.push("'" + name + "': '" + dimStr(resolved) + "'")
+            break
+          case 'fontFamily': {
+            const fam = Array.isArray(resolved) ? resolved : [String(resolved)]
+            lines.push("'" + name + "': [" + fam.map(f => "'" + f + "'").join(', ') + "]")
+            break
+          }
+          case 'fontWeight':
+            lines.push("'" + name + "': '" + fontWeightNum(resolved) + "'")
+            break
+          case 'duration':
+            lines.push("'" + name + "': '" + dimStr(resolved) + "'")
+            break
+          case 'cubicBezier': {
+            const arr = Array.isArray(resolved) ? resolved : []
+            if (arr.length >= 4) lines.push("'" + name + "': ['cubic-bezier(" + arr.join(', ') + ")', { transitionDuration: '0ms' }]")
+            break
+          }
+          case 'shadow': {
+            const layers = Array.isArray(resolved) ? resolved : [resolved]
+            const css = layers.map(l => {
+              const color = l.color && typeof l.color === 'object' ? colorToCSS(l.color) : (l.color || 'rgba(0,0,0,0.3)')
+              return (l.inset ? 'inset ' : '') + dimStr(l.offsetX || 0) + ' ' + dimStr(l.offsetY || 0) + ' ' + dimStr(l.blur || 0) + ' ' + dimStr(l.spread || 0) + ' ' + color
+            }).join(', ')
+            lines.push("'" + name + "': '" + css + "'")
+            break
+          }
+          case 'border': {
+            if (typeof resolved === 'object') {
+              const w = resolved.width ? dimStr(resolved.width) : '1px'
+              const s = resolved.style || 'solid'
+              const c = resolved.color ? (typeof resolved.color === 'object' ? colorToCSS(resolved.color) : resolved.color) : '#000'
+              lines.push("'" + name + "': '" + w + ' ' + s + ' ' + c + "'")
+            }
+            break
+          }
+          case 'gradient': {
+            if (typeof resolved === 'object') {
+              const stops = resolved.colorStops || []
+              const angles = resolved.angles || []
+              const makeStop = s => {
+                const color = s.color && typeof s.color === 'object' ? colorToCSS(s.color) : (s.color || '#888')
+                const pos = s.position ? ' ' + (typeof s.position === 'string' ? parseFloatSafe(s.position) * 100 + '%' : s.position) : ''
+                return color + pos
+              }
+              if (resolved.type === 'radial') lines.push("'" + name + "': 'radial-gradient(" + stops.map(makeStop).join(', ') + ")'")
+              else lines.push("'" + name + "': 'linear-gradient(" + (angles[0] || '180deg') + ', ' + stops.map(makeStop).join(', ') + ")'")
+            }
+            break
+          }
+          case 'typography': {
+            if (typeof resolved === 'object') {
+              if (resolved.fontFamily) {
+                const fam = Array.isArray(resolved.fontFamily) ? resolved.fontFamily : [resolved.fontFamily]
+                lines.push("'" + name + "': { fontFamily: [" + fam.map(f => "'" + f + "'").join(', ') + "]")
+              }
+              if (resolved.fontSize) lines.push("  fontSize: '" + dimStr(resolved.fontSize) + "'")
+              if (resolved.fontWeight != null) lines.push("  fontWeight: '" + fontWeightNum(resolved.fontWeight) + "'")
+              if (resolved.lineHeight) lines.push("  lineHeight: '" + dimStr(resolved.lineHeight) + "'")
+              if (resolved.letterSpacing) lines.push("  letterSpacing: '" + dimStr(resolved.letterSpacing) + "'")
+              if (lines.length > 1) lines[lines.length - 1] += '\n}'
+            }
+            break
+          }
+          case 'opacity':
+            lines.push("'" + name + "': '" + resolved + "'")
+            break
+          default:
+            return null
+        }
+        return lines.length ? '{\n  ' + lines.join(',\n  ') + '\n}' : null
+      }
+
       function renderTokenCard(t) {
         const v = t.token.$value, type = t.type, desc = t.token.$description
         const hasRef = hasRefs(v)
         const resolved = hasRef ? resolveTokenRefs(v) : v
         let rendered = ''
-        if (type && resolved !== undefined) rendered = renderTypeValue(type, resolved)
+        if (type && resolved !== undefined) rendered = renderTypeValue(type, resolved, t.path)
         let html = '<div class="token-card" id="token-' + cssId(t.path) + '">'
         html += '<div class="token-card-header">'
         html += '<span class="token-card-name">' + t.path + '</span>'
         html += '<copy-button class="card-btn" value="' + t.path + '" title="Copy token path"></copy-button>'
+        html += '<button class="card-btn card-btn-advanced" title="Show computed values and CSS">CSS</button>'
         html += '<button class="card-btn card-btn-raw" title="Show raw definition">{}</button>'
         if (type) html += '<span class="token-type-badge">' + type + '</span>'
         html += '</div>'
@@ -1339,6 +1659,24 @@
           const refs = extractRefs(v)
           const links = refs.map(r => '<span class="token-ref-link" data-token-path="' + r.slice(1, -1) + '">' + r + '</span>')
           html += '<div class="token-ref-label">' + links.join('') + '</div>'
+        }
+        const cssSnippet = generateCssSnippet(t)
+        const tailwindSnippet = generateTailwindSnippet(t)
+        if (cssSnippet || tailwindSnippet) {
+          html += '<div class="token-advanced">'
+          if (cssSnippet) {
+            html += '<div class="token-advanced-section">'
+            html += '<div class="token-advanced-label">Computed CSS</div>'
+            html += '<div class="token-advanced-code"><copy-button class="copy-btn-raw" value="' + escapeHtml(cssSnippet) + '" title="Copy CSS"></copy-button>' + escapeHtml(cssSnippet) + '</div>'
+            html += '</div>'
+          }
+          if (tailwindSnippet) {
+            html += '<div class="token-advanced-section">'
+            html += '<div class="token-advanced-label">Tailwind Config</div>'
+            html += '<div class="token-advanced-code"><copy-button class="copy-btn-raw" value="' + escapeHtml(tailwindSnippet) + '" title="Copy Tailwind config"></copy-button>' + escapeHtml(tailwindSnippet) + '</div>'
+            html += '</div>'
+          }
+          html += '</div>'
         }
         const raw = JSON.stringify(t.token, null, 2)
         html += '<div class="token-raw"><copy-button class="copy-btn-raw" value="' + escapeHtml(raw) + '" title="Copy raw JSON"></copy-button><pre>' + escapeHtml(raw) + '</pre></div>'
@@ -1391,16 +1729,22 @@
         return d.innerHTML
       }
 
-      function renderTypeValue(type, v) {
+      function renderTypeValue(type, v, path) {
         if (typeof v === 'string' && isRef(v)) return '<div class="token-value ref">' + v + '</div>'
         switch (type) {
           case 'color': return renderColor(v)
-          case 'dimension': return renderDimension(v)
+          case 'dimension': return renderDimension(v, path)
           case 'fontFamily': return renderFontFamily(v)
           case 'fontWeight': return renderFontWeight(v)
           case 'duration': return renderDuration(v)
           case 'cubicBezier': return renderCubicBezier(v)
-          case 'number': return '<div class="render-number">' + (typeof v === 'string' ? v : String(v)) + '</div>'
+          case 'number': {
+            if (path && /line[-_\s]?height/i.test(path)) {
+              const s = typeof v === 'string' ? v : String(v)
+              return `<div class="render-dimension"><div class="dim-preview dim-line-height" data-dim-line-height="${s}" onclick="showDimFull(this)"><div class="sample" style="line-height:${s};font-size:14px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div></div><div class="dim-info"><span class="val">${s}</span></div></div>`
+            }
+            return '<div class="render-number">' + (typeof v === 'string' ? v : String(v)) + '</div>'
+          }
           case 'string': return '<div class="render-string">' + escapeHtml(String(v)) + '</div>'
           case 'strokeStyle': return renderStrokeStyle(v)
           case 'border': return renderBorder(v)
@@ -1417,7 +1761,7 @@
       function renderColor(v) {
         if (typeof v === 'string') {
           const css = v.startsWith('#') || v.startsWith('rgb') || v.startsWith('hsl') ? v : '#' + v
-          return '<div class="render-color"><div class="swatch"><div class="swatch-inner" style="background:' + css + '"></div></div><div class="color-info"><div class="color-row"><span class="hex">' + v + '</span></div></div></div>'
+          return '<div class="render-color"><checker-grid class="swatch"><div class="swatch-inner" style="background:' + css + '"></div></checker-grid><div class="color-info"><div class="color-row"><span class="hex">' + v + '</span></div></div></div>'
         }
         if (typeof v !== 'object') return ''
         const css = colorToCSS(v)
@@ -1425,15 +1769,19 @@
         const alpha = v.alpha != null ? parseFloatSafe(v.alpha) : 1
         const cs = v.colorSpace || ''
         const alphaStr = alpha < 1 ? '<div style="font-size:10px;color:var(--text-dim)">alpha ' + alpha.toFixed(2) + '</div>' : ''
-        return '<div class="render-color"><div class="swatch"><div class="swatch-inner" style="background:' + css + '"></div></div><div class="color-info"><div class="color-row"><span class="hex">' + hex + '</span><copy-button class="card-btn" value="' + hex + '" title="Copy hex"></copy-button></div><div class="color-space">' + cs + '</div>' + alphaStr + '</div></div>'
+        return '<div class="render-color"><checker-grid class="swatch"><div class="swatch-inner" style="background:' + css + '"></div></checker-grid><div class="color-info"><div class="color-row"><span class="hex">' + hex + '</span><copy-button class="card-btn" value="' + hex + '" title="Copy hex"></copy-button></div><div class="color-space">' + cs + '</div>' + alphaStr + '</div></div>'
       }
 
-      function renderDimension(v) {
+      function renderDimension(v, path) {
         const s = dimStr(v)
         const m = s.match(/^([\d.]+)(.*)/)
         const num = m ? m[1] : s
         const unit = m ? m[2] : ''
         const n = parseFloatSafe(num)
+        const isRadius = path && /radius/i.test(path)
+        const isFontSize = path && /font[-_\s]?size|type[-_\s]?size|text[-_\s]?size/i.test(path)
+        const isLetterSpacing = path && /letter[-_\s]?spacing/i.test(path)
+        const isLineHeight = path && /line[-_\s]?height/i.test(path)
         // Convert to approximate pixels for preview
         let px = n
         if (unit === 'rem' || unit === 'em') px = n * 16
@@ -1443,8 +1791,19 @@
         else if (unit === 'in') px = n * 96
         else if (unit !== 'px' && unit !== '') px = 0 // viewport units, %, etc.
         const canPreview = unit === '' || unit === 'px' || unit === 'rem' || unit === 'em' || unit === 'pt' || unit === 'cm' || unit === 'mm' || unit === 'in'
-        const size = canPreview ? Math.max(4, Math.min(72, px)) : 0
-        const preview = canPreview ? `<div class="dim-preview" data-dim-px="${px}" onclick="showDimFull(this)"><div class="dim-box" style="width:${size}px;height:${size}px"></div></div>` : ''
+        let preview = ''
+        if (canPreview && isRadius) {
+          preview = `<div class="dim-preview dim-radius" data-dim-px="${px}" data-dim-radius="${s}" onclick="showDimFull(this)"><div class="dim-box" style="width:50px;height:50px;border-radius:${s}"></div></div>`
+        } else if (canPreview && isFontSize) {
+          preview = `<div class="dim-preview dim-font-size" data-dim-px="${px}" data-dim-font-size="${s}" onclick="showDimFull(this)"><div class="sample" style="font-size:${s}">Aa</div></div>`
+        } else if (canPreview && isLetterSpacing) {
+          preview = `<div class="dim-preview dim-letter-spacing" data-dim-px="${px}" data-dim-letter-spacing="${s}" onclick="showDimFull(this)"><div class="sample" style="letter-spacing:${s}">Aa Bb Cc</div></div>`
+        } else if (canPreview && isLineHeight) {
+          preview = `<div class="dim-preview dim-line-height" data-dim-px="${px}" data-dim-line-height="${s}" onclick="showDimFull(this)"><div class="sample" style="line-height:${s};font-size:14px">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div></div>`
+        } else if (canPreview) {
+          const size = Math.max(4, Math.min(72, px))
+          preview = `<checker-grid class="dim-preview" data-dim-px="${px}" onclick="showDimFull(this)"><div class="dim-box" style="width:${size}px;height:${size}px"></div></checker-grid>`
+        }
         return `<div class="render-dimension">${preview}<div class="dim-info"><span class="val">${num}</span><span class="unit">${unit || 'px'}</span></div></div>`
       }
 
@@ -1458,7 +1817,7 @@
           dimOverlay.innerHTML = `
             <button class="dim-close" onclick="closeDimFull()">Close</button>
             <div class="dim-scale-info"></div>
-            <div class="dim-full-area"></div>
+            <checker-grid class="dim-full-area"></checker-grid>
           `
           dimOverlay.addEventListener('click', (e) => {
             if (e.target === dimOverlay) closeDimFull()
@@ -1466,8 +1825,26 @@
           document.body.appendChild(dimOverlay)
         }
         const area = dimOverlay.querySelector('.dim-full-area')
-        area.innerHTML = `<div class="dim-box" style="width:${n}px;height:${n}px;background:var(--accent)"></div>`
-        dimOverlay.querySelector('.dim-scale-info').innerHTML = `${Math.round(n)}px at 100%`
+        const radius = el.dataset.dimRadius
+        const fontSize = el.dataset.dimFontSize
+        const letterSpacing = el.dataset.dimLetterSpacing
+        const lineHeight = el.dataset.dimLineHeight
+        if (radius) {
+          area.innerHTML = `<div class="dim-box" style="width:50px;height:50px;background:var(--accent);border-radius:${radius}"></div>`
+          dimOverlay.querySelector('.dim-scale-info').innerHTML = `border-radius: ${radius}`
+        } else if (fontSize) {
+          area.innerHTML = `<div style="font-size:${fontSize};line-height:1.2;color:var(--text)">The quick brown fox jumps over the lazy dog</div>`
+          dimOverlay.querySelector('.dim-scale-info').innerHTML = `font-size: ${fontSize}`
+        } else if (letterSpacing) {
+          area.innerHTML = `<div style="letter-spacing:${letterSpacing};font-size:24px;line-height:1.2;color:var(--text)">The quick brown fox jumps over the lazy dog</div>`
+          dimOverlay.querySelector('.dim-scale-info').innerHTML = `letter-spacing: ${letterSpacing}`
+        } else if (lineHeight) {
+          area.innerHTML = `<div style="line-height:${lineHeight};font-size:24px;color:var(--text)">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>`
+          dimOverlay.querySelector('.dim-scale-info').innerHTML = `line-height: ${lineHeight}`
+        } else {
+          area.innerHTML = `<div class="dim-box" style="width:${n}px;height:${n}px;background:var(--accent)"></div>`
+          dimOverlay.querySelector('.dim-scale-info').innerHTML = `${Math.round(n)}px at 100%`
+        }
         dimOverlay.classList.add('open')
       }
 
@@ -1506,7 +1883,7 @@
         if (arr.length < 4) return ''
         const [x1, y1, x2, y2] = arr
         const d = `M0,1 C${x1},${1 - y1} ${x2},${1 - y2} 1,0`
-        return `<div class="render-bezier"><div class="chart"><svg viewBox="0 0 1 1" preserveAspectRatio="none">
+        return `<div class="render-bezier"><div class="chart"><svg viewBox="-0.15 -0.15 1.3 1.3" preserveAspectRatio="none">
     <rect x="0" y="0" width="1" height="1" fill="none" stroke="var(--border)" stroke-width="0.015"/>
     <line x1="0" y1="1" x2="${x1}" y2="${1 - y1}" stroke="var(--border)" stroke-width="0.01"/>
     <line x1="1" y1="0" x2="${x2}" y2="${1 - y2}" stroke="var(--border)" stroke-width="0.01"/>

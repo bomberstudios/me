@@ -181,119 +181,30 @@
 
       /* Main layout */
       .main {
-        display: grid;
-        grid-template-columns: 250px 1fr;
         height: calc(100vh - 99px);
+        display: flex;
+        flex-direction: column;
       }
 
-      @media (max-width: 768px) {
-        .main {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      /* Sidebar */
-      .sidebar {
-        border-right: 1px solid var(--border);
-        padding: 12px;
-        overflow-y: auto;
+      .search-bar {
+        padding: 12px 20px;
         background: var(--surface);
+        border-bottom: 1px solid var(--border);
       }
 
-      .sidebar-header {
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: .06em;
-        color: var(--text-dim);
-        margin-bottom: 8px;
-        font-weight: 600;
-      }
-
-      .search-input {
+      .search-bar input {
         width: 100%;
         background: var(--input-bg);
         border: 1px solid var(--border);
         color: var(--text);
-        padding: 6px 10px;
+        padding: 8px 12px;
         border-radius: var(--radius);
-        font-size: 13px;
+        font-size: 14px;
         outline: none;
-        margin-bottom: 8px;
       }
 
-      .search-input:focus {
+      .search-bar input:focus {
         border-color: var(--accent);
-      }
-
-      .tree-nav {
-        font-size: 12px;
-      }
-
-      .tree-item {
-        padding: 2px 0 2px 12px;
-        cursor: pointer;
-        color: var(--text-dim);
-        display: flex;
-        align-items: center;
-        gap: 3px;
-        border-radius: 3px;
-        transition: color .1s;
-      }
-
-      .tree-item:hover {
-        color: var(--text);
-      }
-
-      .tree-item .chevron {
-        width: 14px;
-        flex-shrink: 0;
-        text-align: center;
-        color: var(--text-dim);
-        font-size: 9px;
-        transition: transform .15s;
-      }
-
-      .tree-item .chevron.open {
-        transform: rotate(90deg);
-      }
-
-      .tree-item .name {
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .tree-item .badge {
-        font-size: 9px;
-        padding: 1px 5px;
-        border-radius: 8px;
-        background: var(--border);
-        color: var(--text-dim);
-        margin-left: auto;
-        flex-shrink: 0;
-      }
-
-      .tree-item.active {
-        color: var(--accent);
-      }
-
-      .tree-item.active .badge {
-        background: var(--accent-dim);
-        color: #fff;
-      }
-
-      .tree-children {
-        display: none;
-      }
-
-      .tree-children.open {
-        display: block;
-      }
-
-      .tree-empty {
-        color: var(--text-dim);
-        font-size: 13px;
-        padding: 20px;
-        text-align: center;
       }
 
       /* Content */
@@ -530,8 +441,8 @@
         border-radius: 2px;
         /* border: 1px solid var(--border); */
         flex-shrink: 0;
-        background-size: 12px 12px;
-        background-position: 0 0, 0 6px, 6px -6px, -6px 0;
+        background-size: 10px 10px;
+        background-position: 0 0, 0 5px, 5px -5px, -5px 0;
         background-image: linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
           linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
           linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
@@ -585,8 +496,8 @@
         border-radius: 6px;
         border: 1px solid var(--border);
         flex-shrink: 0;
-        background-size: 12px 12px;
-        background-position: 0 0, 0 6px, 6px -6px, -6px 0;
+        background-size: 10px 10px;
+        background-position: 0 0, 0 5px, 5px -5px, -5px 0;
         background-image: linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
           linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
           linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
@@ -684,8 +595,8 @@
       .dim-overlay .dim-full-area {
         width: 80vw;
         height: 80vh;
-        background-size: 12px 12px;
-        background-position: 0 0, 0 6px, 6px -6px, -6px 0;
+        background-size: 10px 10px;
+        background-position: 0 0, 0 5px, 5px -5px, -5px 0;
         background-image: linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
           linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
           linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
@@ -789,28 +700,24 @@
         height: 4px;
         background: var(--border);
         border-radius: 2px;
-        overflow: hidden;
         flex-shrink: 0;
+        position: relative;
       }
 
-      .render-duration .bar .fill {
-        height: 100%;
-        width: 60%;
+      .render-duration .bar .dot {
+        width: 4px;
+        height: 4px;
         background: var(--accent);
-        border-radius: 2px;
-        animation: pulse-bar 2s ease-in-out infinite;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: move-dot linear infinite;
       }
 
-      @keyframes pulse-bar {
-
-        0%,
-        100% {
-          width: 30%;
-        }
-
-        50% {
-          width: 70%;
-        }
+      @keyframes move-dot {
+        0% { left: 0; }
+        100% { left: calc(100% - 4px); }
       }
 
       /* Cubic Bezier */
@@ -972,10 +879,8 @@
     <div id="recordBar" class="record-bar"></div>
 
     <div class="main">
-      <div class="sidebar" id="sidebar">
-        <input id="searchInput" class="search-input" placeholder="Search tokens..." style="display:none">
-        <div id="treeNavHeader" class="sidebar-header" style="display:none">Tokens</div>
-        <div id="treeNav" class="tree-nav"></div>
+      <div class="search-bar">
+        <input id="searchInput" placeholder="Search tokens..." style="display:none">
       </div>
       <div class="content" id="content">
         <div class="connect-prompt">Enter an at:// URI above (or press &#8984;K)</div>
@@ -1100,49 +1005,6 @@
       }
       customElements.define('record-tab', RecordTab)
 
-      // ─── Tree Item WebComponent ────────────────────────────────────────────
-
-      class TreeItem extends HTMLElement {
-        connectedCallback() {
-          if (this._rendered) return
-          this._rendered = true
-
-          const path = this.getAttribute('path') || ''
-          const name = this.getAttribute('name') || ''
-          const type = this.getAttribute('type') || ''
-          const childrenHtml = this.innerHTML
-          const hasChildren = this.innerHTML.trim().length > 0
-
-          let html = '<div class="tree-item" data-path="' + path.replace(/"/g, '&quot;') + '">'
-          html += '<span class="chevron' + (hasChildren ? ' open' : '') + '">' + (hasChildren ? '\u25B6' : '') + '</span>'
-          html += '<span class="name">' + name.replace(/"/g, '&quot;') + '</span>'
-          if (type) html += '<span class="badge">' + type.replace(/"/g, '&quot;') + '</span>'
-          html += '</div>'
-          if (hasChildren) html += '<div class="tree-children open">' + childrenHtml + '</div>'
-
-          this.innerHTML = html
-
-          this.addEventListener('click', (e) => {
-            const item = e.target.closest('.tree-item')
-            if (!item || item.parentElement !== this) return
-            e.stopPropagation()
-            const childrenDiv = item.nextElementSibling
-            if (childrenDiv?.classList.contains('tree-children')) {
-              childrenDiv.classList.toggle('open')
-              item.querySelector('.chevron')?.classList.toggle('open')
-            }
-            const target = document.getElementById('token-' + cssId(path))
-            if (target) {
-              target.scrollIntoView({ behavior: 'smooth', block: 'center' })
-              target.style.outline = '2px solid var(--accent)'
-              target.style.outlineOffset = '2px'
-              setTimeout(() => target.style.outline = '', 1500)
-            }
-          })
-        }
-      }
-      customElements.define('tree-item', TreeItem)
-
       // ─── Token Card WebComponent ──────────────────────────────────────────
 
       class TokenCard extends HTMLElement {
@@ -1255,7 +1117,6 @@
 
       const atUrlInput = document.getElementById('atUrlInput')
       const recordBar = document.getElementById('recordBar')
-      const treeNav = document.getElementById('treeNav')
       const content = document.getElementById('content')
       const searchInput = document.getElementById('searchInput')
 
@@ -1315,7 +1176,7 @@
           if (!records.length) {
             content.innerHTML = '<div class="no-tokens">No token collections found.</div>'
             recordBar.classList.remove('show'); recordBar.innerHTML = ''
-            searchInput.style.display = 'none'; document.getElementById('treeNavHeader').style.display = 'none'; treeNav.innerHTML = ''
+            searchInput.style.display = 'none'
             return
           }
 
@@ -1411,10 +1272,8 @@
         for (const t of state.flatTokens) state.tokenMap.set(t.path, t.token)
         state.filteredTokens = state.flatTokens
         searchInput.style.display = 'block'
-        document.getElementById('treeNavHeader').style.display = 'block'
         searchInput.value = ''
         searchInput.placeholder = 'Search ' + state.flatTokens.length + ' tokens\u2026'
-        buildSidebar(state.flatTokens)
         renderContent(state.flatTokens)
       }
 
@@ -1423,38 +1282,10 @@
         state.filteredTokens = q ? state.flatTokens.filter(t =>
           t.path.toLowerCase().includes(q) || (t.token.$description || '').toLowerCase().includes(q) || (t.type || '').toLowerCase().includes(q)
         ) : state.flatTokens
-        buildSidebar(state.filteredTokens)
         renderContent(state.filteredTokens)
       })
 
-      // ─── Sidebar ─────────────────────────────────────────────────────────
-
-      function buildSidebar(tokens) {
-        if (!tokens.length) { treeNav.innerHTML = '<div class="tree-empty">No matching tokens</div>'; return }
-        const tree = {}
-        for (const t of tokens) {
-          let node = tree
-          for (const part of t.path.split('.')) { if (!node[part]) node[part] = {}; node = node[part] }
-          node._token = t
-        }
-        treeNav.innerHTML = renderTreeItems(tree, '')
-      }
-
       function cssId(s) { return s.replace(/[^\w-]/g, '_') }
-
-      function renderTreeItems(node, path) {
-        let html = ''
-        for (const key of Object.keys(node).filter(k => k !== '_token').sort()) {
-          const child = node[key]
-          const fullPath = path ? path + '.' + key : key
-          const hasChildren = Object.keys(child).filter(k => k !== '_token').length > 0
-          const type = child._token?.type || ''
-          html += '<tree-item path="' + fullPath.replace(/"/g, '&quot;') + '" name="' + key.replace(/"/g, '&quot;') + '"' + (type ? ' type="' + type.replace(/"/g, '&quot;') + '"' : '') + '>'
-          if (hasChildren) html += renderTreeItems(child, fullPath)
-          html += '</tree-item>'
-        }
-        return html
-      }
 
       // ─── Content ─────────────────────────────────────────────────────────
 
@@ -1667,7 +1498,7 @@
         else if (typeof v === 'string') { const m = v.match(/^([\d.]+)(.*)/); val = m ? m[1] : v; unit = m ? m[2] : '' }
         else if (v && typeof v === 'object') { val = parseFloatSafe(v.value); unit = v.unit || 'ms' }
         else return ''
-        return `<div class="render-duration"><span class="val">${val}</span><span class="unit">${unit}</span><div class="bar"><div class="fill"></div></div></div>`
+        return `<div class="render-duration"><span class="val">${val}</span><span class="unit">${unit}</span><div class="bar"><div class="dot" style="animation-duration:${val}${unit}"></div></div></div>`
       }
 
       function renderCubicBezier(v) {

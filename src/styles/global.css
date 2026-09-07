@@ -66,6 +66,36 @@ atmentions-reactions {
   background: var(--brand);
 }
 
+/* Scrollbars — accent colored */
+html {
+  scrollbar-color: var(--brand) transparent;
+  scrollbar-width: thin;
+}
+
+/* WebKit / Blink (Safari, older Chrome) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--brand);
+  border-radius: 10px;
+  border: 2px solid var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in srgb, var(--brand), var(--text-color) 20%);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 /* HTML Elements */
 a {
   color: var(--brand);

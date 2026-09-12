@@ -16,18 +16,18 @@
     "new-post": "bun scripts/new-post.mjs"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.9",
-    "@astrojs/markdown-satteri": "0.3.2",
-    "@astrojs/mdx": "7.0.0",
-    "@astrojs/react": "6.0.0",
-    "@astrojs/rss": "^4.0.18",
-    "@astrojs/sitemap": "^3.7.3",
-    "astro": "7.0.2",
+    "@astrojs/check": "0.9.10",
+    "@astrojs/markdown-satteri": "0.4.1",
+    "@astrojs/mdx": "8.0.1",
+    "@astrojs/react": "6.0.5",
+    "@astrojs/rss": "4.0.19",
+    "@astrojs/sitemap": "3.7.4",
+    "astro": "7.3.2",
     "fast-xml-parser": "^5.7.3",
     "motion": "^12",
     "react": "^19.0.0",
     "satori": "^0.26.0",
-    "use-sound": "^5.0.0",
-    "sequoia-cli": "0.5.7"
+    "sequoia-cli": "0.5.7",
+    "use-sound": "^5.0.0"
   }
 }
